@@ -10,6 +10,7 @@ The final version of Project 3 will feature:
 - A more complex 9x9 Tic Tac Toe game,
 - A user system login interface with a few social tools,
 - A user ranking system, 
+- Social Media API Integration (Twitter, FB, etc),
 - A match history system, and
 - A few bots for you to compete against (though you will be able to play with friends)!
 
