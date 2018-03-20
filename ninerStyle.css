@@ -21,6 +21,14 @@
 	background-color: rgb(250, 180, 150);
 }
 
-.winner {
-	border: 2px solid green;
+.Xwinner {
+	border: 2px solid rgb(150, 200, 250);
+}
+
+.Owinner {
+	border: 2px solid rgb(250, 180, 150);
+}
+
+.grayed {
+	background-color: rgb(100, 100, 100);
 }
