@@ -13,12 +13,22 @@ function addEvents() {
 				this.innerText = selClass.charAt(0);
 				isX = !isX;
 				txt[i] = XO[i].innerText;
-				possibleWins.forEach(function(poss) {checkTriple(poss[0], poss[1], poss[2]);});}});}}
+				possibleWins.forEach(function(poss) {
+					checkTriple(poss[0], poss[1], poss[2]);
+				});
+			}
+		});
+	}
+}
 
 function checkTriple(x1, x2, x3) {
 	if((txt[x1] == txt[x2] && txt[x2] == txt[x3]) && txt[x1] != undefined) {
-		[x1,x2,x3].forEach(function(w) {XO[w].classList.add("winner");});
+		[x1,x2,x3].forEach(function(w) {
+			XO[w].classList.add("winner");
+		});
 		for(let i = 0; i < 9; i++) {
 			XO[i].classList.remove("OSelect","XSelect");
-			XO[i].classList.add(txt[x1]+"Select","selected");}}}
-
+			XO[i].classList.add(txt[x1]+"Select","selected");
+		}
+	}
+}
