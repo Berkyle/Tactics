@@ -1,18 +1,30 @@
 //Board indices are 0-8...
-
 //TODO
 //-X  add case for nobody won the board
 //-X  add case for sent to a board that is already full
 //->  Add handling in checkTriple() for neutral Board
 
 var tables = document.getElementsByClassName("subtable");
-var XO = document.getElementsByClassName("board");
+// var XO = document.getElementsByClassName("board");
+var XO = document.getElementsByTagName("td");
 var txt = [];
 var nextPick = 9;
 var isX = true;
 var selClass = "";
 var gameTxt = []; //undefined, 'X', 'O', or 'A'
 var possibleWins = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
+
+function init() {
+	populateHTML();
+	addEvents();
+}
+
+function populateHTML() {
+	let add = "<tr><td></td><td></td><td></td></tr>";
+	for(let i = 0; i < 9; i++) {
+		for(let j = 0; j < 3; j++) tables[i].innerHTML += add;
+	}
+}
 
 function addEvents() {
 	for(let i = 0; i < 81; i++) {
