@@ -1,5 +1,30 @@
 .subtable {
 	display: inline-block;
+	margin: 0;
+}
+
+tr::after {
+    /* content: "-";
+    display: block; */
+    line-height: 0em;
+		height: 0;
+}
+
+table {
+	padding: 0px;
+	border-spacing: 0em;
+	border-collapse: separate;
+	border: 5px solid black;
+}
+
+tr {
+	border-collapse: inherit;
+	max-height: 137px;
+}
+
+th {
+	padding: 0px;
+	margin: 0;
 }
 
 td {
@@ -20,17 +45,20 @@ td {
 .OSelect {
 	background-color: rgb(250, 180, 150);
 }
+.ASelect {
+	background-color: rgb(225, 140, 225);
+}
 
 .Xwinner {
-	border: 2px solid rgb(150, 200, 250);
+	border: 5px solid rgb(150, 200, 250);
 }
 
 .Owinner {
-	border: 2px solid rgb(250, 180, 150);
+	border: 5px solid rgb(250, 180, 150);
 }
 
 .Awinner {
-	border: 2px solid rgb(225, 140, 225);
+	border: 5px solid rgb(225, 140, 225);
 }
 
 .grayed {
