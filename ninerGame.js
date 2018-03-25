@@ -1,4 +1,4 @@
-//Board indices are 0-8...
+//Board indices are 0-8... Tile and txt indices are 0-80...
 //TODO
 //-> Change shading for inside won board.
 //-> make Border styling less bad pls
@@ -11,7 +11,6 @@ var selClass = "";
 var gameTxt = [];
 var XTxt = [];
 var OTxt = [];
-var winArray = [];
 var possibleWins = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
 
 function init() {
@@ -37,7 +36,7 @@ function addEvents() {
 				txt[i] = XO[i].innerText;
 				checkBoardStatus(i);
 				checkGameWin();
-      }
+      		}
 		});
 	}
 }
@@ -70,20 +69,18 @@ function checkGameWin() {
 		if(checkTriple(poss[0], poss[1], poss[2], OTxt)){
 			if(gameTxt[poss[0]] != 'A' || gameTxt[poss[1]] != 'A' || gameTxt[poss[2]] != 'A') {
 				OWin = true;
-				winArray.push(['O', poss[0], poss[1], poss[2]]);
 			}
 		}
 		if(checkTriple(poss[0], poss[1], poss[2], XTxt)) {
 			if(gameTxt[poss[0]] != 'A' || gameTxt[poss[1]] != 'A' || gameTxt[poss[2]] != 'A') {
 				XWin = true;
-				winArray.push(['X', poss[0], poss[1], poss[2]]);
 			}
 		}
 	});
 	if(OWin && XWin) finishGame('A');
 	else if(specialCases()) finishGame('A');
 	else if(!OWin && !XWin) return false;
-	else finishGame(winArray[0][0]);
+	else finishGame(XWin ? "X" : "O");
 }
 
 function updateSubArrays() {
