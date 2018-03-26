@@ -33,7 +33,7 @@ function addEvents() {
 				txt[i] = XO[i].innerText;
 				checkBoardStatus(i);
 				checkGameWin();
-      }
+		      }
 		});
 	}
 }
