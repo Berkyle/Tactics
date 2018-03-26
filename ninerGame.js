@@ -13,16 +13,13 @@ var XTxt = [];
 var OTxt = [];
 var possibleWins = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
 
-function init() {
-	populateHTML();
-	addEvents();
-}
-
 function populateHTML() {
 	let add = "<tr><td class=\"board\"></td><td class=\"board\"></td><td class=\"board\"></td></tr>";
 	for(let i = 0; i < 9; i++) {
 		for(let j = 0; j < 3; j++) document.getElementsByClassName("subtable "+ i)[0].innerHTML += add;
 	}
+
+	addEvents();
 }
 
 function addEvents() {
@@ -36,7 +33,7 @@ function addEvents() {
 				txt[i] = XO[i].innerText;
 				checkBoardStatus(i);
 				checkGameWin();
-      		}
+      }
 		});
 	}
 }
@@ -45,7 +42,7 @@ function checkBoardStatus(tile) {	//tile is the tile that the last choice was se
 	var toSelect = Math.floor(tile/9); //toSelect is the board that the last choice was selected in
 	if(gameTxt[toSelect] == undefined) { //make sure board hasn't already been won
 		possibleWins.forEach(function(poss) {
-			if(checkTriple(poss[0]+9*toSelect, poss[1]+9*toSelect, poss[2]+9*toSelect, txt)){
+			if(triple(poss[0]+9*toSelect, poss[1]+9*toSelect, poss[2]+9*toSelect, txt)){
 				gameTxt[toSelect] = txt[poss[0]+9*toSelect];
 			}
 		});
@@ -66,12 +63,12 @@ function checkGameWin() {
 
 	var OWin, XWin = false;
 	possibleWins.forEach(function(poss) {
-		if(checkTriple(poss[0], poss[1], poss[2], OTxt)){
+		if(triple(poss[0], poss[1], poss[2], OTxt)){
 			if(gameTxt[poss[0]] != 'A' || gameTxt[poss[1]] != 'A' || gameTxt[poss[2]] != 'A') {
 				OWin = true;
 			}
 		}
-		if(checkTriple(poss[0], poss[1], poss[2], XTxt)) {
+		if(triple(poss[0], poss[1], poss[2], XTxt)) {
 			if(gameTxt[poss[0]] != 'A' || gameTxt[poss[1]] != 'A' || gameTxt[poss[2]] != 'A') {
 				XWin = true;
 			}
@@ -113,7 +110,7 @@ function checkBoardFull(board) {
 	}
 }
 
-function checkTriple(x1, x2, x3, arr) {
+function triple(x1, x2, x3, arr) {
 	if((arr[x1] === arr[x2] && arr[x2] === arr[x3]) && arr[x1] !== undefined && arr[x1] !== 'A') {
 		return true;
 	}
