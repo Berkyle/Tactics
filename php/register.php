@@ -59,5 +59,6 @@
         echo "<h3>".$username_err.$password_err.$confirm_password_err."</h3>";
     }
     ?>
+    <h5><a href="../index.html">Return to landing page...</a></h5>
   </body>
 </html>
