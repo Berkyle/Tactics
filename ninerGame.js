@@ -47,13 +47,13 @@ function checkBoardStatus(tile) {	//tile is the tile that the last choice was se
 			}
 		});
 	}
-	if(checkBoardFull(toSelect)) {
-		if(gameTxt[toSelect] != 'O' && gameTxt[toSelect] != 'X') {
+	if(checkBoardFull(toSelect)) {	//If the board is full...
+		if(gameTxt[toSelect] != 'O' && gameTxt[toSelect] != 'X') { //... and has not been won ...
 			gameTxt[toSelect] = 'A';
-			tables[toSelect].classList.add("Awinner");
+			tables[toSelect].classList.add("Awinner");	//... it becomes a neutral board...
 		}
 	}
-	updateBoard(false);
+	updateBoard(false); //false parameter means game has not been won
 	grayOthers(tile);
 	if(checkBoardFull(tile%9)) removeGrayedAll();
 }
@@ -74,13 +74,13 @@ function checkGameWin() {
 			}
 		}
 	});
-	if(OWin && XWin) finishGame('A');
-	else if(specialCases()) finishGame('A');
-	else if(!OWin && !XWin) return false;
-	else finishGame(XWin ? "X" : "O");
+	if(OWin && XWin) finishGame('A'); // If a winning streak is found for both X and O, game tie
+	else if(specialCases()) finishGame('A'); //(See function)
+	else if(!OWin && !XWin) return false; //Game hasn't been won
+	else finishGame(XWin ? "X" : "O"); //Game has been won
 }
 
-function updateSubArrays() {
+function updateSubArrays() { //updates XTxt and OTxt to make checkGameWin run smoother
 	gameTxt.forEach(function(boardVal, index, array) {
 		if(boardVal == 'A') {
 			OTxt[index] = 'O';
@@ -91,33 +91,33 @@ function updateSubArrays() {
 	});
 }
 
-function specialCases() {
+function specialCases() { //specal cases that end in a tie. Game can no longer be won.
 	for(let i = 0; i < 9; i++) {
 		if(gameTxt[i] != 'A') break;
-		if (i == 8) return true;
+		if (i == 8) return true; //Checks if all tiles are neutral
 	}
 	for(let i = 0; i < 9; i++){
-		if(gameTxt[i] == undefined) break;
+		if(gameTxt[i] == undefined) break; //Checks if all tiles are chosen
 		if(i == 8) return true;
 	}
 	return false;
 }
 
-function checkBoardFull(board) {
+function checkBoardFull(board) { //checks if a 3x3 board is full, given the board number 0-8
 	for(var i = 0; i < 9; i++) {
 		if (txt[i+9*board] == undefined) return false;
 		else if(i == 8) return true;
 	}
 }
 
-function triple(x1, x2, x3, arr) {
+function triple(x1, x2, x3, arr) { //checks for a three-in-a-row using possibleWins
 	if((arr[x1] === arr[x2] && arr[x2] === arr[x3]) && arr[x1] !== undefined && arr[x1] !== 'A') {
 		return true;
 	}
 	return false;
 }
 
-function updateBoard(gameFinished) {
+function updateBoard(gameFinished) { //ensures board tiles have proper classes.
 	for(let i = 0; i < 81; i++) {
 		XO[i].classList.remove("grayed","OSelect","XSelect", "ASelect");
 		if(i<9) tables[i].classList.remove("Owinner", "Xwinner", "Awinner");
@@ -134,7 +134,7 @@ function updateBoard(gameFinished) {
 	}
 }
 
-function grayOthers(dontGray) {//grays all tiles except in 'dontGray' board
+function grayOthers(dontGray) {//grays all tiles except in 'dontGray' board - where next player is sent
 	var toSelect = dontGray%9;
 	removeGrayedAll();
 	for(var i = 0; i < 81; i++) {
@@ -148,7 +148,7 @@ function removeGrayedAll() { //Removes "gray" class from all tiles
 	for(var i = 0; i < 81; i++) XO[i].classList.remove("grayed");
 }
 
-function finishGame(winner) {
+function finishGame(winner) { //called if the game is concluded
 	updateBoard(true);
 	for(let i = 0; i < 81; i++) XO[i].classList.add("selected", winner+"Select");
 	for(let i = 0; i < 9; i++) tables[i].classList.add(winner+"winner")
