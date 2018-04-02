@@ -52,6 +52,7 @@
           $query = "INSERT IGNORE INTO GameUsers(username, password) VALUES('$username', '$password')";
           if ($result = $link->query($query)) {
             echo "<h3>New user created!</h3>";
+            echo "<h5><a href=\"../index.html\">Return to landing page...</a></h5>";
             $result->free(); // free result set
             $link->close(); /*close connection */
           }
