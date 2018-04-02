@@ -3,14 +3,18 @@
   <head>
     <meta charset="utf-8">
     <title>Create an Account:</title>
-  </head>
+    <link rel="stylesheet" href="../css/index.css">
+</head>
   <body>
-    <h2>Create your account:</h2>
-    <form action="../php/register.php" method="post">
-      <p>Username: <input type="text" name="username" value=""></p>
-      <p>Password: <input type="password" name="password" value=""></p>
-      <p>Confirm Password: <input type="password" name="confirm_password" value=""></p>
-      <input type="submit" value="submit">
-    </form>
+    <div class="container">
+      <h2>Create your account:</h2>
+      <form action="../php/register.php" method="post">
+        <p>Username: <input type="text" name="username" value=""></p>
+        <p>Password: <input type="password" name="password" value=""></p>
+        <p>Confirm Password: <input type="password" name="confirm_password" value=""></p>
+        <input type="submit" value="Create Account">
+      </form>
+      <h5><a href="../index.html">Return to landing page...</a></h5>
+    </div>
   </body>
 </html>
