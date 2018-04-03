@@ -1,5 +1,4 @@
 # Tactics
-A fresh take on the classic game of Tic Tac Toe, re-imagined in a whole new dimension!
 
 Welcome to Tactics! 
 
