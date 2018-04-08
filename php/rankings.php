@@ -38,7 +38,7 @@
       }
 
       for($k = 0; $k < $numrows; $k++) {
-        echo "<p>".($k+1).": ".($users[$k])."(".($userPoints[$k])." points)</p>";
+        echo "<p>".($k+1).": ".($users[$k])." (".($userPoints[$k])." points)</p>";
       }
       $link->close();
     }
