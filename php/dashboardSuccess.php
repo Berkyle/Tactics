@@ -6,10 +6,10 @@ $password = $_COOKIE["pw"];
 <div class="bootstrapContainer">
   <div class="bootstrapDiv bs1">
     <div class="gameContainer">
-      <a href="../demos/singleBoardDemo/simpleBoard.html"><h5>Start 3x3 Game (Local)</h5></a>
+      <a href="../html/simpleBoard.html"><h5>Start 3x3 Game (Local)</h5></a>
     </div>
     <div class="gameContainer">
-      <a href="../demos/nineBoardDemo/ninerBoard.html"><h5>Start 9x9 Game (Local)</h5></a>
+      <a href="../html/ninerBoard.html"><h5>Start 9x9 Game (Local)</h5></a>
     </div>
   </div>
   <div class="bootstrapDiv bs2">
