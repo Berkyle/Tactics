@@ -7,13 +7,21 @@ Date: 3/28/18
 Time: 5:30 p.m.
 Location: Fuzzy's Tacos
 
-The tasks from the last meeting were completed.
+Previous Tasks:
+- Generate Gantt Chart (completed)
+- Generate product backlog (completed)
+- Copy Github Repo (completed)
+- 3x3 Board implementation (completed)
+- Brainstorm added features for Project 3 and 4 (completed)
+- Do more research for AI in JavaScript and working with bots. (completed)
 
-Discussed:
-- We were able to implement a functional 3x3 and 9x9 board. The gantt chart has been completed. The next steps include integrating the user interface for
-having different logins and coding the AI.
+
 
 For next meeting:
 - Figure out point system for bots.
+- 9x9 board styling
 - Decide what social media we want to use (Twitter or Facebook API? or both?)
 - Implement user logins
+- Fix certain styling issues
+- Create a design for all the pages
+- Decide if we want to use bubble sort
