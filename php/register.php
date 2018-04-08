@@ -16,7 +16,7 @@
           $password_err = "Password must have at least 8 characters.";
         }
         else {
-          if($password != $confirm_password){
+          if($password != $confirm_password){ //Both passwords must be the same string value
               $confirm_password_err = 'Passwords must match.';
           }
           else {
@@ -26,16 +26,15 @@
             }
             $check = mysqli_query($link, "SELECT * FROM GameUsers WHERE username='$username'");
       			$found = mysqli_num_rows($check);
-            if($found > 0) {
+            if($found > 0) { //Check database for existing user with the same name
               $username_err .= "That username already exists. Try again.";
             }
           }
         }
       }
 
-      if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
+      if(empty($username_err) && empty($password_err) && empty($confirm_password_err)) {
 
-        include_once 'userDB.php';
         $queryGameUsers = "INSERT IGNORE INTO GameUsers(username, password) VALUES('$username', '$password')";
         if ($result = $link->query($queryGameUsers)) {
           echo "<h3>New user ";

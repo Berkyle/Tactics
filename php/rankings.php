@@ -37,7 +37,7 @@
         }
       }
 
-      for($k = 0; $k < $numrows; $k++) {
+      for($k = 0; $k < $numrows; $k++) {  //For loop to report all users and points sequentially
         echo "<p>".($k+1).": ".($users[$k])." (".($userPoints[$k])." points)</p>";
       }
       $link->close();
