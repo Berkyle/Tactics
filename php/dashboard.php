@@ -2,7 +2,7 @@
   require_once 'config.php';
   include_once 'header.php';
 
-  if($_COOKIE["user"] != ""){
+  if(isset($_COOKIE["user"]) && isset($_COOKIE["pw"])){
     $username = $_COOKIE["user"];
     $password = $_COOKIE["pw"];
 
@@ -17,17 +17,17 @@
       }
       else{
         echo "<h3>Error accessing credentials...</h3>
-              <h5><a href=\"../index.html\">Return to landing page...</a></h5>";
+              <a href=\"../index.html\"><button type=\"button\"><h3>Return to Landing</h3></button></a>";
       }
     }
     else {
       echo "<h3>Error accessing credentials....</h3>
-            <h5><a href=\"../index.html\">Return to landing page...</a></h5>";
+            <a href=\"../index.html\"><button type=\"button\"><h3>Return to Landing</h3></button></a>";
     }
   }
   else {
     echo "<h3>Try logging in, doofus.</h3>
-          <h5><a href=\"../index.html\">Proceed to landing page...</a></h5>";
+          <a href=\"../index.html\"><button type=\"button\"><h3>Proceed to Landing</h3></button></a>";
   }
   include_once 'footer.php';
 ?>
