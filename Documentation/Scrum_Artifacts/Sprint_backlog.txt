@@ -3,6 +3,8 @@ Project 3
 
 1. A classic version of Tic Tac Toe.
    - Classic 3x3 game
+   - Styled board with colors
+   - Online version to play with other users online as an option
 2. A 9x9 Tic Tac Toe game
    - Board is integrated with colors when clicking on tiles
    - Indicates what 3x3 subset the user can make the next move in
@@ -13,3 +15,4 @@ Project 3
    - A user ranking system
 4. Bot to compete with
    - Using AI in JavaScript
+   -
