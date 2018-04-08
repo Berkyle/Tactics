@@ -1,20 +1,117 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
     <title>Tactics</title>
-    <link rel="stylesheet" href="css/index.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <div class="container">
-      <h1>Welcome to Tactics!</h1>
-      <h3>Let's start:</h3>
-      <a href="html/register.html"><h3>Create Account</h3></a>
-      <a href="html/login.html"><h3>Log in</h3></a>
-      <br>
-      <h3>Demos:</h3>
-      <a href="demos/singleBoardDemo/simpleBoard.html"><h3>Traditional Tic Tac Toe</h3></a>
-      <a href="demos/nineBoardDemo/ninerBoard.html"><h3>aDVaNcED Tic Tac Toe!!!!!</h3></a>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand">Tactics</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="dashboard.php">Home</a></li>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Social Media<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">Facebook</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Ranks</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="html/register.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a href="html/login.html"><span class="glyphicon glyphicon-log-in"></span> Log in</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="jumbotron">
+      <h1>Welcome To Tactics!</h1>
+      <p>
+        The Version Of Tic-Tac-Toe For The People That Hate Themselves!
+      </p>
     </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <h2>Ranking Board</h2>
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Firstname</th>
+              <th>Lastname</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>John</td>
+              <td>Doe</td>
+              <td>john@example.com</td>
+            </tr>
+            <tr>
+              <td>Mary</td>
+              <td>Moe</td>
+              <td>mary@example.com</td>
+            </tr>
+            <tr>
+              <td>July</td>
+              <td>Dooley</td>
+              <td>july@example.com</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="panel-group">
+          <div class="panel panel-default">
+            <div class="panel-heading"><h2>Local Play</h2></div>
+            <div class="panel-body">
+              <p>
+                Insert description about local play
+              </p>
+              <a href="demos/singleBoardDemo/simpleBoard.html"><button type="button" class="btn btn-default btn-lg" id="3x3Butt">3 x 3 Board</button></a><a href="demos/nineBoardDemo/ninerBoard.html"><button type="button" class="btn btn-default btn-lg" id="9x9butt">9 x 9 Board</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="panel-group">
+          <div class="panel panel-default">
+            <div class="panel-heading"><h2>Player Vs. Bot</h2></div>
+            <div class="panel-body">
+              <p>
+                Insert description about PvB
+              </p>
+              <a href="demos/singleBoardBotDemo/easy/simpleBoard.html"><button type="button" class="btn btn-default btn-lg" id="3x3Butt">3 x 3 Easy</button></a><a href="demos/nineBoardBotDemo/easy/ninerBoard.html"><button type="button" class="btn btn-default btn-lg" id="9x9butt">9 x 9 Easy</button></a>
+              <br>
+              <a href="demos/singleBoardBotDemo/medium/simpleBoard.html"><button type="button" class="btn btn-default btn-lg" id="3x3Butt">3 x 3 Medium</button></a><a href="demos/nineBoardBotDemo/medium/ninerBoard.html"><button type="button" class="btn btn-default btn-lg" id="9x9butt">9 x 9 Medium</button></a>
+              <br>
+              <a href="demos/singleBoardBotDemo/hard/simpleBoard.html"><button type="button" class="btn btn-default btn-lg" id="3x3Butt">3 x 3 Hard</button></a><a href="demos/nineBoardBotDemo/hard/ninerBoard.html"><button type="button" class="btn btn-default btn-lg" id="9x9butt">9 x 9 Hard</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="panel-group">
+          <div class="panel panel-default">
+            <div class="panel-heading"><h2>Player Vs. Player</h2></div>
+            <div class="panel-body">
+              <p>
+                Insert description about PvP
+              </p>
+              <button type="button" class="btn btn-default btn-lg">Coming Soon</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
   </body>
 </html>

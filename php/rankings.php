@@ -1,5 +1,4 @@
 <div class="rankings">
-  <h3 id="ldrbrd"><u>Online Leaderboard:</u></h3>
   <?php
     $query = mysqli_query($link, "SELECT username, wins, draws, losses FROM Profiles");
     $profile = $link->query($query);
@@ -8,7 +7,7 @@
     if($numrows > 0) { //User exists
       $users = array();
       $userPoints = array();
-      
+
       while($row = $query->fetch_assoc()) {
         $profile = $row["username"];
         $wins = $row["wins"];
@@ -36,10 +35,25 @@
           }
         }
       }
-
+      echo "<div class=\"row\">
+              <div class=\"col-sm-6\">
+                <h2>Online Leaderboard</h2>
+                <table class=\"table table-hover table-bordered\">
+                  <thead>
+                    <tr>
+                      <th>Rank</th>
+                      <th>Username</th>
+                      <th>Points</th>
+                    </tr>
+                  </thead>
+                  <tbody>";
       for($k = 0; $k < $numrows; $k++) {
-        echo "<p>".($k+1).": ".($users[$k])." (".($userPoints[$k])." points)</p>";
+        echo "<tr><td>".($k+1)."</td><td>".($users[$k])."</td><td>".($userPoints[$k])."</td></tr>";
       }
+          echo "</tbody>
+              </table>
+            </div>
+          </div>";
       $link->close();
     }
   ?>

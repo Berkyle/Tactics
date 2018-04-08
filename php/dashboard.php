@@ -11,8 +11,10 @@
 
     if($found > 0) { //User exists
       if($password == mysqli_fetch_object($check)->password) {
+        echo "<div class=\"jumbotron\">
+                <h1>Welcome Back $username!</h1>
+              </div>";
         include 'rankings.php';
-        echo "<h1>Login successful! Welcome $username !</h1>";
         include 'dashboardSuccess.php';
       }
       else{
