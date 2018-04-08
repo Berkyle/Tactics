@@ -8,13 +8,13 @@
     if($numrows > 0) { //User exists
       $users = array();
       $userPoints = array();
+      
       while($row = $query->fetch_assoc()) {
         $profile = $row["username"];
         $wins = $row["wins"];
         $draws = $row["draws"];
         $points = 3*$wins + $draws;
 
-        // echo "$profile: $points";
         array_push($users, $profile);
         array_push($userPoints, $points);
       }
