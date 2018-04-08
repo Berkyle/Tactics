@@ -22,6 +22,11 @@ div.rankings {
   margin: 0 auto;
 }
 
+.tableContainer {
+  display: inline-block;
+  margin: 0 auto;
+}
+
 .bootstrapDiv {
   border: 2px solid purple;
   border-radius: 8px;
