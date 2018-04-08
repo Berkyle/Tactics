@@ -1,6 +1,6 @@
 <?php
-$username = $_SESSION["username"];
-$password = $_SESSION["password"];
+$username = $_COOKIE["user"];
+$password = $_COOKIE["pw"];
 ?>
 
 <div class="row">

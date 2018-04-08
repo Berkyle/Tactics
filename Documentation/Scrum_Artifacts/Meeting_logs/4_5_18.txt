@@ -1,0 +1,17 @@
+Date: 4/5/18
+Time: 7:00 p.m.
+Location: Jaybreak Cafe
+
+Previous meeting:
+- AI completed with bots for 9x9 board (completed)
+- PHP code for users (still in progress, need to figure out why writing to database is causing issues)
+- Login fully integrated (still in progress)
+
+
+For next meeting:
+- Testing and making sure no bugs
+- Ranking system with points
+- Creating presentation powerpoint for presentation on Monday
+- Have logins fully working
+- Continue with styling the web pages
+- Finish up documentation

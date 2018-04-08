@@ -13,6 +13,10 @@ var XTxt = [];
 var OTxt = [];
 var possibleWins = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
 
+/**
+ * Adds elements to the table
+ * @param none
+ */
 function populateHTML() {
 	let add = "<tr><td class=\"board\"></td><td class=\"board\"></td><td class=\"board\"></td></tr>";
 	for(let i = 0; i < 9; i++) {
@@ -22,6 +26,10 @@ function populateHTML() {
 	addEvents();
 }
 
+/**
+ * Adds the click events that controls the game logic
+ * @param none
+ */
 function addEvents() {
 	for(let i = 0; i < 81; i++) {
 		XO[i].addEventListener("click", function() {
@@ -38,6 +46,10 @@ function addEvents() {
 	}
 }
 
+/**
+ * Checks that the tile will be from the last choice selected in
+ * @param tile
+ */
 function checkBoardStatus(tile) {	//tile is the tile that the last choice was selected in
 	var toSelect = Math.floor(tile/9); //toSelect is the board that the last choice was selected in
 	if(gameTxt[toSelect] == undefined) { //make sure board hasn't already been won
@@ -58,6 +70,10 @@ function checkBoardStatus(tile) {	//tile is the tile that the last choice was se
 	if(checkBoardFull(tile%9)) removeGrayedAll();
 }
 
+/**
+ * Checks if the game has been won
+ * @param none
+ */
 function checkGameWin() {
 	updateSubArrays(); //XTxt and OTxt are updated
 
@@ -80,7 +96,11 @@ function checkGameWin() {
 	else finishGame(XWin ? "X" : "O"); //Game has been won
 }
 
-function updateSubArrays() { //updates XTxt and OTxt to make checkGameWin run smoother
+/**
+ * Updates the Xtxt and OTxt to \make checkGameWin run smoother
+ * @param none
+ */
+function updateSubArrays() {
 	gameTxt.forEach(function(boardVal, index, array) {
 		if(boardVal == 'A') {
 			OTxt[index] = 'O';
@@ -91,6 +111,10 @@ function updateSubArrays() { //updates XTxt and OTxt to make checkGameWin run sm
 	});
 }
 
+/**
+ * Checks for special cases in case there is a tie
+ * @param none
+ */
 function specialCases() { //specal cases that end in a tie. Game can no longer be won.
 	for(let i = 0; i < 9; i++) {
 		if(gameTxt[i] != 'A') break;
@@ -103,6 +127,10 @@ function specialCases() { //specal cases that end in a tie. Game can no longer b
 	return false;
 }
 
+/**
+ * Checks if the subset 3x3 board is full
+ * @param board
+ */
 function checkBoardFull(board) { //checks if a 3x3 board is full, given the board number 0-8
 	for(var i = 0; i < 9; i++) {
 		if (txt[i+9*board] == undefined) return false;
@@ -110,13 +138,21 @@ function checkBoardFull(board) { //checks if a 3x3 board is full, given the boar
 	}
 }
 
-function triple(x1, x2, x3, arr) { //checks for a three-in-a-row using possibleWins
+/**
+ * Checks for a three-in-a-row using possibleWins
+ * @param board
+ */
+function triple(x1, x2, x3, arr) {
 	if((arr[x1] === arr[x2] && arr[x2] === arr[x3]) && arr[x1] !== undefined && arr[x1] !== 'A') {
 		return true;
 	}
 	return false;
 }
 
+/**
+ * Ensures board tiles have proper classes
+ * @param gameFinished
+ */
 function updateBoard(gameFinished) { //ensures board tiles have proper classes.
 	for(let i = 0; i < 81; i++) {
 		XO[i].classList.remove("grayed","OSelect","XSelect", "ASelect");
@@ -134,7 +170,11 @@ function updateBoard(gameFinished) { //ensures board tiles have proper classes.
 	}
 }
 
-function grayOthers(dontGray) {//grays all tiles except in 'dontGray' board - where next player is sent
+/**
+ * Grays all tiles except in 'dontGray' board- where next player is sent
+ * @param dontGray
+ */
+function grayOthers(dontGray) {
 	var toSelect = dontGray%9;
 	removeGrayedAll();
 	for(var i = 0; i < 81; i++) {
@@ -144,11 +184,19 @@ function grayOthers(dontGray) {//grays all tiles except in 'dontGray' board - wh
 	}
 }
 
-function removeGrayedAll() { //Removes "gray" class from all tiles
+/**
+ * Removes "gray" class from all tiles
+ * @param none
+ */
+function removeGrayedAll() {
 	for(var i = 0; i < 81; i++) XO[i].classList.remove("grayed");
 }
 
-function finishGame(winner) { //called if the game is concluded
+/**
+ * Called if the game is concluded
+ * @param winner
+ */
+function finishGame(winner) {
 	updateBoard(true);
 	for(let i = 0; i < 81; i++) XO[i].classList.add("selected", winner+"Select");
 	for(let i = 0; i < 9; i++) tables[i].classList.add(winner+"winner")
