@@ -1,3 +1,7 @@
+/* @brief Shows the users ranked by their points
+	** @pre successful connection to database and user has logged in
+	** @post none
+	** @return none*/
 <div class="rankings">
   <h3 id="ldrbrd"><u>Online Leaderboard:</u></h3>
   <?php
@@ -8,7 +12,7 @@
     if($numrows > 0) { //User exists
       $users = array();
       $userPoints = array();
-      
+
       while($row = $query->fetch_assoc()) {
         $profile = $row["username"];
         $wins = $row["wins"];

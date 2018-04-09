@@ -1,3 +1,7 @@
+/* @brief Shows a particular users profile
+	** @pre successful connection to database
+	** @post none
+	** @return none*/
 <?php
   require_once 'config.php';
   include_once 'header.php';

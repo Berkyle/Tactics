@@ -1,3 +1,7 @@
+/* @brief configuration for sql database connection
+	** @pre Needs login credentials
+	** @post Establishes a conection to the database and gives an error if it cannot.
+	** @return None*/
 <?php
   define('DB_SERVER', 'mysql.eecs.ku.edu');
   define('DB_USERNAME', 'k742b154');
