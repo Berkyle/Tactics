@@ -1,9 +1,11 @@
+<?php
 /**
   ** @brief Add html lines at the beginning of the php file to make it readable for browser
 	** @pre none
 	** @post none
 	** @return None
   */
+?>
 <!DOCTYPE html>
 <html>
   <head>
