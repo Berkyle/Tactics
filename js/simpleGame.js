@@ -2,7 +2,7 @@ var XO = document.getElementsByClassName("board"); // array of DOM tiles with in
 var txt = []; //local string array to simplify string comparison
 var isX = true; //Global boolean - switches value with each turn - currently starts with X
 var selClass = ""; // "OSelect" or "XSelect", used to add the CSS class to style tiles
-
+var gameOver = false;
 var possibleWins = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
 		//^^^ The array of possible wins. CheckTriple() uses this list to find three-in-a-rows
 
@@ -28,6 +28,7 @@ function checkTriple(x1, x2, x3) {
 	if((txt[x1] == txt[x2] && txt[x2] == txt[x3]) && txt[x1] != undefined) {
 		[x1,x2,x3].forEach(function(index) {
 			XO[index].classList.add("winner");
+			gameOver = true;
 		});
 		for(let i = 0; i < 9; i++) {
 			XO[i].classList.remove("OSelect","XSelect");	//remove styling classes
