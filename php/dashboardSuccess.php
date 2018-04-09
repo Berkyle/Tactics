@@ -1,3 +1,5 @@
+
+<?php
 /**
   ** @brief Goes to this page if login is successful
 	** @pre Valid login
@@ -5,7 +7,7 @@
 	** @return None
   */
 
-<?php
+
 $username = $_COOKIE["user"];
 $password = $_COOKIE["pw"];
 ?>

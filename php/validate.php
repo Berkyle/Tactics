@@ -1,10 +1,11 @@
+<?php
 /**
   ** @brief Validates user input when logging in
 	** @pre successful connection to database
 	** @post user is logged in
 	** @return none
   */
-<?php
+
   require_once 'config.php';
   include_once 'header.php';
 

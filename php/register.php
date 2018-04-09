@@ -1,3 +1,4 @@
+<?php
 /**
   ** @brief Allows the user to create a new account
 	** @pre successful connection to database
@@ -5,7 +6,7 @@
 	** @return success message if the account is created
   */
 
-<?php
+
   require_once 'config.php';
   include_once 'header.php';
 

@@ -1,12 +1,13 @@
-/**
-  ** @brief Shows the users ranked by their points
-	** @pre successful connection to database and user has logged in
-	** @post none
-	** @return none
-  */
+
 <div class="rankings">
   <h3 id="ldrbrd"><u>Online Leaderboard:</u></h3>
   <?php
+  /**
+    ** @brief Shows the users ranked by their points
+  	** @pre successful connection to database and user has logged in
+  	** @post none
+  	** @return none
+    */
     $query = mysqli_query($link, "SELECT username, wins, draws, losses FROM Profiles");
     $profile = $link->query($query);
     $numrows = mysqli_num_rows($query);
