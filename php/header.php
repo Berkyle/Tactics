@@ -26,7 +26,6 @@ $password = $_SESSION["password"];
               <li><a href="#">Facebook</a></li>
             </ul>
           </li>
-          <li><a href="#">Ranks</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="myProfile.php"><span class="glyphicon glyphicon-user"></span> My profile</a></li>
