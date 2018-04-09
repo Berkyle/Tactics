@@ -1,7 +1,9 @@
-/* @brief Goes to this page if login is successful
+/**
+  ** @brief Goes to this page if login is successful
 	** @pre Valid login
 	** @post Takes user to the dashboard
-	** @return None*/
+	** @return None
+  */
 
 <?php
 $username = $_COOKIE["user"];

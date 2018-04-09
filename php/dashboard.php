@@ -1,7 +1,9 @@
-/* @brief PHP for dashboard page with login
+/**
+  ** @brief PHP for dashboard page with login
 	** @pre Needs successful connection to databse
 	** @post allows the user to login given that he/she provides valid credentials
-	** @return None*/
+	** @return None
+  */
 <?php
   require_once 'config.php';
   include_once 'header.php';

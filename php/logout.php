@@ -1,7 +1,9 @@
-/* @brief Allows the user to logout by unsetting cookies
+/**
+  ** @brief Allows the user to logout by unsetting cookies
 	** @pre successful connection to database
 	** @post user is logged out
-	** @return success message*/
+	** @return success message
+  */
 <?php
   include_once 'header.php';
   setcookie("user", "", time()-1, "/"); //Unset cookie
