@@ -201,4 +201,5 @@ function finishGame(winner) {
 	for(let i = 0; i < 81; i++) XO[i].classList.add("selected", winner+"Select");
 	for(let i = 0; i < 9; i++) tables[i].classList.add(winner+"winner")
 	document.getElementById("outter").classList.add(winner+"winner");
+	alert(winner + " is the winner!");
 }

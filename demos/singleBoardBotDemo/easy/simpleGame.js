@@ -2,7 +2,7 @@ var XO = document.getElementsByClassName("board"); // array of DOM tiles with in
 var txt = []; //local string array to simplify string comparison
 var isX = true; //Global boolean - switches value with each turn - currently starts with X
 var selClass = ""; // "OSelect" or "XSelect", used to add the CSS class to style tiles
-var gameOver = false;
+
 var possibleWins = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
 		//^^^ The array of possible wins. CheckTriple() uses this list to find three-in-a-rows
 
@@ -19,16 +19,39 @@ function addEvents() {
 				possibleWins.forEach(function(poss) { //check if someone has won the game.
 					checkTriple(poss[0], poss[1], poss[2]);
 				});
+				runBot();
 			}
 		});
 	}
 }
+function runBot(){
+  let botMove = randomMove();
+	selClass = isX ? "XSelect" : "OSelect";
+	if(!XO[botMove].classList.contains("selected")) { //You can't change a file that has been selected already
+		XO[botMove].classList.add("selected", selClass);
+		XO[botMove].innerText = selClass.charAt(0); //adds 'X' or 'O'
+		isX = !isX;
+		txt[botMove] = XO[botMove].innerText; //Adds 'X' or 'O' to the respective index in txt
+		possibleWins.forEach(function(poss) { //check if someone has won the game.
+			checkTriple(poss[0], poss[1], poss[2]);
+		});
+	}
+}
 
+function randomMove(){
+  let validMoves = [];
+  for(let i = 0; i < 9; i++){
+    if(!XO[i].classList.contains("selected") && !XO[i].classList.contains("grayed")){
+      validMoves.push(i);
+    }
+  }
+  let random = Math.floor((Math.random() * validMoves.length));
+  return validMoves[random];
+}
 function checkTriple(x1, x2, x3) {
 	if((txt[x1] == txt[x2] && txt[x2] == txt[x3]) && txt[x1] != undefined) {
 		[x1,x2,x3].forEach(function(index) {
 			XO[index].classList.add("winner");
-			gameOver = true;
 		});
 		for(let i = 0; i < 9; i++) {
 			XO[i].classList.remove("OSelect","XSelect");	//remove styling classes

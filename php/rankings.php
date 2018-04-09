@@ -1,6 +1,5 @@
 
 <div class="rankings">
-  <h3 id="ldrbrd"><u>Online Leaderboard:</u></h3>
   <?php
   /**
     ** @brief Shows the users ranked by their points
@@ -43,10 +42,25 @@
           }
         }
       }
-
-      for($k = 0; $k < $numrows; $k++) {  //For loop to report all users and points sequentially
-        echo "<p>".($k+1).": ".($users[$k])." (".($userPoints[$k])." points)</p>";
+      echo "<div class=\"row\">
+              <div class=\"col-sm-6\">
+                <h2>Online Leaderboard</h2>
+                <table class=\"table table-hover table-bordered\">
+                  <thead>
+                    <tr>
+                      <th>Rank</th>
+                      <th>Username</th>
+                      <th>Points</th>
+                    </tr>
+                  </thead>
+                  <tbody>";
+      for($k = 0; $k < $numrows; $k++) {
+        echo "<tr><td>".($k+1)."</td><td>".($users[$k])."</td><td>".($userPoints[$k])."</td></tr>";
       }
+          echo "</tbody>
+              </table>
+            </div>
+          </div>";
       $link->close();
     }
   ?>

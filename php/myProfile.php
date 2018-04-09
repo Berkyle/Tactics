@@ -36,7 +36,7 @@
   else {
     echo "<h3>Internal database error: cannot locate user $username....</h3>";
   }
-  echo "<h5><a href=\"dashboard.php\">Return to Dashboard</a></h5>";
+  echo "<a href=\"dashboard.php\"><button type=\"button\" class=\"btn btn-default btn-lg\" id=\"surrenderButt\">Return Home</button></a>";
 
 include_once 'footer.php';
 ?>

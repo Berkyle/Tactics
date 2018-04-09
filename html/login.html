@@ -4,15 +4,32 @@
     <meta charset="utf-8">
     <title>Log in</title>
     <link rel="stylesheet" href="../css/index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <body>
     <div class="container">
       <h1>Log in below:</h1>
       <form action="../php/validate.php" method="post">
-        <input type="text" name="username" placeholder="Username"><br>
-        <input type="password" name="password" placeholder="Password"><br>
-        <a href="../index.html"><button type="button"><h3>Go Back</h3></button></a>
-        <button type="submit"><h3>Log in</h3></button>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+              <div class="form-body">
+                <div class="form-group">
+                  <label for="usernamed">Username:</label>
+                  <input type="text" class="form-control" name="username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                  <label for="password">Password:</label>
+                  <input type="password" class="form-control" name="password" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-default" value="Log in">Log in</button><a class="btn btn-default" href="../index.html">Cancel</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </form>
     </div>
   </body>
