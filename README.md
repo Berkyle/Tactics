@@ -11,5 +11,14 @@ The final version of Project 3 will feature:
 - A user ranking system, 
 - A few bots for you to compete against (though you will be able to play with friends)!
 
+How to play:
+3x3 Board:
+- This is a simple 3x3 Tic Tac Toe game with all the basic rules.
+
+9x9 Board:
+- To win, one must win three 3x3 sub-boards. 
+- Where your opponent will play the next move depends on the placement of your current move. For example, if you place an X/O in the top right corner of any box, the next move will have to be in the top right 3x3 box. To win a 3x3 box is the same as winning a simple 3x3 game.
+- Every move alternates between X's and O's.
+
 Stay tuned!
 
