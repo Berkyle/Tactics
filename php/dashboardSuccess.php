@@ -48,10 +48,21 @@ $password = $_COOKIE["pw"];
       <div class="panel panel-default">
         <div class="panel-heading"><h2>Player Vs. Player</h2></div>
         <div class="panel-body">
-          <p>
-            <h4>Play against a friend online (coming soon!)</h4>
-          </p>
-          <button type="button" class="btn btn-default btn-lg">Coming Soon</button>
+
+          <?php
+          if($_COOKIE["user"] != ""){
+            echo "<p>
+                    <h4>Play against a friend online (coming soon!)</h4>
+                  </p>
+                  <button type=\"button\" class=\"btn btn-default btn-lg\">Coming Soon</button>";
+          }
+          else {
+            echo "<p>
+                    <h4>Play against a friend online!<br>(Must be logged in)</h4>
+                  </p>
+                  <a href=\"/Tactics/html/login.html\"></a><button type=\"button\" class=\"btn btn-default btn-lg\">Click here to log in</button>";
+          }
+          ?>
         </div>
       </div>
     </div>
