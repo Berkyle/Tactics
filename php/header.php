@@ -34,3 +34,7 @@
             </ul>
           </li>
         </ul>
+<?php
+  if($_COOKIE["user"] != "") include_once '/Tactics/php/loggedin.php';
+  else include_once '/Tactics/php/loggedout.php';
+?>

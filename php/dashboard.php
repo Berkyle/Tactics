@@ -6,8 +6,8 @@
 	** @return None
   */
 
-  require_once 'config.php';
-  include_once 'header.php';
+  require_once '/Tactics/php/config.php';
+  include_once '/Tactics/php/header.php';
 
   if(isset($_COOKIE["user"]) && isset($_COOKIE["pw"])){
     $username = $_COOKIE["user"];
@@ -21,22 +21,22 @@
         echo "<div class=\"jumbotron\">
                 <h1>Welcome Back $username!</h1>
               </div>";
-        include 'rankings.php';
-        include 'dashboardSuccess.php';
+        include '/Tactics/php/rankings.php';
+        include '/Tactics/php/dashboardSuccess.php';
       }
       else{
         echo "<h3>Error accessing credentials...</h3>
-              <a href=\"../index.html\"><button type=\"button\"><h3>Return to Landing</h3></button></a>";
+              <a href=\"/Tactics/index.php\"><button type=\"button\"><h3>Return to Landing</h3></button></a>";
       }
     }
     else {
       echo "<h3>Error accessing credentials....</h3>
-            <a href=\"../index.html\"><button type=\"button\"><h3>Return to Landing</h3></button></a>";
+            <a href=\"/Tactics/index.php\"><button type=\"button\"><h3>Return to Landing</h3></button></a>";
     }
   }
   else {
     echo "<h3>Try logging in, doofus.</h3>
-          <a href=\"../index.html\"><button type=\"button\"><h3>Proceed to Landing</h3></button></a>";
+          <a href=\"/Tactics/index.php\"><button type=\"button\"><h3>Proceed to Landing</h3></button></a>";
   }
-  include_once 'footer.php';
+  include_once '/Tactics/php/footer.php';
 ?>

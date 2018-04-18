@@ -1,7 +1,6 @@
 <?php
-  include_once 'php/header.php';
-  if($_COOKIE["user"] != "") include_once 'php/loggedin.php';
-  else include_once 'php/loggedout.php';
+  include_once 'Tactics/php/header.php';
+
 
   // <!DOCTYPE html>
   // <html>
@@ -54,7 +53,7 @@
     </div>
   </div>
 </div>
-<?php include_once 'php/dashboardSuccess.php'; ?>
+<?php include_once 'Tactics/php/dashboardSuccess.php'; ?>
 <!-- <div class="row">
   <div class="col-sm-4">
     <div class="panel-group text-center">
@@ -100,8 +99,4 @@
     </div>
   </div>
 </div> -->
-
-    </div>
-    <br>
-  </body>
-</html>
+<?php include_once 'Tactics/php/footer.php'; ?>

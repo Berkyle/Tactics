@@ -6,11 +6,11 @@
 	** @return success message
   */
 
-  include_once 'header.php';
+  include_once '/Tactics/php/header.php';
   setcookie("user", "", time()-1, "/"); //Unset cookie
   setcookie("pw", "", time()-1, "/");  //Unset cookie
 
   echo "<h1>You have logged out successfuly!</h1>
-        <a href=\"../index.html\"><button type=\"button\"><h3>Return to Landing</h3></button></a>";
-  include_once 'footer.php';
+        <a href=\"/Tactics/index.php\"><button type=\"button\"><h3>Return to Landing</h3></button></a>";
+  include_once '/Tactics/php/footer.php';
 ?>
