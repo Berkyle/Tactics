@@ -7,7 +7,7 @@
   */
 
   require_once 'config.php';
-  include_once 'header.php';
+  //include_once 'header.php'; //can't add because of
 
   if($_SERVER["REQUEST_METHOD"] == "POST"){
     $username = $_POST["username"];
