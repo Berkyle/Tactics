@@ -6,9 +6,7 @@
 	** @return success message if the account is created
   */
 
-
-  require_once '/Tactics/php/config.php';
-  include_once '/Tactics/php/header.php';
+  include_once 'header.php';
 
   $username = trim($_POST["username"]);
   $password = $_POST['password'];
@@ -51,7 +49,7 @@
         if ($result = $link->query($queryProfiles)) {
           echo "created!</h3>";
         }
-        echo "<h5><a href=\"/Tactics/index.php\">Return to landing page...</a></h5>";
+        echo "<h5><a href=\"../index.php\">Return to landing page...</a></h5>";
         $result->free(); // free result set
         $link->close(); /*close connection */
       }
@@ -59,7 +57,7 @@
         echo "<h3>".$username_err.$password_err.$confirm_password_err."</h3>";
       }
   }
-  echo "<h5><a href=\"/Tactics/index.php\">Return to landing page...</a></h5>";
+  echo "<h5><a href=\"../index.php\">Return to landing page...</a></h5>";
 
-  include_once '/Tactics/php/footer.php';
+  include_once 'footer.php';
 ?>

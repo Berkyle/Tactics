@@ -5,9 +5,8 @@
 	** @post none
 	** @return none
   */
-
-  require_once '/Tactics/php/config.php';
-  include_once '/Tactics/php/header.php';
+  require_once 'config.php';
+  include_once 'header.php';
 
   $username = $_COOKIE["user"];
   $password = $_COOKIE["pw"];
@@ -36,7 +35,7 @@
   else {
     echo "<h3>Internal database error: cannot locate user $username....</h3>";
   }
-  echo "<a href=\"/Tactics/php/dashboard.php\"><button type=\"button\" class=\"btn btn-default btn-lg\" id=\"surrenderButt\">Return Home</button></a>";
+  echo "<a href=\"../index.php\"><button type=\"button\" class=\"btn btn-default btn-lg\" id=\"surrenderButt\">Return Home</button></a>";
 
-include_once '/Tactics/php/footer.php';
+include_once 'footer.php';
 ?>

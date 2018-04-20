@@ -10,6 +10,7 @@
     $query = mysqli_query($link, "SELECT username, wins, draws, losses FROM Profiles");
     $profile = $link->query($query);
     $numrows = mysqli_num_rows($query);
+    echo gettype($link)."     ".gettype($query)."       hey also: ".phpversion();
 
     if($numrows > 0) { //User exists
       $users = array();
@@ -54,13 +55,18 @@
                     </tr>
                   </thead>
                   <tbody>";
-      for($k = 0; $k < $numrows; $k++) {
-        echo "<tr><td>".($k+1)."</td><td>".($users[$k])."</td><td>".($userPoints[$k])."</td></tr>";
+      if($username == "") {
+        echo "<tr><td colspan=\"3\"><h3>You must be logged in to view rankings.</h3></td></tr>";
       }
-          echo "</tbody>
-              </table>
-            </div>
-          </div>";
+      else {
+        for($k = 0; $k < $numrows; $k++) {
+          echo "<tr><td>".($k+1)."</td><td>".($users[$k])."</td><td>".($userPoints[$k])."</td></tr>";
+        }
+      }
+      echo "</tbody>
+          </table>
+        </div>
+      </div>";
       $link->close();
     }
   ?>
