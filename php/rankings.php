@@ -1,5 +1,3 @@
-
-<!-- <div class="rankings"> -->
   <?php
   /**
     ** @brief Shows the users ranked by their points
@@ -69,4 +67,3 @@
       $link->close();
     }
   ?>
-<!-- </div> -->

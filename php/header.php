@@ -38,10 +38,10 @@
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href= <?php echo $diradder."index.php"; ?> >Tactics</a>
+          <a class="navbar-brand" href= <?php echo $diradder."#"; ?> >Tactics</a>
         </div>
         <ul class="nav navbar-nav">
-          <li class="active"><a href=<?php echo getDirectoryEscape()."index.php"; ?> >Home</a></li>
+          <li class="active"><a href=<?php echo getDirectoryEscape()."#"; ?> >Home</a></li>
           <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Social Media<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="#">Twitter<?php while($numdots != 0) {echo "!"; $numdots--;} //echo $numdots; ?></a></li>

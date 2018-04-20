@@ -8,11 +8,11 @@
         <div class="form-body">
           <div class="form-group">
             <label for="usernamed">Username:</label>
-            <input type="text" class="form-control" name="username" placeholder="Username">
+            <input type="text" class="form-control" name="username" placeholder="Username" maxlength="65">
           </div>
           <div class="form-group">
             <label for="password">Password:</label>
-            <input type="password" class="form-control" name="password" placeholder="Password">
+            <input type="password" class="form-control" name="password" placeholder="Password" maxlength="65">
           </div>
           <button type="submit" class="btn btn-default" value="Log in">Log in</button>
           <a class="btn btn-default" href="../index.php">Cancel</a>

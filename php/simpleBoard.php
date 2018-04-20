@@ -15,7 +15,7 @@
             </table>
           </div>
         <br>
-        <a href="../index.php"><button type="button" class="btn btn-default btn-lg">Return Home</button></a>
+        <a href="../"><button type="button" class="btn btn-default btn-lg">Return Home</button></a>
       </div>
     </body>
   <script type="text/javascript" src="../js/ThreesClass.js"></script>

@@ -49,7 +49,7 @@
         if ($result = $link->query($queryProfiles)) {
           echo "created!</h3>";
         }
-        echo "<h5><a href=\"../index.php\">Return to landing page...</a></h5>";
+        echo "<h5><a href=\"../\">Return to landing page...</a></h5>";
         $result->free(); // free result set
         $link->close(); /*close connection */
       }
@@ -57,7 +57,7 @@
         echo "<h3>".$username_err.$password_err.$confirm_password_err."</h3>";
       }
   }
-  echo "<h5><a href=\"../index.php\">Return to landing page...</a></h5>";
+  echo "<h5><a href=\"../\">Return to landing page...</a></h5>";
 
   include_once 'footer.php';
 ?>

@@ -10,6 +10,6 @@
 
   include_once 'header.php';
   echo "<h1>You have logged out successfuly!</h1>
-        <a href=\"../index.php\"><button type=\"button\"><h3>Return to Landing</h3></button></a>";
+        <a href=\"../\"><button type=\"button\"><h3>Return to Landing</h3></button></a>";
   include_once 'footer.php';
 ?>
