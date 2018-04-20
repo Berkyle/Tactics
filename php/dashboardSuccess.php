@@ -58,7 +58,7 @@ include getDirectoryEscape().'php/rankings.php';
             echo "<p>
                     <h4>Play against a friend online (coming soon!)</h4>
                   </p>
-                  <button type=\"button\" class=\"btn btn-default btn-lg\">Coming Soon</button>";
+                  <a href=\"".getDirectoryEscape()."online/simpleBoard.php\"><button type=\"button\" class=\"btn btn-default btn-lg\">Coming Soon</button></a>";
           }
           else {
             echo "<p>
