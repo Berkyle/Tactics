@@ -1,5 +1,5 @@
 
-<div class="rankings">
+<!-- <div class="rankings"> -->
   <?php
   /**
     ** @brief Shows the users ranked by their points
@@ -43,7 +43,7 @@
         }
       }
       echo "<div class=\"row\">
-              <div class=\"col-sm-6\">
+              <div class=\"col-sm-6 col-sm-offset-3\">
                 <h2>Online Leaderboard</h2>
                 <table class=\"table table-hover table-bordered\">
                   <thead>
@@ -69,4 +69,4 @@
       $link->close();
     }
   ?>
-</div>
+<!-- </div> -->
