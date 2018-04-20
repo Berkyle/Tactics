@@ -1,5 +1,3 @@
-
-<div class="rankings">
   <?php
   /**
     ** @brief Shows the users ranked by their points
@@ -43,7 +41,7 @@
         }
       }
       echo "<div class=\"row\">
-              <div class=\"col-sm-6\">
+              <div class=\"col-sm-6 col-sm-offset-3\">
                 <h2>Online Leaderboard</h2>
                 <table class=\"table table-hover table-bordered\">
                   <thead>
@@ -54,14 +52,18 @@
                     </tr>
                   </thead>
                   <tbody>";
-      for($k = 0; $k < $numrows; $k++) {
-        echo "<tr><td>".($k+1)."</td><td>".($users[$k])."</td><td>".($userPoints[$k])."</td></tr>";
+      if($username == "") {
+        echo "<tr><td colspan=\"3\"><h3>You must be logged in to view rankings.</h3></td></tr>";
       }
-          echo "</tbody>
-              </table>
-            </div>
-          </div>";
+      else {
+        for($k = 0; $k < $numrows; $k++) {
+          echo "<tr><td>".($k+1)."</td><td>".($users[$k])."</td><td>".($userPoints[$k])."</td></tr>";
+        }
+      }
+      echo "</tbody>
+          </table>
+        </div>
+      </div>";
       $link->close();
     }
   ?>
-</div>

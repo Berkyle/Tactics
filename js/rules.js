@@ -6,7 +6,6 @@ function addEvents() {
 	for(let i = 0; i < 9; i++) {//9-segment loop - adds click event to each tile
     XO[i].addEventListener("click", function() {
       board.move(i);
-      console.log(board.winner);
       page.updatePage(board);
     });
   }

@@ -5,7 +5,6 @@
 	** @post none
 	** @return none
   */
-
   require_once 'config.php';
   include_once 'header.php';
 
@@ -36,7 +35,7 @@
   else {
     echo "<h3>Internal database error: cannot locate user $username....</h3>";
   }
-  echo "<a href=\"dashboard.php\"><button type=\"button\" class=\"btn btn-default btn-lg\" id=\"surrenderButt\">Return Home</button></a>";
+  echo "<a href=\"../\"><button type=\"button\" class=\"btn btn-default btn-lg\" id=\"surrenderButt\">Return Home</button></a>";
 
 include_once 'footer.php';
 ?>
