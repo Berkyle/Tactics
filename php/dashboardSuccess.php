@@ -1,4 +1,3 @@
-
 <?php
 /**
   ** @brief Goes to this page if login is successful
