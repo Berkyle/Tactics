@@ -10,7 +10,6 @@
     $query = mysqli_query($link, "SELECT username, wins, draws, losses FROM Profiles");
     $profile = $link->query($query);
     $numrows = mysqli_num_rows($query);
-    echo gettype($link)."     ".gettype($query)."       hey also: ".phpversion();
 
     if($numrows > 0) { //User exists
       $users = array();
