@@ -19,6 +19,8 @@
 
     <?php
       $loadRules = false;
+
+      //Get the game rules and styling (JS and CSS) files based on the URI and HTML file.
       $boardType = basename($_SERVER['REQUEST_URI'],'.php'); //gets name of URI file (file the URI begins building site with)
       if($boardType == "simpleBoard") {
         echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"".getDirectoryEscape()."css/simpleStyle.css\">";

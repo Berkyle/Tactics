@@ -1,6 +1,6 @@
 .tableContainer {
     display: inline-block;
-    margin: 0 auto;
+    margin: 20px auto;
 }
 .board {
 	border: 1px solid black;

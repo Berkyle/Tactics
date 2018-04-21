@@ -1,6 +1,6 @@
 <?php
   include_once 'header.php';
-  echo "<h1 onload=\"addEvents()\">Traditional Tic-Tac-Toe!</h1>
+  echo "<h1>Traditional Tic-Tac-Toe!</h1>
         <div class=\"tableContainer\">
           <table cellspacing=\"0\">";
 
