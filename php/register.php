@@ -49,7 +49,7 @@
         if ($result = $link->query($queryProfiles)) {
           echo "created!</h3>";
         }
-        echo "<h5><a href=\"../\">Return to landing page...</a></h5>";
+        echo "<a href=\"../\"><button type=\"button\" class=\"btn btn-default btn-lg\">Home</button></a>";
         $result->free(); // free result set
         $link->close(); /*close connection */
       }

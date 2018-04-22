@@ -20,23 +20,22 @@
         //Create row in game board table
         $queryTable = "INSERT IGNORE INTO ThreesBoards(user1, user2) VALUES('$sessionUsr', '$inviteUsr')";
         if ($result = $link->query($queryTable)) {
-          echo "<h3>New game ";
+          echo "<h1>New game created!</h1>";
         }
 
         //Create row in game move table
         $queryMove = "INSERT IGNORE INTO ThreesMoves(game_id, isX, moveNumber, movePosition) VALUES('$nextID', '1', '1', '$plyrMove')";
         if ($result = $link->query($queryMove)) {
-          echo "created!</h3>";
+          echo "<h4>User ".$inviteUsr." has received your challenge!</h4>";
         }
         
+        echo "<a href=\"../\"><button type=\"button\" class=\"btn btn-default btn-lg\">Home</button></a>";
         $result->free(); // free result set
         $link->close(); /*close connection */
-
       }
       else {
         echo "<h1>what the... hey bud that's no good...</h1>";
       }
-      echo "<h1>User ".$inviteUsr." has received your challenge!</h1>";
     }
     else { //Invited user does not exist
       echo "<h1>User ".$inviteUsr." does not exist...</h1>
