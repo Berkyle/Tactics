@@ -7,10 +7,8 @@
   */
 
 require_once "dirtracker.php";
-$username = $_COOKIE["user"];
-$password = $_COOKIE["pw"];
 
-include getDirectoryEscape().'php/rankings.php';
+include 'rankings.php';
 ?>
 
 <div class="row">

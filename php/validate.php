@@ -31,7 +31,9 @@
     }
   }
   else {
+    include_once 'header.php';
     echo "<h3>Try logging in, doofus.</h3>
           <h5><a href=\"../\">Proceed to landing page...</a></h5>";
+    include_once 'footer.php';
   }
 ?>

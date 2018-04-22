@@ -1,35 +1,9 @@
 <?php include_once '../php/header.php'; ?>
 
-<!-- <style type="text/css">
-	/* div.board {
-		display: inline-block;
-		height: 40px;
-		weight: 40px;
-	} */
-	/* label > input{ // HIDE RADIO
-	  visibility: hidden; // Makes input not-clickable
-	  position: absolute; // Remove input from document flow
-	} */
-	input[type=radio].online {
-		display: none;
-	}
-	input[type=text].online {
-		margin: auto;
-		min-width: 400px;
-		width: 30%;
-	}
-	input.online + td.board{
-	  cursor:pointer;
-	  border:2px solid transparent;
-	}
-	input.online:checked + div{
-	  border:2px solid #f00;
-	}
-</style> -->
-
 <h1>Traditional Tic-Tac-Toe!</h1>
   <form action="gameCreate.php" method="post">
-    <input type="text" name="user2" class="form-control online" placeholder="Player 2" required>
+    <h3>Choose your opponent</h3>
+    <input type="text" name="user2" class="form-control online" placeholder="Choose another player by their username..." required>
 		<h3>Choose your first move below:</h3>
 		<div class="tableContainer">
       <table cellspacing="0">

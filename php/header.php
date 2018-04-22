@@ -8,6 +8,9 @@
 
   require 'dirtracker.php';
   require_once 'config.php';
+
+  $sessionUsr = $_COOKIE["user"];
+  $password   = $_COOKIE["pw"];
 ?>
 <!DOCTYPE html>
 <html>
@@ -52,6 +55,6 @@
           </li>
         </ul>
 <?php
-  if($_COOKIE["user"] != "") include_once 'loggedin.php';
+  if($sessionUsr != "") include_once 'loggedin.php';
   else include_once 'loggedout.php';
 ?>

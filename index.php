@@ -1,10 +1,9 @@
 <?php
   include_once 'php/header.php';
-  $username = $_COOKIE["user"];
-  $password = $_COOKIE["pw"];
+
   $greetStr = "";
-  if($username != "") {
-    $greetStr .= ", ".$username;
+  if($sessionUsr != "") {
+    $greetStr .= ", ".$sessionUsr;
   }
 ?>
 
