@@ -23,7 +23,7 @@ include getDirectoryEscape().'php/rankings.php';
             <h4>Play with a friend at the same computer!</h4>
           </p>
           <a href="<?php echo getDirectoryEscape(); ?>php/simpleBoard.php"><button type="button" class="btn btn-default btn-lg" id="3x3Butt">3 x 3 Board</button></a>
-          <a href="<?php echo getDirectoryEscape(); ?>html/ninerBoard.html"><button type="button" class="btn btn-default btn-lg" id="9x9butt">9 x 9 Board</button></a>
+          <a href="<?php echo getDirectoryEscape(); ?>php/ninerBoard.php"><button type="button" class="btn btn-default btn-lg" id="9x9butt">9 x 9 Board</button></a>
         </div>
       </div>
     </div>
@@ -58,6 +58,7 @@ include getDirectoryEscape().'php/rankings.php';
             echo "<p>
                     <h4>Play against a friend online (coming soon!)</h4>
                   </p>
+                  <a href=\"".getDirectoryEscape()."online/simpleBoard.php\"><button type=\"button\" class=\"btn btn-default btn-lg\">Coming Soon</button></a>
                   <a href=\"".getDirectoryEscape()."online/simpleBoard.php\"><button type=\"button\" class=\"btn btn-default btn-lg\">Coming Soon</button></a>";
           }
           else {

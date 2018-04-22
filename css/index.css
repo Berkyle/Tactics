@@ -2,3 +2,23 @@ div.container {
   width: 100%;
   text-align: center;
 }
+
+th {
+  text-align: center;
+}
+
+input[type=radio].online {
+  display: none;
+}
+input[type=text].online {
+  margin: auto;
+  min-width: 400px;
+  width: 30%;
+}
+input.online + td.board{
+  cursor:pointer;
+  border:2px solid transparent;
+}
+input.online:checked + div{
+  border:2px solid #f00;
+}

@@ -7,18 +7,20 @@
 	margin: 0;
 }
 
-tr::after {
-    /* content: "-";
-    display: block; */
-    line-height: 0em;
-		height: 0;
+div.snug {
+  padding: 0px;
+}
+
+div.outter {
+  border: 3px solid black;
 }
 
 table {
-	padding: 0px;
-	border-spacing: 0em;
-	border-collapse: separate;
-	border: 5px solid black;
+  vertical-align: top;
+	/*padding: 0px;*/
+	/*border-spacing: 0em;*/
+	/*border-collapse: separate;*/
+	border: 3px solid black;
 }
 
 tr {
@@ -54,15 +56,15 @@ td {
 }
 
 .Xwinner {
-	border: 5px solid rgb(150, 200, 250);
+	border: 3px solid rgb(150, 200, 250);
 }
 
 .Owinner {
-	border: 5px solid rgb(250, 180, 150);
+	border: 3px solid rgb(250, 180, 150);
 }
 
 .Awinner {
-	border: 5px solid rgb(225, 140, 225);
+	border: 3px solid rgb(225, 140, 225);
 }
 
 .grayed {

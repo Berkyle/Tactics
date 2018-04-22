@@ -22,8 +22,6 @@ function populateHTML() {
 	for(let i = 0; i < 9; i++) {
 		for(let j = 0; j < 3; j++) document.getElementsByClassName("subtable "+ i)[0].innerHTML += add;
 	}
-
-	addEvents();
 }
 
 /**
@@ -31,6 +29,8 @@ function populateHTML() {
  * @param none
  */
 function addEvents() {
+	populateHTML();
+
 	for(let i = 0; i < 81; i++) {
 		XO[i].addEventListener("click", function() {
 			selClass = isX ? "XSelect" : "OSelect";
@@ -199,7 +199,9 @@ function removeGrayedAll() {
 function finishGame(winner) {
 	updateBoard(true);
 	for(let i = 0; i < 81; i++) XO[i].classList.add("selected", winner+"Select");
-	for(let i = 0; i < 9; i++) tables[i].classList.add(winner+"winner")
+	for(let i = 0; i < 9; i++) tables[i].classList.add(winner+"winner");
+	document.getElementById("outter").classList.remove("outter");
 	document.getElementById("outter").classList.add(winner+"winner");
-	alert(winner + " is the winner!");
+	if(winner == "A") alert("All winning options exhausted...\nGame Tie!");
+	else alert(winner + " is the winner!");
 }
