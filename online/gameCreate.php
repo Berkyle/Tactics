@@ -4,7 +4,7 @@
   $inviteUsr  = $_POST["user2"];
   $plyrMove   = $_POST["move"];
 
-  if($sessionUsr == $inviteUsr) {
+  if(strtolower($sessionUsr) == strtolower($inviteUsr)) {
     echo "<h1>You can't play with yourself here..</h1><h3>.... you should probably go outside..</h3>";
   }
   else {
@@ -28,7 +28,7 @@
         if ($result = $link->query($queryMove)) {
           echo "<h4>User ".$inviteUsr." has received your challenge!</h4>";
         }
-        
+
         echo "<a href=\"../\"><button type=\"button\" class=\"btn btn-default btn-lg\">Home</button></a>";
         $result->free(); // free result set
         $link->close(); /*close connection */

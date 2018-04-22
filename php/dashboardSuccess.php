@@ -56,8 +56,10 @@ include 'rankings.php';
             echo "<p>
                     <h4>Play against a friend online (coming soon!)</h4>
                   </p>
-                  <a href=\"".getDirectoryEscape()."online/simpleBoard.php\"><button type=\"button\" class=\"btn btn-default btn-lg\">Coming Soon</button></a>
-                  <a href=\"".getDirectoryEscape()."online/simpleBoard.php\"><button type=\"button\" class=\"btn btn-default btn-lg\">Coming Soon</button></a>";
+                  <a href=\"".getDirectoryEscape()."online/simpleBoard.php\"><button type=\"button\" class=\"btn btn-default btn-lg\">Create 3x3 Game</button></a>
+                  <a href=\"".getDirectoryEscape()."online/ninerBoard.php\"><button type=\"button\" class=\"btn btn-default btn-lg\">Create 9x9 Game</button></a>
+                  <br>
+                  <a href=\"".getDirectoryEscape()."online/continue.php\"><button type=\"button\" class=\"btn btn-default btn-lg\">Continue Game</button></a>";
           }
           else {
             echo "<p>
