@@ -8,12 +8,12 @@
     <div class="panel panel-default">
       <div class="panel-heading"><h2>Your 3x3 Matches</h2></div>
       <div class="panel-body">
+        <form action="continueThrees.php" method="post">
         <?php
-        $queryThrees = mysqli_query($link, "SELECT * FROM ThreesBoards WHERE user1 = '$sessionUsr' OR user2 = '$sessionUsr'");
+        $queryThrees = mysqli_query($link, "SELECT * FROM ThreesBoards WHERE (user1 = '$sessionUsr' OR user2 = '$sessionUsr') AND (winner = '')");
         $numrows = 0 + mysqli_num_rows($queryThrees);
 
         echo "<h3>You have ".$numrows." active 3x3 games!</h3>";
-
         if($numrows > 0) { //User has active games
           while($row = $queryThrees->fetch_assoc()) {
             $ID = $row["gameID"];
@@ -27,8 +27,15 @@
 
             echo "<div class=\"container\">
                     <div class=\"col-sm-6 challenge\">
-                      <h4>".$userX." (X)</h4><h5>challenged</h5><h4>".$userO." (O)</h4>
-                    </div>
+                      <h4>".$userX." (X)</h4><h5>challenged</h5><h4>".$userO." (O)</h4>";
+
+            $numMoves = 0 + mysqli_num_rows($boardMoves);
+            $getTurn = $numMoves%2;
+            if(($getTurn == 0 && $userX == "You") || ($getTurn == 1 && $userO == "you")){
+              echo "<button type=\"submit\" name=\"selectGame\" value=".$ID.">Continue game</button>";
+            }
+
+            echo   "</div>
                     <div class=\"col-sm-6\">
                       <table>";
 
@@ -62,6 +69,7 @@
 
         $queryThrees->close(); /*close connection */
         ?>
+        </form>
       </div>
     </div>
   </div>
@@ -72,6 +80,8 @@
     <div class="panel panel-default">
       <div class="panel-heading"><h2>Your 9x9 Matches</h2></div>
       <div class="panel-body">
+        <form action="continueNines.php" method="post">
+
         <?php
         $queryNines = mysqli_query($link, "SELECT * FROM NinesBoards WHERE user1 = '$sessionUsr' OR user2 = '$sessionUsr'");
         $numrows = 0 + mysqli_num_rows($queryNines);
@@ -91,8 +101,15 @@
 
             echo "<div class=\"container\">
                     <div class=\"col-sm-6 challenge\">
-                    <h4>".$userX." (X)</h4><h5>challenged</h5><h4>".$userO." (O)</h4>
-                    </div>
+                      <h4>".$userX." (X)</h4><h5>challenged</h5><h4>".$userO." (O)</h4>";
+
+            $numMoves = 0 + mysqli_num_rows($boardMoves);
+            $getTurn = $numMoves%2;
+            if(($getTurn == 0 && $userX == "You") || ($getTurn == 1 && $userO == "you")){
+              echo "<button type=\"submit\" value=".$ID.">Continue game</button>";
+            }
+
+            echo   "</div>
                     <div class=\"col-sm-6\">
                       <div id=\"outter\" class=\"outter\">";
 
@@ -135,6 +152,7 @@
 
         $queryNines->close(); /*close connection */
         ?>
+        </form>
       </div>
     </div>
   </div>
