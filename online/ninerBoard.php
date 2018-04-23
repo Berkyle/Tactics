@@ -6,8 +6,7 @@
     <input type="text" name="user2" class="form-control online" placeholder="Choose another player by their username..." required>
 		<h3>Choose your first move below:</h3>
 		<div class="tableContainer">
-      <!-- <table cellspacing="0"> -->
-      <div id="outter" class="outter" cellspacing="0">
+      <div id="outter" class="outter">
 
 <?php
 for($i = 0; $i<3; $i++) {
