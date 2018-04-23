@@ -40,9 +40,9 @@
           }
         }
       }
-      echo "<div class=\"row\">
+      echo "<h2>Online Leaderboard</h2>
+            <div class=\"row\">
               <div class=\"col-sm-6 col-sm-offset-3\">
-                <h2>Online Leaderboard</h2>
                 <table class=\"table table-hover table-bordered\">
                   <thead>
                     <tr>

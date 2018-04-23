@@ -27,11 +27,11 @@
       //Get the game rules and styling (JS and CSS) files based on the URI and HTML file.
       $boardType = basename($_SERVER['REQUEST_URI'],'.php'); //gets name of URI file (file the URI begins building site with)
       if($boardType == "simpleBoard" || $boardType == "continue") {
-        echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"".getDirectoryEscape()."css/simpleStyle.css\">";
+        //echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"".getDirectoryEscape()."css/simpleStyle.css\">";
         $loadRules = true;
       }
       elseif($boardType == "ninerBoard") {
-        echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"".getDirectoryEscape()."css/ninerStyle.css\">";
+        //echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"".getDirectoryEscape()."css/ninerStyle.css\">";
         $loadRules = true;
       }
     ?>
@@ -49,8 +49,8 @@
           <li class="active"><a href=<?php echo getDirectoryEscape()."#"; ?> >Home</a></li>
           <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Social Media<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Twitter<?php while($numdots != 0) {echo "!"; $numdots--;} //echo $numdots; ?></a></li>
-              <li><a href="#">Facebook<?php while($numdots != 0) {echo "!"; $numdots--;} //echo $numdots; ?></a></li>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">Facebook</a></li>
             </ul>
           </li>
         </ul>
