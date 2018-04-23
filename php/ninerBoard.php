@@ -20,6 +20,9 @@
       <br>
       <a href="../"><button type="button" class="btn btn-default btn-lg" id="surrenderButt">Return Home</button></a>
     </div>
+    <a class="twitter-share-button"
+  href="https://twitter.com/intent/tweet?text=Hello%20world">
+Tweet</a>
   </body>
   <script type="text/javascript" src="../js/ninerGame.js"></script>
 </html>
