@@ -26,14 +26,14 @@
 
       //Get the game rules and styling (JS and CSS) files based on the URI and HTML file.
       $boardType = basename($_SERVER['REQUEST_URI'],'.php'); //gets name of URI file (file the URI begins building site with)
-      if($boardType == "simpleBoard" || $boardType == "continue") {
+      if($boardType == "simpleBoard" || $boardType == "continue" || $boardType == "ninerBoard" || $boardType == "continueThrees") {
         //echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"".getDirectoryEscape()."css/simpleStyle.css\">";
         $loadRules = true;
       }
-      elseif($boardType == "ninerBoard") {
+      // elseif($boardType == "ninerBoard") {
         //echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"".getDirectoryEscape()."css/ninerStyle.css\">";
-        $loadRules = true;
-      }
+        // $loadRules = true;
+      // }
     ?>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
