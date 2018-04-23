@@ -7,9 +7,12 @@ function addEvents() {
 	for(let i = 0; i < 81; i++) {//81-segment loop - adds click event to each tile
     XO[i].addEventListener("click", function() {
       for(let j = 0; j < 81; j++) {
-        XO[j].classList.remove("XSelect");
-        XO[j].innerHTML = "";
-        box[j].checked = false;
+        if(XO[j].innerHTML != "") {
+          XO[j].classList.remove("XSelect");
+          XO[j].innerHTML = "";
+          box[j].checked = false;
+          break;
+        }
       }
       XO[i].innerHTML = "X";
       box[i].checked = true;
