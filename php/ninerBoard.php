@@ -9,7 +9,7 @@
               echo "<div class=\"snug\">";
               for($j = 0; $j < 3; $j++) {
                 $k = $i*3 + $j;
-                echo "<table class=\"subtable ".$k."\" cellspacing=\"0\"></table>"; //<span class=\"experiment\"> </th>
+                echo "<table class=\"subtable ".$k."\" cellspacing=\"0\"></table>";
               }
               echo "</div>";
             }

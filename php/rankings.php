@@ -52,12 +52,12 @@
                     </tr>
                   </thead>
                   <tbody>";
-      if($username == "") {
+      if($sessionUsr == "") {
         echo "<tr><td colspan=\"3\"><h3>You must be logged in to view rankings.</h3></td></tr>";
       }
       else {
         for($k = 0; $k < $numrows; $k++) {
-          echo "<tr><td>".($k+1)."</td><td>".($users[$k])."</td><td>".($userPoints[$k])."</td></tr>";
+          echo "<tr><td>".($k+1)."</td><td>".($users[$numrows-1-$k])."</td><td>".($userPoints[$numrows-1-$k])."</td></tr>";
         }
       }
       echo "</tbody>
