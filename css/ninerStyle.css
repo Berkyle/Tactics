@@ -1,14 +1,8 @@
-.tableContainer {
-    display: inline-block;
-    margin: 20px auto;
-}
 .subtable {
 	display: inline-block;
 	margin: 0;
-}
-
-div.snug {
-  padding: 0px;
+  vertical-align: top;
+	border: 3px solid black;
 }
 
 div.outter {
@@ -17,56 +11,10 @@ div.outter {
 
 table {
   vertical-align: top;
-	/*padding: 0px;*/
-	/*border-spacing: 0em;*/
-	/*border-collapse: separate;*/
 	border: 3px solid black;
 }
 
-tr {
+/*tr {
 	border-collapse: inherit;
 	max-height: 137px;
-}
-
-th {
-	padding: 0px;
-	margin: 0;
-}
-
-td {
-	border: 1px solid black;
-	height: 40px;
-	width: 40px;
-	margin: 0;
-}
-
-.selected {
-	text-align: center;
-}
-
-.XSelect {
-	background-color: rgb(150, 200, 250);
-}
-
-.OSelect {
-	background-color: rgb(250, 180, 150);
-}
-.ASelect {
-	background-color: rgb(225, 140, 225);
-}
-
-.Xwinner {
-	border: 3px solid rgb(150, 200, 250);
-}
-
-.Owinner {
-	border: 3px solid rgb(250, 180, 150);
-}
-
-.Awinner {
-	border: 3px solid rgb(225, 140, 225);
-}
-
-.grayed {
-	background-color: rgb(100, 100, 100);
-}
+}*/

@@ -3,22 +3,73 @@ div.container {
   text-align: center;
 }
 
-th {
-  text-align: center;
+.tableContainer {
+    display: inline-block;
+    margin: 20px auto;
+}
+
+table {
+  border: 3px solid black;
+}
+
+.board {
+	border: 1px solid black;
+	height: 40px;
+	width: 40px;
+	margin: 0;
 }
 
 input[type=radio].online {
   display: none;
 }
+
 input[type=text].online {
   margin: auto;
   min-width: 400px;
   width: 30%;
 }
+
 input.online + td.board{
   cursor:pointer;
   border:2px solid transparent;
 }
+
 input.online:checked + div{
   border:2px solid #f00;
 }
+
+.subtable {
+	display: inline-block;
+	margin: 0;
+  vertical-align: top;
+}
+
+div.outter {
+  min-width: 246px;
+  border: 3px solid black;
+}
+
+div.challenge {
+  vertical-align: middle;
+}
+
+td.miniboard {
+  border: 1px solid black;
+  height: 25px;
+  width: 25px;
+  margin: 0;
+}
+
+div.snug { padding: 0px; }
+
+.selected { text-align: center; }
+.grayed { background-color: rgb(100, 100, 100); }
+.winner { border: 2px solid green; }
+
+.XSelect { background-color: rgb(150, 200, 250); }
+.OSelect { background-color: rgb(250, 180, 150); }
+.ASelect { background-color: rgb(225, 140, 225); }
+
+.Xwinner { border: 3px solid rgb(150, 200, 250); }
+.Owinner { border: 3px solid rgb(250, 180, 150); }
+.Awinner { border: 3px solid rgb(225, 140, 225); }
