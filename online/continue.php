@@ -9,11 +9,12 @@
       <div class="panel-heading"><h2>Your 3x3 Matches</h2></div>
       <div class="panel-body">
         <?php
-        $query = mysqli_query($link, "SELECT * FROM ThreesBoards WHERE user1 = '$sessionUsr' OR user2 = '$sessionUsr'");
-        $numrows = 0 + mysqli_num_rows($query);
+        $queryThrees = mysqli_query($link, "SELECT * FROM ThreesBoards WHERE user1 = '$sessionUsr' OR user2 = '$sessionUsr'");
+        $numrows = 0 + mysqli_num_rows($queryThrees);
 
-        echo "<h3>you have ".$numrows." 3x3 games!</h3>";
-      
+        echo "<h3>You have ".$numrows." active 3x3 games!</h3>";
+
+        $queryThrees->close(); /*close connection */
         ?>
       </div>
     </div>
@@ -37,12 +38,12 @@
       <div class="panel-heading"><h2>Your 9x9 Matches</h2></div>
       <div class="panel-body">
         <?php
-        $query = mysqli_query($link, "SELECT * FROM NinesBoards WHERE user1 = '$sessionUsr' OR user2 = '$sessionUsr'");
-        $numrows = 0 + mysqli_num_rows($query);
+        $queryNines = mysqli_query($link, "SELECT * FROM NinesBoards WHERE user1 = '$sessionUsr' OR user2 = '$sessionUsr'");
+        $numrows = 0 + mysqli_num_rows($queryNines);
 
-        echo "<h3>you have ".$numrows." 9x9 games!</h3>";
+        echo "<h3>You have ".$numrows." active 9x9 games!</h3>";
 
-        $link->close(); /*close connection */
+        $queryNines->close(); /*close connection */
         ?>
       </div>
     </div>

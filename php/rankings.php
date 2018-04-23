@@ -64,6 +64,6 @@
           </table>
         </div>
       </div>";
-      $link->close();
+      $query->close();
     }
   ?>
