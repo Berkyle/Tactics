@@ -6,7 +6,7 @@
   $plyrMove9   = $_POST["move9"];
 
   if(strtolower($sessionUsr) == strtolower($inviteUsr)) {
-    echo "<h1>You can't play with yourself here..</h1><h3>.... you should probably go outside..</h3>";
+    echo "<h1>Don't play with yourself..</h1>";
   }
   else {
     $check = mysqli_query($link, "SELECT * FROM GameUsers WHERE username='$inviteUsr'");
