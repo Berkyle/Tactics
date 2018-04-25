@@ -13,16 +13,17 @@ var XTxt = [];
 var OTxt = [];
 var possibleWins = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
 var randomSwitch = false;
+
 function populateHTML() {
 	let add = "<tr><td class=\"board\"></td><td class=\"board\"></td><td class=\"board\"></td></tr>";
 	for(let i = 0; i < 9; i++) {
 		for(let j = 0; j < 3; j++) document.getElementsByClassName("subtable "+ i)[0].innerHTML += add;
 	}
-
-	addEvents();
 }
 
 function addEvents() {
+	populateHTML();
+
 	for(let i = 0; i < 81; i++) {
 		XO[i].addEventListener("click", function() {
 			selClass = isX ? "XSelect" : "OSelect";
@@ -130,7 +131,7 @@ function winningMove(){
       }
     }
   }
-  console.log(subBoard);
+  // console.log(subBoard);
   for(let i = 0; i < possibleWins.length; i++){
     if(subBoard[possibleWins[i][0]] == "O"){
       counter++;
@@ -188,7 +189,7 @@ function blockMove(){
         }
       }
     }
-    console.log(subBoard);
+    // console.log(subBoard);
     for(let i = 0; i < possibleWins.length; i++){
       if(subBoard[possibleWins[i][0]] == "X"){
         counter++;
@@ -246,7 +247,7 @@ function blockMove(){
         }
       }
     }
-    console.log(subBoard);
+    // console.log(subBoard);
     for(let i = 0; i < possibleWins.length; i++){
       if(subBoard[possibleWins[i][0]] == "O"){
         counter++;

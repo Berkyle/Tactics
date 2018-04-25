@@ -34,14 +34,16 @@ include 'rankings.php';
           <p>
             <h4>Play against a bot of your choice!</h4>
           </p>
-          <a href="<?php echo getDirectoryEscape(); ?>demos/singleBoardBotDemo/easy/simpleBoard.html"><button type="button" class="btn btn-default btn-lg" id="3x3Butt">3 x 3 Easy</button></a>
-          <a href="<?php echo getDirectoryEscape(); ?>demos/nineBoardBotDemo/easy/ninerBoard.html"><button type="button" class="btn btn-default btn-lg" id="9x9butt">9 x 9 Easy</button></a>
-          <br>
-          <a href="<?php echo getDirectoryEscape(); ?>demos/singleBoardBotDemo/medium/simpleBoard.html"><button type="button" class="btn btn-default btn-lg" id="3x3Butt">3 x 3 Medium</button></a>
-          <a href="<?php echo getDirectoryEscape(); ?>demos/nineBoardBotDemo/medium/ninerBoard.html"><button type="button" class="btn btn-default btn-lg" id="9x9butt">9 x 9 Medium</button></a>
-          <br>
-          <a href="<?php echo getDirectoryEscape(); ?>demos/singleBoardBotDemo/hard/simpleBoard.html"><button type="button" class="btn btn-default btn-lg" id="3x3Butt">3 x 3 Hard</button></a>
-          <a href="<?php echo getDirectoryEscape(); ?>demos/nineBoardBotDemo/hard/ninerBoard.html"><button type="button" class="btn btn-default btn-lg" id="9x9butt">9 x 9 Hard</button></a>
+          <form action="bots/botGame.php" method="post">
+            <button name="type" value = "3e" class="btn btn-default btn-lg">3 x 3 Easy</button>
+            <button name="type" value = "9e" class="btn btn-default btn-lg">9 x 9 Easy</button>
+            <br>
+            <button name="type" value = "3m" class="btn btn-default btn-lg">3 x 3 Medium</button>
+            <button name="type" value = "9m" class="btn btn-default btn-lg">9 x 9 Medium</button>
+            <br>
+            <button name="type" value = "3h" class="btn btn-default btn-lg">3 x 3 Hard</button>
+            <button name="type" value = "9h" class="btn btn-default btn-lg">9 x 9 Hard</button>
+          </form>
         </div>
       </div>
     </div>

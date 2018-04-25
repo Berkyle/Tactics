@@ -18,11 +18,11 @@ function populateHTML() {
 	for(let i = 0; i < 9; i++) {
 		for(let j = 0; j < 3; j++) document.getElementsByClassName("subtable "+ i)[0].innerHTML += add;
 	}
-
-	addEvents();
 }
 
 function addEvents() {
+	populateHTML();
+
 	for(let i = 0; i < 81; i++) {
 		XO[i].addEventListener("click", function() {
 			selClass = isX ? "XSelect" : "OSelect";
@@ -37,12 +37,26 @@ function addEvents() {
           if(gameTxt[i] == undefined){
             runBot();
           }
+          else{
+            randomBotMove();
+          }
 		    }
       }
 		});
 	}
 }
-
+function randomBotMove(){
+  let botMove = randomMove();
+  selClass = isX ? "XSelect" : "OSelect";
+  if(!XO[botMove].classList.contains("selected") && !XO[botMove].classList.contains("grayed")) {
+    XO[botMove].classList.add(selClass, "selected");
+    XO[botMove].innerText = selClass.charAt(0);//add 'X' or 'O' to HTML page
+    isX = !isX; //Boolean determines turn; (isX === true) => X's turn
+    txt[botMove] = XO[botMove].innerText;
+    checkBoardStatus(botMove);
+    checkGameWin();
+  }
+}
 function runBot(){
   let botMove = nextMove();
   selClass = isX ? "XSelect" : "OSelect";
@@ -57,7 +71,18 @@ function runBot(){
 }
 
 function nextMove(){
+  if(winningMove() != -1){
+    return winningMove();
+  }
+  else if(blockMove() != -1){
+    return blockMove();
+  }
+  else if(twoTiles() != -1){
+    return twoTiles();
+  }
+  else{
     return randomMove();
+  }
 }
 function randomMove(){
   let validMoves = [];
@@ -69,6 +94,179 @@ function randomMove(){
   let random = Math.floor((Math.random() * validMoves.length));
   return validMoves[random];
 }
+function winningMove(){
+  let validMoves = [];
+  let OTiles = [];
+  let subBoard = [];
+  let tempXO = XO;
+  let counter = 0;
+  let temp = [];
+  for(let i = 0; i < 9; i++){
+    subBoard.push(" ");
+  }
+  for(let i = 0; i < 81; i++){
+    if(!XO[i].classList.contains("selected") && !XO[i].classList.contains("grayed")){
+      validMoves.push(i);
+    }
+  }
+  let multiple = Math.floor(validMoves[0]/9);
+  for(let i = (0+multiple*9); i < (9+multiple*9); i++){
+    if(XO[i].classList.contains("selected") && txt[i] == "O"){
+      OTiles.push(i);
+    }
+  }
+  for(let i = 0; i < 9; i++){
+    for(let j = 0; j < OTiles.length; j++){
+      if((i+multiple*9) == OTiles[j]){
+        subBoard[i] = "O";
+      }
+    }
+  }
+  //console.log(subBoard);
+  for(let i = 0; i < possibleWins.length; i++){
+    if(subBoard[possibleWins[i][0]] == "O"){
+      counter++;
+    }
+    if(subBoard[possibleWins[i][1]] == "O"){
+      counter++;
+    }
+    if(subBoard[possibleWins[i][2]] == "O"){
+      counter++;
+    }
+    if(counter == 2){
+      for(let j = 0; j < 3; j++){
+        temp.push(possibleWins[i][j]);
+      }
+      for(let j = 0; j < 3; j++){
+        for(let z = 0; z < validMoves.length; z++){
+          if(subBoard[temp[j]] == " " && validMoves[z] == (temp[j] + multiple*9)){
+            return(temp[j] + multiple*9);
+          }
+        }
+      }
+    }
+    else{
+      counter = 0;
+    }
+  }
+  return -1;
+}
+
+function blockMove(){
+    let validMoves = [];
+    let XTiles = [];
+    let subBoard = [];
+    let tempXO = XO;
+    let counter = 0;
+    let temp = [];
+    for(let i = 0; i < 9; i++){
+      subBoard.push(" ");
+    }
+    for(let i = 0; i < 81; i++){
+      if(!XO[i].classList.contains("selected") && !XO[i].classList.contains("grayed")){
+        validMoves.push(i);
+      }
+    }
+    let multiple = Math.floor(validMoves[0]/9);
+    for(let i = (0+multiple*9); i < (9+multiple*9); i++){
+      if(XO[i].classList.contains("selected") && txt[i] == "X"){
+        XTiles.push(i);
+      }
+    }
+    for(let i = 0; i < 9; i++){
+      for(let j = 0; j < XTiles.length; j++){
+        if((i+multiple*9) == XTiles[j]){
+          subBoard[i] = "X";
+        }
+      }
+    }
+    // console.log(subBoard);
+    for(let i = 0; i < possibleWins.length; i++){
+      if(subBoard[possibleWins[i][0]] == "X"){
+        counter++;
+      }
+      if(subBoard[possibleWins[i][1]] == "X"){
+        counter++;
+      }
+      if(subBoard[possibleWins[i][2]] == "X"){
+        counter++;
+      }
+      if(counter == 2){
+        for(let j = 0; j < 3; j++){
+          temp.push(possibleWins[i][j]);
+        }
+        for(let j = 0; j < 3; j++){
+          for(let z = 0; z < validMoves.length; z++){
+            if(subBoard[temp[j]] == " " && validMoves[z] == (temp[j] + multiple*9)){
+              return(temp[j] + multiple*9);
+            }
+          }
+        }
+      }
+      else{
+        counter = 0;
+      }
+    }
+    return -1;
+  }
+
+  function twoTiles(){
+    let validMoves = [];
+    let OTiles = [];
+    let subBoard = [];
+    let tempXO = XO;
+    let counter = 0;
+    let temp = [];
+    for(let i = 0; i < 9; i++){
+      subBoard.push(" ");
+    }
+    for(let i = 0; i < 81; i++){
+      if(!XO[i].classList.contains("selected") && !XO[i].classList.contains("grayed")){
+        validMoves.push(i);
+      }
+    }
+    let multiple = Math.floor(validMoves[0]/9);
+    for(let i = (0+multiple*9); i < (9+multiple*9); i++){
+      if(XO[i].classList.contains("selected") && txt[i] == "O"){
+        OTiles.push(i);
+      }
+    }
+    for(let i = 0; i < 9; i++){
+      for(let j = 0; j < OTiles.length; j++){
+        if((i+multiple*9) == OTiles[j]){
+          subBoard[i] = "O";
+        }
+      }
+    }
+    // console.log(subBoard);
+    for(let i = 0; i < possibleWins.length; i++){
+      if(subBoard[possibleWins[i][0]] == "O"){
+        counter++;
+      }
+      if(subBoard[possibleWins[i][1]] == "O"){
+        counter++;
+      }
+      if(subBoard[possibleWins[i][2]] == "O"){
+        counter++;
+      }
+      if(counter == 1){
+        for(let j = 0; j < 3; j++){
+          temp.push(possibleWins[i][j]);
+        }
+        for(let j = 0; j < 3; j++){
+          for(let z = 0; z < validMoves.length; z++){
+            if(subBoard[temp[j]] == " " && validMoves[z] == (temp[j] + multiple*9)){
+              return(temp[j] + multiple*9);
+            }
+          }
+        }
+      }
+      else{
+        counter = 0;
+      }
+    }
+    return -1;
+  }
 
 function checkBoardStatus(tile) {	//tile is the tile that the last choice was selected in
 	var toSelect = Math.floor(tile/9); //toSelect is the board that the last choice was selected in
