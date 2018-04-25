@@ -10,6 +10,7 @@ div.container {
 
 table {
   border: 3px solid black;
+  margin: 0 auto;
 }
 
 .board {
@@ -45,7 +46,7 @@ input.online:checked + div{
 }
 
 div.outter {
-  min-width: 246px;
+  /* min-width: 246px; */
   border: 3px solid black;
 }
 
@@ -60,7 +61,10 @@ td.miniboard {
   margin: 0;
 }
 
-div.snug { padding: 0px; }
+div.snug {
+  padding: 0px;
+  width: 246px;
+}
 
 .selected { text-align: center; }
 .grayed { background-color: rgb(100, 100, 100); }
