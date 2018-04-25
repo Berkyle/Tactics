@@ -25,7 +25,7 @@
             if($userX == $sessionUsr) $userX = "You";
             else $userO = "you";
 
-            echo "<div class=\"container\">
+            echo "<div class=\"continueContainer\">
                     <div class=\"col-sm-6 challenge\">
                       <h4>".$userX." (X)</h4><h5>challenged</h5><h4>".$userO." (O)</h4>";
 
@@ -106,7 +106,7 @@
             $numMoves = 0 + mysqli_num_rows($boardMoves);
             $getTurn = $numMoves%2;
             if(($getTurn == 0 && $userX == "You") || ($getTurn == 1 && $userO == "you")){
-              echo "<button type=\"submit\" value=".$ID.">Continue game</button>";
+              echo "<button type=\"submit\" name=\"selectGame\" value=".$ID.">Continue game</button>";
             }
 
             echo   "</div>
@@ -121,7 +121,7 @@
             }
 
             for($i = 0; $i < 3; $i++) {
-              echo "<div class=\"snug\">";
+              echo "<div class=\"minisnug\">";
               for($j = 0; $j<3; $j++) {
             		$k = $i*3+$j;
                 echo "<table class=\"subtable ".$k."\" cellspacing=\"0\">";
