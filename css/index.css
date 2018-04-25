@@ -61,10 +61,10 @@ td.miniboard {
   margin: 0;
 }
 
-div.snug {
+/* div.snug {
   padding: 0px;
   width: 246px;
-}
+} */
 
 .selected { text-align: center; }
 .grayed { background-color: rgb(100, 100, 100); }
