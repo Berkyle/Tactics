@@ -9,11 +9,22 @@
       <div id="outter" class="outter">
 
 <?php
-for($i = 0; $i<3; $i++) {
+for($i = 0; $i < 3; $i++) {
   echo "<div class=\"snug\">";
   for($j = 0; $j<3; $j++) {
-		$k = $i*3+$j;
-    echo "<table class=\"subtable ".$k."\" cellspacing=\"0\"></table>";
+    $k = $i*3+$j;
+    echo "<table class=\"subtable ".$k."\" cellspacing=\"0\">";
+
+    for($m = 0; $m < 3; $m++) {
+      echo "<tr>";
+      for($n = 0; $n < 3; $n++) {
+        $tile = ($k*9)+($m*3)+$n;
+        echo "<input type=\"radio\" name=\"move9\" value=\"".$tile."\" class=\"radio online\" required>
+            <td class=\"board\"></td>";
+      }
+      echo "</tr>";
+    }
+    echo "</table>";
   }
   echo "</div>";
 }

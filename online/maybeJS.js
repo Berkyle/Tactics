@@ -18,7 +18,7 @@ function addEvents() {
 
   let turn = ((available.length%2) == 1) ? "X" : "O";
 
-	for(let i = 0; i < 9; i++) {//9-segment loop - adds click event to each tile
+	for(let i = 0; i < 9; i++) { //9-segment loop - adds click event to each tile
     XO[i].addEventListener("click", function() {
       let taken = true;
 
@@ -80,6 +80,5 @@ function checkFull(XO) {
     if(XO[i].innerText != "") full++
   }
 
-  if(full == 9) return true;
-  return false;
+  return (full === 9);
 }
