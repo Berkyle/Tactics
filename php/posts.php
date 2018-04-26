@@ -1,5 +1,5 @@
 <?php 
-<!DOCTYPE html>
+
 <html>
 <body>
   <div class="header">
@@ -30,7 +30,7 @@
   	<p>
   		Already a member? <a href="login.php">Sign in</a>
   	</p>
-?>
+
   </form>
 </body>
 </html>
