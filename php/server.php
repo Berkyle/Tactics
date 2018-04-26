@@ -8,7 +8,7 @@ $errors = array();
 
 $db = mysqli_connect('localhost', 'root', '', 'registration');
 
-// REGISTER USER
+
 if (isset($_POST['reg_user'])) {
  
   $username = mysqli_real_escape_string($db, $_POST['username']);
@@ -30,7 +30,7 @@ if (isset($_POST['reg_user'])) {
   $result = mysqli_query($db, $user_check_query);
   $user = mysqli_fetch_assoc($result);
   
-  if ($user) { // if user exists
+  if ($user) {
     if ($user['username'] === $username) {
       array_push($errors, "Someone has taken the username");
     }
@@ -40,7 +40,7 @@ if (isset($_POST['reg_user'])) {
     }
   }
 
-  // Finally, register user if there are no errors in the form
+
   if (count($errors) == 0) {
   	$password = md5($password_1);
 
