@@ -1,4 +1,4 @@
-<?php 
+
 <!DOCTYPE html>
 <html>
 <body>
@@ -30,7 +30,6 @@
   	<p>
   		Already a member? <a href="login.php">Sign in</a>
   	</p>
-?>
   </form>
 </body>
 </html>
