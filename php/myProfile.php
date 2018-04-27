@@ -5,9 +5,7 @@
 	** @post none
 	** @return none
   */
-  if($sessionUsr != "") {
-
-    require_once 'config.php';
+  if(isset($_COOKIE['user'])) {
     include_once 'header.php';
 
     $query = mysqli_query($link, "SELECT wins, draws, losses FROM Profiles WHERE username='$sessionUsr'");
