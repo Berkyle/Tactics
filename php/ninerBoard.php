@@ -21,5 +21,8 @@
       <a href="../"><button type="button" class="btn btn-default btn-lg" id="surrenderButt">Return Home</button></a>
     </div>
   </body>
-  <script type="text/javascript" src="../js/ninerGame.js"></script>
+  <!-- <script type="text/javascript" src="../js/ninerGame.js"></script> -->
+  <script type="text/javascript" src="../js/nineRules.js"></script>
+	<script type="text/javascript" src="../js/nineByNine.js"></script>
+	<script type="text/javascript" src="../js/9by9PageState.js"></script>
 </html>

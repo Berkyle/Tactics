@@ -20,13 +20,11 @@ function addEvents() {
         if(board.checkBoardFull(i%9)){
           page.removeGrayedAll();
         }
-        if(board.checkGameWin() != false){
+        if(board.checkGameWin()){
 					page.updateBoard(true, i, board.selClass);
 					page.finishGame(board.winner);
         }
       }
-      console.log(board);
-      console.log(page);
     });
   }
 }
