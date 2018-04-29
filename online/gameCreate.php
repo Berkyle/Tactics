@@ -42,9 +42,7 @@
       if ($result = $link->query($queryMove)) {
         echo "<h4>User ".$inviteUsr." has received your challenge!</h4>";
       }
-
-      echo "<a href=\"../\"><button type=\"button\" class=\"btn btn-default btn-lg\">Home</button></a>";
-      $result->free(); // free result set
+      //$result->close(); // free result set
       $link->close(); /*close connection */
     }
     else { //Invited user does not exist
@@ -53,5 +51,6 @@
     }
   }
   echo "<a href=\"../\"><button type=\"button\" class=\"btn btn-default btn-lg\">Home</button></a>";
+  echo "<a href=\"continue.php\"><button type=\"button\" class=\"btn btn-default btn-lg\">View Games</button></a>";
   include_once '../php/footer.php';
 ?>

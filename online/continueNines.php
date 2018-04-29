@@ -1,12 +1,14 @@
 <?php
   if($_SERVER["REQUEST_METHOD"] == "POST"){
     include_once '../php/header.php';
+    require_once 'nineClass.php';
     $gameID = $_POST['selectGame'];
 
     $currGame = mysqli_query($link, "SELECT * FROM NinesBoards WHERE gameID = '$gameID'");
     $moves = mysqli_query($link, "SELECT * FROM NinesMoves WHERE gameID = '$gameID'");
 
-    while($row = $currGame->fetch_assoc()) {
+    while($row = $currGame->fetch_assoc())
+    {
       $userX = $row["user1"];
       $userO = $row["user2"];
     }
@@ -26,31 +28,50 @@
 <?php
           $OMoves = array();
           $XMoves = array();
-          $lastMove = 0;
-          $bigMove = "";
-          while($move = $moves->fetch_assoc()) {
-            if($move["isX"] == 1) array_push($XMoves, $move["movePosition"]);
-            else array_push($OMoves, $move["movePosition"]);
-            if($move["moveNumber"] > $lastMove) {
-              $lastMove = $move["moveNumber"];
-              $bigMove = $move["movePosition"];
-            }
+          $AllMoves = array();
+          // $lastMove = 0;
+          // $bigMove = "";
+          while($move = $moves->fetch_assoc())
+          {
+            array_push($AllMoves, $move["movePosition"]);
+
+            if($move["isX"] == 1)
+              array_push($XMoves, $move["movePosition"]);
+            else
+              array_push($OMoves, $move["movePosition"]);
+            // if($move["moveNumber"] > $lastMove) {
+            //   $lastMove = $move["moveNumber"];
+            //   $bigMove = $move["movePosition"];
+            // }
           }
 
+          $game = new ninerBoard($userX, $userO, $AllMoves, $gameID);
+          $notGray = ($game->getLastMove())%9;
+
+          echo "<h1>".$notGray."</h1>";
+
           //Create and populate table with Xs and Os already made
-          for($i = 0; $i < 3; $i++) {
+          for($i = 0; $i < 3; $i++)
+          {
             echo "<div class=\"snug\">";
-            for($j = 0; $j<3; $j++) {
+            for($j = 0; $j<3; $j++)
+            {
               $k = $i*3+$j;
+              $classAdd = "";
+              if($k != $notGray) $classAdd = "gray";
+
               echo "<table class=\"subtable ".$k."\" cellspacing=\"0\">";
 
-              for($m = 0; $m < 3; $m++) {
+              for($m = 0; $m < 3; $m++)
+              {
                 echo "<tr>";
-                for($n = 0; $n < 3; $n++) {
+                for($n = 0; $n < 3; $n++)
+                {
                   $tile = ($k*9)+($m*3)+$n;
-                  if (in_array($tile, $OMoves)) echo "<td class=\"board\">O</td>";
+                  if (in_array($tile, $OMoves)) echo "<td class=\"board ".$classAdd."\">O</td>";
                   elseif (in_array($tile, $XMoves)) echo "<td class=\"board\">X</td>";
-                  else {
+                  else
+                  {
                     echo "<input type=\"radio\" name=\"move9\" value=\"".$tile."\" class=\"radio online\" required>
              					  <td class=\"board\"></td>";
                   }
@@ -77,7 +98,7 @@
       <br>
     </div>
   </body>
-	<script type="text/javascript" src="ninesJS.js"></script>
+	<!-- <script type="text/javascript" src="ninesJS.js"></script> -->
 </html>
 
 <?php
