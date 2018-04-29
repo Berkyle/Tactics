@@ -38,7 +38,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     echo "Error updating record: " . $link->error;
   }
 
-  echo "<h3>".$status."</h3>";
+  echo "<h3>".$status."               ".$gameState."</h3>";
 
   //Finish place move//////////////////
 
@@ -54,7 +54,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if($userX == $sessionUsr) $opponent = $userO;
     else $opponent = $userX;
 
-    if(($gameState == 'X' && $userX == $sessionUsr) || ($gameState == 'O' && $userO == $sessionUsr)) {
+    if(($winner == 'X' && $userX == $sessionUsr) || ($winner == 'O' && $userO == $sessionUsr)) {
       //Case where current user won the game
       echo "<h1>CONGRATULATIONS! You Won!</h1>
             <h3>You have been awarded 30 points!</h3>";
