@@ -1,6 +1,7 @@
 <?php
   if($_SERVER["REQUEST_METHOD"] == "POST"){
     include_once '../php/header.php';
+    require_once 'ninerFunctions.php';
     require_once 'nineClass.php';
     $gameID = $_POST['selectGame'];
 
@@ -11,13 +12,13 @@
     {
       $userX = $row["user1"];
       $userO = $row["user2"];
+      $boardState = $row["gameState"];
     }
 
     $opponent = ($userX == $sessionUsr ? $userO : $userX);
 
     echo "<h1>Continue game:</h1>
           <h2>Your 9x9 game with ".$opponent."</h2>";
-
 ?>
 
   <form action="ninesSubmit.php" onsubmit="checkState()" method="post">
@@ -26,8 +27,8 @@
       <div id="outter" class="outter">
 
 <?php
-          $OMoves = array();
-          $XMoves = array();
+          // $OMoves = array();
+          // $XMoves = array();
           $AllMoves = array();
           // $lastMove = 0;
           // $bigMove = "";
@@ -35,20 +36,23 @@
           {
             array_push($AllMoves, $move["movePosition"]);
 
-            if($move["isX"] == 1)
-              array_push($XMoves, $move["movePosition"]);
-            else
-              array_push($OMoves, $move["movePosition"]);
+            // if($move["isX"] == 1)
+            //   array_push($XMoves, $move["movePosition"]);
+            // else
+            //   array_push($OMoves, $move["movePosition"]);
+
+
             // if($move["moveNumber"] > $lastMove) {
             //   $lastMove = $move["moveNumber"];
             //   $bigMove = $move["movePosition"];
             // }
           }
 
-          $game = new ninerBoard($userX, $userO, $AllMoves, $gameID);
-          $notGray = ($game->getLastMove())%9;
+          $GAME = new ninerBoard($userX, $userO, $AllMoves, $gameID);
 
-          echo "<h1>".$notGray."</h1>";
+          $grayNum = ($GAME->getGrayStatus())%9;
+          $boardArray = buildBoardArray($boardState); //won boards
+          $grayArray = makeGrayArray($grayNum); //Grayed boards
 
           //Create and populate table with Xs and Os already made
           for($i = 0; $i < 3; $i++)
@@ -56,24 +60,37 @@
             echo "<div class=\"snug\">";
             for($j = 0; $j<3; $j++)
             {
+              //Begin BOARD build
               $k = $i*3+$j;
-              $classAdd = "";
-              if($k != $notGray) $classAdd = "gray";
-
-              echo "<table class=\"subtable ".$k."\" cellspacing=\"0\">";
+              echo "<table class=\"subtable ".$boardArray[$k]."\" cellspacing=\"0\">";
 
               for($m = 0; $m < 3; $m++)
               {
                 echo "<tr>";
                 for($n = 0; $n < 3; $n++)
                 {
+                  //Begin TILE build
                   $tile = ($k*9)+($m*3)+$n;
-                  if (in_array($tile, $OMoves)) echo "<td class=\"board ".$classAdd."\">O</td>";
-                  elseif (in_array($tile, $XMoves)) echo "<td class=\"board\">X</td>";
+
+                  if ($GAME->getTileValue($tile) == "O")
+                  {
+                    echo "<td class=\"board selected OSelect".$grayed[$k]."\">O</td>";
+                  }
+                  elseif ($GAME->getTileValue($tile) == "X")
+                  {
+                    echo "<td class=\"board selected XSelect".$grayed[$k]."\">X</td>";
+                  }
                   else
                   {
-                    echo "<input type=\"radio\" name=\"move9\" value=\"".$tile."\" class=\"radio online\" required>
-             					  <td class=\"board\"></td>";
+                    if($grayed[$k] == " ")
+                    {
+                      echo "<input type=\"radio\" name=\"move9\" value=\"".$tile."\" class=\"radio online\" required>
+               					    <td class=\"board"\"></td>";
+                    }
+                    else
+                    {
+                      echo "<td class=\"board grayed\"></td>";
+                    }
                   }
                 }
                 echo "</tr>";
@@ -87,7 +104,7 @@
 
             </div>
             <input type="hidden" name="gameID" value="<?php echo $gameID; ?>">
-            <input id="ignoreMe" type="hidden" name="gameState" value="<?php echo $bigMove; ?>">
+            <input id="ignoreMe" type="hidden" name="gameState" value="<?php echo $GAME->getNumMoves(); ?>">
 						<br>
 					</div>
 					<div>
@@ -98,7 +115,7 @@
       <br>
     </div>
   </body>
-	<!-- <script type="text/javascript" src="ninesJS.js"></script> -->
+	<script type="text/javascript" src="ninesJS.js"></script>
 </html>
 
 <?php

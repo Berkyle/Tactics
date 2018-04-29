@@ -1,48 +1,41 @@
 function addEvents() {
-  //populateHTML();
   let XO = document.getElementsByClassName("board"); // array of DOM tiles with indicies [0..80]
   let box = document.getElementsByClassName("radio");
 
-  let size = XO.length; //81
-
-  let add = new Array(size); //length == 9
-  for(let i = 0; i < size; i++) {
-    add[i] = 0;
+  try {
+    let nextMove = ((document.getElementById("ignoreMe").value)%2 == 0) ? "X" : "O";
+  }
+  catch(error) {
+    let nextMove = "X";
   }
 
   let available = [];
-  for(let i = 0; i < size; i++) {
-    if(XO[i].innerText == "") //tile not taken
+  let add = [];
+  for(let i = 0; i < 81; i++) {
+    add[i] = 0;
+  }
+
+  for(let i = 0; i < 81; i++) {
+    if(!XO[i].classList.contains("grayed") && !XO[i].classList.contains("selected")) //tile not taken
       available.push(i);
     else {
-      XO[i].classList.add(XO[i].innerText+"Select");
       for(let j = i; j < size; j++) {
         add[j] += 1;
       }
     }
-    XO[i].classList.add("grayed");
   }
 
-  try {
-    let lastMove = document.getElementById("ignoreMe").value;
-    for(let i = 0; i < size/9; i++) {
-      XO[9*(lastMove%9) + i].classList.remove("grayed");
-    }
-  }catch(error) {}
+  for(let i = 0; i < 81; i++) {//81-segment loop - adds click event to each tile
+    if(!XO[i].classList.contains("grayed") && !XO[i].classList.contains("selected")) {
+      XO[i].addEventListener("click", function() {
+        // let taken = true;
 
-  updateBorders(XO);
+        // available.forEach(function(j) {
+        //   if(i == j) taken = false;
+        // });
 
-  let turn = ((available.length%2) == 1) ? "X" : "O";
+        //remove select class and checked from others
 
-	for(let i = 0; i < size; i++) {//81-segment loop - adds click event to each tile
-    XO[i].addEventListener("click", function() {
-      let taken = true;
-
-      available.forEach(function(j) {
-        if(i == j) taken = false;
-      });
-
-      if(!taken && !XO[i].classList.contains("grayed")) {
         available.forEach(function(j) {
           if(XO[j].innerHTML != "") {
             XO[j].classList.remove("XSelect", "OSelect");
@@ -51,33 +44,60 @@ function addEvents() {
           }
         });
 
-        XO[i].innerText = turn;
+        XO[i].innerText = nextMove;
         XO[i].classList.add(turn+"Select");
         box[i - add[i]].checked = true;
-      }
-    });
+      });
+    }
   }
 }
 
-function updateBorders(XO) {
-  let possibleWins = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
+  // let turn = ((available.length%2) == 1) ? "X" : "O";
 
-  let board = [];
-  for(let i = 0; i<81; i++) {
-    board.push(XO[i].innerText);
-  }
+	// for(let i = 0; i < 81; i++) {//81-segment loop - adds click event to each tile
+  //   XO[i].addEventListener("click", function() {
+  //     let taken = true;
+  //
+  //     available.forEach(function(j) {
+  //       if(i == j) taken = false;
+  //     });
+  //
+  //     if(!taken && !XO[i].classList.contains("grayed")) {
+  //       available.forEach(function(j) {
+  //         if(XO[j].innerHTML != "") {
+  //           XO[j].classList.remove("XSelect", "OSelect");
+  //           XO[j].innerHTML = "";
+  //           box[j-add[j]].checked = false;
+  //         }
+  //       });
+  //
+  //       XO[i].innerText = turn;
+  //       XO[i].classList.add(turn+"Select");
+  //       box[i - add[i]].checked = true;
+  //     }
+  //   });
+  // }
+// }
 
-  for(let i = 0; i<9; i++) {
-    let boardWin = "";
-    possibleWins.forEach(function(poss) { //check if someone has won the game.
-  		if(checkTriple(poss[0]+i*9, poss[1]+i*9, poss[2]+i*9, board)) {
-        //update border
-      }
-    });
-  }
-
-
-}
+// function updateBorders(XO) {
+//   let possibleWins = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
+//
+//   let board = [];
+//   for(let i = 0; i<81; i++) {
+//     board.push(XO[i].innerText);
+//   }
+//
+//   for(let i = 0; i<9; i++) {
+//     let boardWin = "";
+//     possibleWins.forEach(function(poss) { //check if someone has won the game.
+//   		if(checkTriple(poss[0]+i*9, poss[1]+i*9, poss[2]+i*9, board)) {
+//         //update border
+//       }
+//     });
+//   }
+//
+//
+// }
 
 
 
