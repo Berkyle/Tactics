@@ -42,12 +42,12 @@
   function makeGrayArray($grayNum)
   {
     $grayArray = array();
-    
+
     if($grayNum == -1)
     {
       for($i = 0; $i < 9; $i++)
       {
-        array_push($grayArray, " ");
+        array_push($grayArray, true);
       }
     }
     else
@@ -56,11 +56,11 @@
       {
         if($i == $grayNum)
         {
-          array_push($grayArray, " ");
+          $grayArray[$i] = false;
         }
         else
         {
-          array_push($grayArray, " grayed");
+          $grayArray[$i] = true;
         }
       }
     }
