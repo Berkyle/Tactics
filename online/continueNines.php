@@ -27,25 +27,10 @@
       <div id="outter" class="outter">
 
 <?php
-          // $OMoves = array();
-          // $XMoves = array();
           $AllMoves = array();
-          // $lastMove = 0;
-          // $bigMove = "";
           while($move = $moves->fetch_assoc())
           {
             array_push($AllMoves, $move["movePosition"]);
-
-            // if($move["isX"] == 1)
-            //   array_push($XMoves, $move["movePosition"]);
-            // else
-            //   array_push($OMoves, $move["movePosition"]);
-
-
-            // if($move["moveNumber"] > $lastMove) {
-            //   $lastMove = $move["moveNumber"];
-            //   $bigMove = $move["movePosition"];
-            // }
           }
 
           $GAME = new ninerBoard($userX, $userO, $AllMoves, $gameID);
@@ -61,8 +46,8 @@
             for($j = 0; $j<3; $j++)
             {
               //Begin BOARD build
-              $k = $i*3+$j;
-              echo "<table class=\"subtable ".$boardArray[$k]."\" cellspacing=\"0\">";
+              $k = ($i*3)+$j;
+              echo "<table class=\"subtable ".$k." ".$boardArray[$k]."\" cellspacing=\"0\">";
 
               for($m = 0; $m < 3; $m++)
               {
@@ -74,18 +59,18 @@
 
                   if ($GAME->getTileValue($tile) == "O")
                   {
-                    echo "<td class=\"board selected OSelect".$grayed[$k]."\">O</td>";
+                    echo "<td class=\"board selected OSelect\">O</td>";
                   }
                   elseif ($GAME->getTileValue($tile) == "X")
                   {
-                    echo "<td class=\"board selected XSelect".$grayed[$k]."\">X</td>";
+                    echo "<td class=\"board selected XSelect\">X</td>";
                   }
                   else
                   {
-                    if($grayed[$k] == " ")
+                    if(!$grayArray[$k])
                     {
                       echo "<input type=\"radio\" name=\"move9\" value=\"".$tile."\" class=\"radio online\" required>
-               					    <td class=\"board"\"></td>";
+               					    <td class=\"board\"></td>";
                     }
                     else
                     {
@@ -99,23 +84,23 @@
             }
             echo "</div>";
           }
-
+          echo "</div>";
 ?>
-
-            </div>
             <input type="hidden" name="gameID" value="<?php echo $gameID; ?>">
             <input id="ignoreMe" type="hidden" name="gameState" value="<?php echo $GAME->getNumMoves(); ?>">
 						<br>
 					</div>
 					<div>
 						<a href="../"><button type="button" class="btn btn-default btn-lg">Return Home</button></a>
-						<input type="submit" class="btn btn-default btn-lg" name="submit" value="Place move!">
+						<button type="submit" class="btn btn-default btn-lg" id="submit" name="submit">Place move!</button>
 					</div>
         </form>
       <br>
     </div>
   </body>
 	<script type="text/javascript" src="ninesJS.js"></script>
+  <script type="text/javascript" src="../js/9by9PageState.js"></script>
+  <script type="text/javascript" src="../js/nineByNine.js"></script>
 </html>
 
 <?php

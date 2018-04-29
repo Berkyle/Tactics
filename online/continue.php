@@ -86,7 +86,7 @@
         <form action="continueNines.php" method="post">
 
         <?php
-        $queryNines = mysqli_query($link, "SELECT * FROM NinesBoards WHERE user1 = '$sessionUsr' OR user2 = '$sessionUsr'");
+        $queryNines = mysqli_query($link, "SELECT * FROM NinesBoards WHERE (user1 = '$sessionUsr' OR user2 = '$sessionUsr') AND (winner = '')");
         $numrows = 0 + mysqli_num_rows($queryNines);
 
         echo "<h3>You have ".$numrows." active 9x9 games!</h3>";
