@@ -12,7 +12,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   while($row = $moves->fetch_assoc()) {
     $numMoves++;
   }
-  $moves->close(); /*close connection */
+  //$row->close(); /*close connection */
   $thisMove = $numMoves+1;
 
   if($thisMove%2 == 0) $isX = 0;
@@ -26,8 +26,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     echo "Error updating record: " . $link->error;
   }
   //Finish place move//////////////////
-
-  //echo "<h1>Move placed</h1>";
 
   if($gameState == 'X' || $gameState == 'O') {
     //Session user won!
@@ -59,6 +57,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if ($link->query($winner) === TRUE  && $link->query($loser) === TRUE && $link->query($board) === TRUE) {
       echo "<a href=\"../\"><button type=\"button\" class=\"btn btn-default btn-lg\">Home</button></a>";
+      echo "<a href=\"../\"><button type=\"button\" class=\"btn btn-default btn-lg\">Home</button></a>";
     }
     else {
       echo "Error updating record: " . $link->error;
@@ -75,6 +74,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $board  = "UPDATE ThreesBoards SET winner = 'TIE' WHERE gameID = '$gameID'";
 
     if ($link->query($player) === TRUE  && $link->query($other) === TRUE && $link->query($board) === TRUE) {
+      echo "<a href=\"continue.php\"><button type=\"button\" class=\"btn btn-default btn-lg\">View Games</button></a>";
       echo "<a href=\"../\"><button type=\"button\" class=\"btn btn-default btn-lg\">Home</button></a>";
     }
     else {
@@ -84,11 +84,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   else {
     //Game continues
     echo "<a href=\"../\"><button type=\"button\" class=\"btn btn-default btn-lg\">Home</button></a>";
+    echo "<a href=\"continue.php\"><button type=\"button\" class=\"btn btn-default btn-lg\">View Games</button></a>";
   }
 
   include_once '../php/footer.php';
 
-  $currGame->close(); /*close connection */
+  //$currGame->close(); /*close connection */
   $moves->close(); /*close connection */
 }
 else {

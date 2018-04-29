@@ -40,30 +40,39 @@
           }
         }
       }
-      echo "<h2>Online Leaderboard</h2>
-            <div class=\"row\">
-              <div class=\"col-sm-6 col-sm-offset-3\">
-                <table class=\"table table-hover table-bordered\">
-                  <thead>
-                    <tr>
-                      <th>Rank</th>
-                      <th>Username</th>
-                      <th>Points</th>
-                    </tr>
-                  </thead>
-                  <tbody>";
+      echo "<h2>Online Leaderboard</h2>".
+            "<div class=\"row\">".
+              "<div class=\"col-sm-6 col-sm-offset-3\">".
+                "<div class=\"table-responsive\">".
+                  "<div class=\"table-sizer\">".
+                    "<table class=\"table table-hover table-fixed table-bordered\">".
+                      "<thead>".
+                        "<tr>".
+                          "<th>Rank</th>".
+                          "<th>Username</th>".
+                          "<th>Points</th>".
+                        "</tr>".
+                      "</thead>".
+                      "<tbody>";
       if($sessionUsr == "") {
-        echo "<tr><td colspan=\"3\"><h3>You must be logged in to view rankings.</h3></td></tr>";
+                   echo "<tr><td colspan=\"3\"><h3>You must be logged in to view rankings.</h3></td></tr>";
       }
       else {
         for($k = 0; $k < $numrows; $k++) {
-          echo "<tr><td>".($k+1)."</td><td>".($users[$numrows-1-$k])."</td><td>".($userPoints[$numrows-1-$k])."</td></tr>";
+                   echo "<tr>".
+                          "<td class=\"fiterable-cell\">".($k+1)."</td>".
+                          "<td class=\"fiterable-cell\">".($users[$numrows-1-$k])."</td>".
+                          "<td class=\"fiterable-cell\">".($userPoints[$numrows-1-$k])."</td>".
+                        "</tr>";
         }
       }
-      echo "</tbody>
-          </table>
-        </div>
-      </div>";
+                echo  "</tbody>".
+                    "</table>".
+                  "</div>".
+                "</div>".
+              "</div>".
+            "</div>".
+            "<br>";
       $query->close();
     }
   ?>

@@ -3,6 +3,9 @@
 <h1>Continue game:</h1>
 <h2>Your games:</h2>
 
+<div class="$row">
+
+
 <div class="col-sm-6">
   <div class="panel-group">
     <div class="panel panel-default">
@@ -25,8 +28,8 @@
             if($userX == $sessionUsr) $userX = "You";
             else $userO = "you";
 
-            echo "<div class=\"continueContainer\">
-                    <div class=\"col-sm-6 challenge\">
+            echo "<div class=\"row\">
+                    <div class=\"col-sm-6 challenge fll\">
                       <h4>".$userX." (X)</h4><h5>challenged</h5><h4>".$userO." (O)</h4>";
 
             $numMoves = 0 + mysqli_num_rows($boardMoves);
@@ -36,7 +39,7 @@
             }
 
             echo   "</div>
-                    <div class=\"col-sm-6\">
+                    <div class=\"col-md-4 flr\">
                       <table>";
 
             $OMoves = array();
@@ -61,7 +64,7 @@
 
             echo     "</table>
                     </div>
-                  </div><br>";
+                  </div><br>"; //<div class=\"continueContainer\"> </div>
 
             $boardMoves->close(); /*close connection */
           }
@@ -100,7 +103,7 @@
             else $userO = "you";
 
             echo "<div class=\"container\">
-                    <div class=\"col-sm-6 challenge\">
+                    <div class=\"col-md-6 challenge fll\">
                       <h4>".$userX." (X)</h4><h5>challenged</h5><h4>".$userO." (O)</h4>";
 
             $numMoves = 0 + mysqli_num_rows($boardMoves);
@@ -110,7 +113,7 @@
             }
 
             echo   "</div>
-                    <div class=\"col-sm-6\">
+                    <div class=\"col-lg-2 flr\">
                       <div id=\"outter\" class=\"outter\">";
 
             $OMoves = array();
@@ -156,5 +159,7 @@
       </div>
     </div>
   </div>
+</div>
+
 </div>
 <?php include_once '../php/footer.php'; ?>
