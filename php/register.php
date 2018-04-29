@@ -14,7 +14,7 @@
   $username_err = $password_err = $confirm_password_err = "";
 
   if($_SERVER["REQUEST_METHOD"] == "POST"){
-      if(empty($username)){
+      if(empty($username) || strtolower($username) == "tie"){
           $username_err = "Please enter a valid username.";
       }
       else {
