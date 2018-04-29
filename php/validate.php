@@ -7,7 +7,7 @@
   */
 
   if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $username = $_POST["username"];
+    $username = strtolower($_POST["username"]);
     $password = $_POST["password"];
 
     require_once 'config.php';
