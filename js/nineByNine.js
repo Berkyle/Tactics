@@ -118,7 +118,6 @@ class ninerBoard {
           board = true;
         }
     });
-    console.log(board);
     return board;
   }
 
@@ -131,7 +130,6 @@ class ninerBoard {
         }
       }
     });
-    console.log(board);
     return board;
   }
 }
