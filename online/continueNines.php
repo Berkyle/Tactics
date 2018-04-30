@@ -19,9 +19,10 @@
 
     echo "<h1>Continue game:</h1>
           <h2>Your 9x9 game with ".$opponent."</h2>";
+          //onsubmit="return checkState();"
 ?>
 
-  <form action="ninesSubmit.php" onsubmit="checkState()" method="post">
+  <form action="ninesSubmit.php" method="post">
     <h3>Choose your next move below:</h3>
     <div class="tableContainer">
       <div id="outter" class="outter">
@@ -56,27 +57,28 @@
                 {
                   //Begin TILE build
                   $tile = ($k*9)+($m*3)+$n;
+                  echo "<td class=\"board\"></td>"; // selected OSelect
 
-                  if ($GAME->getTileValue($tile) == "O")
-                  {
-                    echo "<td class=\"board selected OSelect\">O</td>";
-                  }
-                  elseif ($GAME->getTileValue($tile) == "X")
-                  {
-                    echo "<td class=\"board selected XSelect\">X</td>";
-                  }
-                  else
-                  {
-                    if(!$grayArray[$k])
-                    {
-                      echo "<input type=\"radio\" name=\"move9\" value=\"".$tile."\" class=\"radio online\" required>
-               					    <td class=\"board\"></td>";
-                    }
-                    else
-                    {
-                      echo "<td class=\"board grayed\"></td>";
-                    }
-                  }
+                  // if ($GAME->getTileValue($tile) == "O")
+                  // {
+                  //   echo "<td class=\"board\"></td>"; // selected OSelect
+                  // }
+                  // elseif ($GAME->getTileValue($tile) == "X")
+                  // {
+                  //   echo "<td class=\"board selected XSelect\">X</td>";
+                  // }
+                  // else
+                  // {
+                  //   if(!$grayArray[$k])
+                  //   {
+                  //     echo "<input type=\"radio\" name=\"move9\" value=\"".$tile."\" class=\"radio online\" required>
+               		// 			    <td class=\"board\"></td>";
+                  //   }
+                  //   else
+                  //   {
+                  //     echo "<td class=\"board grayed\"></td>";
+                  //   }
+                  // }
                 }
                 echo "</tr>";
               }
@@ -87,7 +89,15 @@
           echo "</div>";
 ?>
             <input type="hidden" name="gameID" value="<?php echo $gameID; ?>">
-            <input id="ignoreMe" type="hidden" name="gameState" value="<?php echo $GAME->getNumMoves(); ?>">
+            <input id="ignoreMe" type="hidden" name="gameState" value="<?php
+              echo "[";
+              $daMoves = $GAME->getNumMoves();
+              for($i = 0; $i < $daMoves; $i++) {
+                echo $AllMoves[$i];
+                if($i != $daMoves-1) echo ", ";
+              }
+              echo "]";
+            ?>">
 						<br>
 					</div>
 					<div>
@@ -95,6 +105,7 @@
 						<button type="submit" class="btn btn-default btn-lg" id="submit" name="submit">Place move!</button>
 					</div>
         </form>
+        <!-- <button type="button" onclick="return checkState();" class="btn btn-default btn-lg" id="submit" name="submit">Place move!</button> -->
       <br>
     </div>
   </body>
