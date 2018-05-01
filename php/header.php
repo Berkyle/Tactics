@@ -47,12 +47,7 @@
         </div>
         <ul class="nav navbar-nav">
           <li class="active"><a href=<?php echo getDirectoryEscape()."#"; ?> >Home</a></li>
-          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Social Media<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Twitter</a></li>
-              <li><a href="#">Facebook</a></li>
-            </ul>
-          </li>
+        
         </ul>
 <?php
   if($sessionUsr != "") include_once 'loggedin.php';
