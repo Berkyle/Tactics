@@ -17,6 +17,10 @@
 	background-color: rgb(250, 180, 150);
 }
 
+.ASelect{
+	background-color: rgb(255,192,203);
+}
+
 .winner {
 	border: 2px solid green;
 }
