@@ -1,11 +1,17 @@
 Date: 5/1/18
-Time: 6:00 p.m.
-Location: Leep2
+Time: 5:30 p.m.
+Location: Leep2/Lab in Eaton
 
 Previous Meeting
-- Finish updating charts
-- Automatic documentation generated
-- Finish test suite
-- Merge all branches to master
-- Finish updating user manual
-- Last minute bug fixes
+- Finish updating charts (completed)
+- Automatic documentation generated (in progress)
+- Finish test suite (including all tests that need to be written and display on tests being completed) (in progress, will be complete by tomorrow)
+- Merge all branches to master (in progress, still need to merge PTS for posts)
+- Finish updating user manual (in progress)
+- Last minute bug fixes (completed, fixed php bug with social media)
+
+Final tasks:
+-Finish test suite!!! (Must be integrated by tomorrow)
+-Finish user manual
+-Merge posts branch with master
+-Finish refactoring bot code with changes (for 9x9 levels, 3x3 is complete)
