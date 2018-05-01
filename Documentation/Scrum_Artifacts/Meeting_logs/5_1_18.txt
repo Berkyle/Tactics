@@ -1,0 +1,11 @@
+Date: 5/1/18
+Time: 6:00 p.m.
+Location: Leep2
+
+Previous Meeting
+- Finish updating charts
+- Automatic documentation generated
+- Finish test suite
+- Merge all branches to master
+- Finish updating user manual
+- Last minute bug fixes
