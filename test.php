@@ -1,4 +1,10 @@
 <?php
+/**
+  ** @brief 
+	** @pre none
+	** @post none
+	** @return None
+  */
 include_once 'php/header.php';
 
 //Initial test to check for faulty moves in the database

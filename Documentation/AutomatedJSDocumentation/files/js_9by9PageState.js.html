@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>easy/easyThreesBot.js</title>
+    <title>js/9by9PageState.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -41,6 +41,10 @@
                                 <li><a href="../classes/easyBot.html">easyBot</a></li>
                                 <li><a href="../classes/hardBot.html">hardBot</a></li>
                                 <li><a href="../classes/mediumBot.html">mediumBot</a></li>
+                                <li><a href="../classes/ninePageState.html">ninePageState</a></li>
+                                <li><a href="../classes/ninerBoard.html">ninerBoard</a></li>
+                                <li><a href="../classes/pageState.html">pageState</a></li>
+                                <li><a href="../classes/simpleBoard.html">simpleBoard</a></li>
                             </ul>
                 
                 
@@ -78,70 +82,130 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: easy/easyThreesBot.js</h1>
+<h1 class="file-heading">File: js/9by9PageState.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 /**
-* This is the class for the easy bot of the 3x3 game.
+* ninePageState updates the HTML after any moves are performed for the 9x9 boards
 *
-* @class easyBot
-* @constructor Initializes all the variables that will be changing throughout the program
+* @class ninePageState
+* @constructor initializes variables that will be changed
 */
-class easyBot {
-  constructor(XO, board, page){
+class ninePageState {
+  constructor(XO, tables, nineBoard){
     this.XO = XO;
-    this.board = board;
-    this.winner = &quot;&quot;;
-    this.page = page;
+    this.tables = tables;
+    this.nineBoard = nineBoard;
+  }
+
+  /**
+  * Updates the board
+  *
+  * @method updateBoard
+  * @param {Boolean} board Determines if the game is over or not
+  * @param {Number}  i used an index for the move that will be made (for the tile being used)
+  * @param {String} selClass Determines the type of move, X or O, and displays it graphically using CSS
+  * @return none
+  */
+  updateBoard(board, i, selClass) {
+    if(!board)
+    {
+      this.XO[i].classList.add(selClass, &quot;selected&quot;);
+      this.XO[i].innerText = selClass.charAt(0);
+    }
+    for(let i = 0; i &lt; 81; i++)
+    {
+      this.XO[i].classList.remove(&quot;grayed&quot;,&quot;OSelect&quot;,&quot;XSelect&quot;, &quot;ASelect&quot;);
+      if(i &lt; 9)
+      {
+        this.tables[i].classList.remove(&quot;Owinner&quot;, &quot;Xwinner&quot;, &quot;Awinner&quot;);
+      }
+    }
+    if(board)
+    {
+      this.removeGrayedAll();
+    }
+    else
+    {
+      for(let i = 0; i &lt; 81; i++)
+      {
+        if(i &lt; 9)
+        {
+          this.tables[i].classList.add(this.nineBoard.subBoards[i]+&quot;winner&quot;);
+        }
+        if(this.nineBoard.subBoards[Math.floor(i/9)] != undefined &amp;&amp; this.nineBoard.tiles[i] != undefined)
+        {
+          this.XO[i].classList.add(this.nineBoard.subBoards[Math.floor(i/9)]+&quot;Select&quot;, &quot;selected&quot;);
+        }
+        else if(this.nineBoard.tiles[i] != undefined)
+        {
+          this.XO[i].classList.add(this.nineBoard.tiles[i]+&quot;Select&quot;, &quot;selected&quot;);
+        }
+      }
+    }
   }
   /**
-  * runBot decides what the bot&#x27;s next move will be depending on the difficulty chosen by the user.
+  * grayOthers grays any tile not being used.
   *
-  * @method runBot
+  * @method grayOthers
+  * @param {Number}  dontGray 0-8 of the subtable that does not get grayed.
+  * @return none
+  */
+  grayOthers(dontGray)
+  {
+    let subBoardIndex = dontGray%9;
+    this.removeGrayedAll();
+    for(let i = 0; i &lt; 81; i++)
+    {
+      if(!this.XO[i].classList.contains(&quot;selected&quot;) &amp;&amp; Math.floor(i/9) != subBoardIndex)
+      {
+        this.XO[i].classList.add(&quot;grayed&quot;);
+      }
+    }
+  }
+  /**
+  * Removed all the grayed tiles
+  *
+  * @method removeGrayedAll
   * @param none
   * @return none
   */
-  runBot(){
-    let botMove = this.randomMove();
-    if(this.board.tiles[botMove] == undefined){
-      this.board.tiles[botMove] = this.board.XTurn? &quot;X&quot;:&quot;O&quot;;
-      this.board.checkWin(this.board.tiles, this.board.possibleWins);
+  removeGrayedAll()
+  {
+    for(let i = 0; i &lt; 81; i++)
+    {
+      this.XO[i].classList.remove(&quot;grayed&quot;);
     }
   }
+
   /**
-  * randomMove generates a random move for the bot that gets returned to the game.
+  * finishGame tells the user who is the winner by coloring the board the color of the winner and pushing an alert at the end.
   *
-  * @method randomMove
-  * @param none
-  * @return {number} Returns an integer that corresponds to a move from the array of valid moves
+  * @method finishGame
+  * @param {String} X/O/A depending on the winner or A if all the options are exhausted
+  * @return none, an alert is made
   */
-  randomMove(){
-    let validMoves = [];
-    for(let i = 0; i &lt; 9; i++){
-      if(this.board.tiles[i] == undefined){
-        validMoves.push(i);
-      }
+  finishGame(winner)
+  {
+    this.updateBoard(true);
+    for(let i = 0; i &lt; 81; i++)
+    {
+      this.XO[i].classList.add(&quot;selected&quot;, winner+&quot;Select&quot;);
     }
-    let random = Math.floor((Math.random() * validMoves.length));
-    return validMoves[random];
-  }
-  /**
-  * checkWinBot checks to see if the move that the bot will make will win the game
-  *
-  * @method checkWinBot
-  * @param {tiles} an array of all the tiles
-  * @param {winComb} a function that goes through an array of all the winning combinations
-  * @return none
-  */
-  checkWinBot(tiles, winComb){
-    let winner = &quot;&quot;;
-    winComb.forEach(function(x){
-      if((tiles[x[0]] == tiles[x[1]] &amp;&amp; tiles[x[0]] == tiles[x[2]]) &amp;&amp; tiles[x[0]] != undefined) {
-        winner = tiles[x[0]];;
-      }
-    });
-    this.winner = winner;
+    for(let i = 0; i &lt; 9; i++)
+    {
+      this.tables[i].classList.add(winner+&quot;winner&quot;);
+    }
+    document.getElementById(&quot;outter&quot;).classList.add(winner+&quot;winner&quot;);
+    if(winner == &quot;A&quot;)
+    {
+      alert(&quot;All winning options exhausted... \nGame Tie!&quot;);
+    }
+    else
+    {
+      alert(winner + &quot; is the winner!&quot;);
+    }
   }
 }
 

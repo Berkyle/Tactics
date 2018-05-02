@@ -1,4 +1,10 @@
 <?php
+/**
+  ** @brief Allows the user to continue a 9x9 game
+	** @pre An online 9x9 game between two users has to exist
+	** @post Displays the page after "Continue game" to make their next move on a 9x9 online game with another user
+	** @return None
+  */
   if($_SERVER["REQUEST_METHOD"] == "POST"){
     include_once '../php/header.php';
     require_once 'ninerFunctions.php';

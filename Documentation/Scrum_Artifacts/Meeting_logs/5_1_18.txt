@@ -13,5 +13,7 @@ Previous Meeting
 Final tasks:
 -Finish test suite!!! (Must be integrated by tomorrow)
 -Finish user manual
+-Use YUIdoc instead of ESDoc for JS stuff (because it looks nicer)
+-Create HTML documentation page (just for php because it does not have classes)
 -Merge posts branch with master
 -Finish refactoring bot code with changes (for 9x9 levels, 3x3 is complete)

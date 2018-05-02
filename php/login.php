@@ -1,4 +1,11 @@
-<?php include_once 'header.php';?>
+<?php
+/**
+  ** @brief Displays the login page with all the input boxes for inputting user's username and password
+	** @pre none
+	** @post none
+	** @return None
+  */
+include_once 'header.php';?>
 
 <h1>Log in below:</h1>
 <form action="<?php getDirectoryEscape(); ?>validate.php" method="post">

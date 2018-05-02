@@ -1,4 +1,10 @@
 <?php
+/**
+  ** @brief Displays the traditional 3x3 tic tac toe board
+	** @pre none
+	** @post 3x3 board is displayed
+	** @return None
+  */
   include_once 'header.php';
 ?>
         <h1><u>TRADITIONAL Tic-Tac-Toe!</u></h1>

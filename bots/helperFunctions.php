@@ -1,5 +1,10 @@
 <?php
-
+/**
+  ** @brief 
+	** @pre none
+	** @post none
+	** @return None
+  */
 function echoThrees($difficulty) {
   echo "<h1>TRADITIONAL Tic-Tac-Toe: <u>".$difficulty."</u> difficulty!</h1>
         <div class=\"tableContainer\">

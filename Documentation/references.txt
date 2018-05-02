@@ -18,3 +18,11 @@ modified to include the link for the Tactics Home Page along with custom pre-pop
 Reference URLS:
 
 https://developers.facebook.com/docs/plugins/share-button
+
+Documentation:
+
+The documentation was generated through YUIDoc.
+
+Reference URL:
+
+http://yui.github.io/yuidoc/
