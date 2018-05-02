@@ -20,7 +20,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $userX = $row["user1"];
     $userO = $row["user2"];
   }
-  if($userX == $sessionUsr) $opponent = $userO;
+  if(strtolower($userX) == strtolower($sessionUsr)) $opponent = $userO;
   else $opponent = $userX;
 
   if($gameState == $numMoves || $gameState == 'X' || $gameState == 'O' || $gameState == 'A') { //Check if a user tried to make another move
@@ -36,7 +36,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if($gameState == 'X' || $gameState == 'O') {
       //Session user won!
-      if(($gameState == 'X' && $userX == $sessionUsr) || ($gameState == 'O' && $userO == $sessionUsr)) {
+      if(($gameState == 'X' && strtolower($userX) == strtolower($sessionUsr)) || ($gameState == 'O' && strtolower($userO) == strtolower($sessionUsr))) {
         //Case where current user won the game
         echo "<h1>CONGRATULATIONS! You Won!</h1>
               <h3>You have been awarded 3 points!</h3>";

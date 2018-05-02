@@ -22,7 +22,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $userO = $row["user2"];
   }
 
-  if(($numMoves%2 == 0 && $sessionUsr == $userX) || ($numMoves%2 == 1 && $sessionUsr == $userO)) {
+  if(($numMoves%2 == 0 && strtolower($sessionUsr) == strtolower($userX)) || ($numMoves%2 == 1 && strtolower($sessionUsr) == strtolower($userO))) {
 
     $queryMove = "INSERT IGNORE INTO NinesMoves(gameID, isX, moveNumber, movePosition) VALUES('$gameID', '$isX', '$thisMove', '$moveNum')";
     if ($link->query($queryMove) === TRUE) {
@@ -54,10 +54,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       }
       //$currGame->close(); /*close connection */
 
-      if($userX == $sessionUsr) $opponent = $userO;
+      if(strtolower($userX) == strtolower($sessionUsr)) $opponent = $userO;
       else $opponent = $userX;
 
-      if(($winner == 'X' && $userX == $sessionUsr) || ($winner == 'O' && $userO == $sessionUsr)) {
+      if(($winner == 'X' && strtolower($userX) == strtolower($sessionUsr)) || ($winner == 'O' && strtolower($userO) == strtolower($sessionUsr))) {
         //Case where current user won the game
         echo "<h1>CONGRATULATIONS! You Won!</h1>
               <h3>You have been awarded 30 points!</h3>";

@@ -15,64 +15,63 @@
       $boardState = $row["gameState"];
     }
 
-    $opponent = ($userX == $sessionUsr ? $userO : $userX);
+    $opponent = (strtolower($userX) == strtolower($sessionUsr) ? $userO : $userX);
 
     echo "<h1>Continue game:</h1>
           <h2>Your 9x9 game with ".htmlspecialchars($opponent)."</h2>";
-?>
 
-  <form action="ninesSubmit.php" id="gameForm" method="post">
-    <h3>Choose your next move below:</h3>
-    <div class="tableContainer">
-      <div id="outter" class="outter">
+    echo "<form action=\"ninesSubmit.php\" id=\"gameForm\" method=\"post\">".
+            "<h3>Choose your next move below:</h3>".
+            "<div class=\"tableContainer\">".
+              "<div id=\"outter\" class=\"outter\">";
 
-<?php
-          $AllMoves = array();
-          while($move = $moves->fetch_assoc())
+
+    $AllMoves = array();
+    while($move = $moves->fetch_assoc())
+    {
+      array_push($AllMoves, $move["movePosition"]);
+    }
+
+    $GAME = new ninerBoard($userX, $userO, $AllMoves, $gameID);
+
+    $grayNum = ($GAME->getGrayStatus())%9;
+    $boardArray = buildBoardArray($boardState); //won boards
+    $grayArray = makeGrayArray($grayNum); //Grayed boards
+
+    //Create Table
+    for($i = 0; $i < 3; $i++)
+    {
+      echo "<div class=\"snug\">";
+      for($j = 0; $j<3; $j++)
+      {
+        //Begin BOARD build
+        $k = ($i*3)+$j;
+        echo "<table class=\"subtable ".$k." ".$boardArray[$k]."\" cellspacing=\"0\">";
+
+        for($m = 0; $m < 3; $m++)
+        {
+          echo "<tr>";
+          for($n = 0; $n < 3; $n++)
           {
-            array_push($AllMoves, $move["movePosition"]);
+            $tile = ($k*9)+($m*3)+$n;
+            echo "<td class=\"board\"></td>"; //Tile build
           }
-
-          $GAME = new ninerBoard($userX, $userO, $AllMoves, $gameID);
-
-          $grayNum = ($GAME->getGrayStatus())%9;
-          $boardArray = buildBoardArray($boardState); //won boards
-          $grayArray = makeGrayArray($grayNum); //Grayed boards
-
-          //Create Table
-          for($i = 0; $i < 3; $i++)
-          {
-            echo "<div class=\"snug\">";
-            for($j = 0; $j<3; $j++)
-            {
-              //Begin BOARD build
-              $k = ($i*3)+$j;
-              echo "<table class=\"subtable ".$k." ".$boardArray[$k]."\" cellspacing=\"0\">";
-
-              for($m = 0; $m < 3; $m++)
-              {
-                echo "<tr>";
-                for($n = 0; $n < 3; $n++)
-                {
-                  $tile = ($k*9)+($m*3)+$n;
-                  echo "<td class=\"board\"></td>"; //Tile build
-                }
-                echo "</tr>";
-              }
-              echo "</table>";
-            }
-            echo "</div>";
-          }
-          echo "</div>";
+          echo "</tr>";
+        }
+        echo "</table>";
+      }
+      echo "</div>";
+    }
+    echo "</div>";
 
 
-          $mine = "[";
-          $daMoves = $GAME->getNumMoves();
-          for($i = 0; $i < $daMoves; $i++) {
-            $mine .= $AllMoves[$i];
-            if($i != $daMoves-1) $mine .= ", ";
-          }
-          $mine .= "]";
+    $mine = "[";
+    $daMoves = $GAME->getNumMoves();
+    for($i = 0; $i < $daMoves; $i++) {
+      $mine .= $AllMoves[$i];
+      if($i != $daMoves-1) $mine .= ", ";
+    }
+    $mine .= "]";
 
 ?>
             <input type="hidden" name="gameID" value="<?php echo $gameID; ?>">
