@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>easy/nineRulesEasy.js</title>
+    <title>js/ThreesClass.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -41,6 +41,10 @@
                                 <li><a href="../classes/easyBot.html">easyBot</a></li>
                                 <li><a href="../classes/hardBot.html">hardBot</a></li>
                                 <li><a href="../classes/mediumBot.html">mediumBot</a></li>
+                                <li><a href="../classes/ninePageState.html">ninePageState</a></li>
+                                <li><a href="../classes/ninerBoard.html">ninerBoard</a></li>
+                                <li><a href="../classes/pageState.html">pageState</a></li>
+                                <li><a href="../classes/simpleBoard.html">simpleBoard</a></li>
                             </ul>
                 
                 
@@ -78,53 +82,57 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: easy/nineRulesEasy.js</h1>
+<h1 class="file-heading">File: js/ThreesClass.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 /**
-* Adds the tiles on the web page
+* Board object
 *
-* @method populateHTML
-* @return No return; all tiles are displayed on the page
+* @class simpleBoard
+* @constructor initializes variables that will be changed
 */
-function populateHTML() {
-	let add = &quot;&lt;tr&gt;&lt;td class=\&quot;board\&quot;&gt;&lt;/td&gt;&lt;td class=\&quot;board\&quot;&gt;&lt;/td&gt;&lt;td class=\&quot;board\&quot;&gt;&lt;/td&gt;&lt;/tr&gt;&quot;;
-	for(let i = 0; i &lt; 9; i++) {
-		for(let j = 0; j &lt; 3; j++) document.getElementsByClassName(&quot;subtable &quot;+ i)[0].innerHTML += add;
-	}
-}
+class simpleBoard {
+  constructor() {
+    this.tiles = [];
+    this.XTurn = true;
+    this.winner = &quot;&quot;;
+    this.possibleWins = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
+  }
 
-/**
-* addEvents adds the clicker events for all the positions on the 9x9 boards
-*
-* @method addEvents
-* @return No return; all the events are added
-*/
-function addEvents() {
-  populateHTML();
-  let tables = document.getElementsByClassName(&quot;subtable&quot;);
-  let XO = document.getElementsByTagName(&quot;td&quot;);
-  let board = new ninerBoard();
-  let page = new ninePageState(XO, tables, board);
-	let bot = new easyBot(XO, board, page);
+  /**
+  * Updates all the variables based on the move selected by the player
+  *
+  * @method move
+  * @param {Number}  i used an index for the move that will be made (for the tile being used)
+  * @return none
+  */
+  move(i) {
+    if(this.winner == &quot;&quot;) {
+      if(this.tiles[i] == undefined) {
+        this.tiles[i] = this.XTurn ? &quot;X&quot; : &quot;O&quot;;
+        this.XTurn = !this.XTurn;
+        this.checkWin(this.tiles, this.possibleWins);
+      }
+    }
+  }
 
-  for(let i = 0; i &lt; 81; i++){
-    XO[i].addEventListener(&quot;click&quot;, function(){
-      if(!this.classList.contains(&quot;selected&quot;) &amp;&amp; !this.classList.contains(&quot;grayed&quot;)){
-        board.move(i);
-        page.updateBoard(false, i, board.selClass);
-        page.grayOthers(i);
-        if(board.checkBoardFull(i%9)){
-          page.removeGrayedAll();
-        }
-        if(board.checkGameWin() != false){
-					page.updateBoard(true, i, board.selClass);
-					page.finishGame(board.winner);
-        }
-				bot.runBot();
+  /**
+  * Checks the whole board and sees if someone (or bot) has won
+  *
+  * @method checkWin
+  * @param {array} tiles array of all the tiles
+  * @param {array}  myWins array of all the possible wins
+  * @return none
+  */
+  checkWin(tiles, myWins) {
+    let winner = &quot;&quot;;
+    myWins.forEach(function(x) { //check if someone has won the game.
+      if((tiles[x[0]] == tiles[x[1]] &amp;&amp; tiles[x[0]] == tiles[x[2]]) &amp;&amp; tiles[x[0]] != undefined) {
+        winner = tiles[x[0]];;
       }
     });
+    this.winner = winner;
   }
 }
 

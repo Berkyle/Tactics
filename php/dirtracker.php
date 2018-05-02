@@ -1,5 +1,10 @@
 <?php
-
+/**
+  ** @brief Add html lines at the end of the php file to make it readable for browser
+	** @pre none
+	** @post none
+	** @return None
+  */
 $numdots = 0;
 $diradder = "";
 $whatIWant = substr(getcwd(), strpos(getcwd(), "/Tactics") + 1);

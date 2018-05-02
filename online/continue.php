@@ -1,4 +1,10 @@
 <?php
+/**
+  ** @brief Continue game option for user to continue any games they have started on online mode
+	** @pre user must be logged in for this feature
+	** @post The games that are currently being played are displayed (both 9x9 and 3x3 games)
+	** @return None
+  */
 if(!isset($_COOKIE['user'])) {
   header('Location: ../');
 }

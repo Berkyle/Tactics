@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>medium/nineRulesMedium.js</title>
+    <title>js/nineRules.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -41,6 +41,10 @@
                                 <li><a href="../classes/easyBot.html">easyBot</a></li>
                                 <li><a href="../classes/hardBot.html">hardBot</a></li>
                                 <li><a href="../classes/mediumBot.html">mediumBot</a></li>
+                                <li><a href="../classes/ninePageState.html">ninePageState</a></li>
+                                <li><a href="../classes/ninerBoard.html">ninerBoard</a></li>
+                                <li><a href="../classes/pageState.html">pageState</a></li>
+                                <li><a href="../classes/simpleBoard.html">simpleBoard</a></li>
                             </ul>
                 
                 
@@ -78,10 +82,11 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: medium/nineRulesMedium.js</h1>
+<h1 class="file-heading">File: js/nineRules.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
+&quot;using strict&quot;;
 /**
 * Adds the tiles on the web page
 *
@@ -107,7 +112,6 @@ function addEvents() {
   let XO = document.getElementsByTagName(&quot;td&quot;);
   let board = new ninerBoard();
   let page = new ninePageState(XO, tables, board);
-	let bot = new mediumBot(XO, board, page);
 
   for(let i = 0; i &lt; 81; i++){
     XO[i].addEventListener(&quot;click&quot;, function(){
@@ -118,11 +122,10 @@ function addEvents() {
         if(board.checkBoardFull(i%9)){
           page.removeGrayedAll();
         }
-        if(board.checkGameWin() != false){
+        if(board.checkGameWin()){
 					page.updateBoard(true, i, board.selClass);
 					page.finishGame(board.winner);
         }
-				bot.runBot();
       }
     });
   }

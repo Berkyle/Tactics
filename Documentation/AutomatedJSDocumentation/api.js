@@ -3,7 +3,11 @@ YUI.add("yuidoc-meta", function(Y) {
     "classes": [
         "easyBot",
         "hardBot",
-        "mediumBot"
+        "mediumBot",
+        "ninePageState",
+        "ninerBoard",
+        "pageState",
+        "simpleBoard"
     ],
     "modules": [],
     "allModules": [],

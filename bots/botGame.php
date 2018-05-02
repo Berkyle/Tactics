@@ -1,4 +1,10 @@
 <?php
+/**
+  ** @brief Echos the bot game for the bot that was chosen (for both 9x9 and 3x3)
+	** @pre User must select the type of bot it wants to play
+	** @post the bot game for the chosen bot is displayed
+	** @return None
+  */
   if($_SERVER["REQUEST_METHOD"] != "POST"){
     header('Location: ../');
   }

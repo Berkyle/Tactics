@@ -1,4 +1,10 @@
 <?php
+/**
+  ** @brief Displays the account creation input options
+	** @pre none
+	** @post User is able to input the information for their account credentials
+	** @return None
+  */
   include_once 'header.php';
 ?>
 

@@ -1,4 +1,10 @@
 <?php
+/**
+  ** @brief index.php is the home page of the whole game (with no log ins)
+	** @pre none
+	** @post Home page is displayed
+	** @return None
+  */
   include_once 'php/header.php';
 
   $greetStr = "";

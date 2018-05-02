@@ -1,4 +1,10 @@
 <?php
+/**
+  ** @brief Adds buttons on the nav bar for when the user is logged out
+	** @pre none
+	** @post none
+	** @return None
+  */
   require_once 'dirtracker.php';
 ?>
 

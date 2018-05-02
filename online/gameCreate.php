@@ -1,4 +1,10 @@
 <?php
+/**
+  ** @brief Allows the user to create a new online game
+	** @pre Must make a first move and must enter a valid username for the opponent in text box
+	** @post Game gets created if all pre-conditions are met
+	** @return None
+  */
   if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     include_once '../php/header.php';

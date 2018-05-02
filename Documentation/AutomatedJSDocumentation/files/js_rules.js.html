@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>medium/mediumThreesBotRules.js</title>
+    <title>js/rules.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -41,6 +41,10 @@
                                 <li><a href="../classes/easyBot.html">easyBot</a></li>
                                 <li><a href="../classes/hardBot.html">hardBot</a></li>
                                 <li><a href="../classes/mediumBot.html">mediumBot</a></li>
+                                <li><a href="../classes/ninePageState.html">ninePageState</a></li>
+                                <li><a href="../classes/ninerBoard.html">ninerBoard</a></li>
+                                <li><a href="../classes/pageState.html">pageState</a></li>
+                                <li><a href="../classes/simpleBoard.html">simpleBoard</a></li>
                             </ul>
                 
                 
@@ -78,12 +82,12 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: medium/mediumThreesBotRules.js</h1>
+<h1 class="file-heading">File: js/rules.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 /**
-* addEvents adds the clicker events for all the positions on the 3x3 boards
+* addEvents adds the clicker events for all the positions on the 9x9 boards
 *
 * @method addEvents
 * @return No return; all the events are added
@@ -92,15 +96,11 @@ function addEvents() {
   let XO = document.getElementsByClassName(&quot;board&quot;); // array of DOM tiles with indicies [0..8]
   let board = new simpleBoard();
   let page = new pageState(XO);
-  let bot = new mediumBot(XO, board, page);
+
 	for(let i = 0; i &lt; 9; i++) {//9-segment loop - adds click event to each tile
     XO[i].addEventListener(&quot;click&quot;, function() {
-      if(!this.classList.contains(&quot;OSelect&quot;) &amp;&amp; !this.classList.contains(&quot;XSelect&quot;)) {
-        board.move(i);
-        bot.runBot();
-        board.XTurn = !board.XTurn;
-        page.updatePage(board);
-      }
+      board.move(i);
+      page.updatePage(board);
     });
   }
 }

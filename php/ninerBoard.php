@@ -1,4 +1,11 @@
-<?php include_once '../php/header.php'; ?>
+<?php
+/**
+  ** @brief Displays the 9x9 tic tac toe board
+	** @pre none
+	** @post 9x9 board is displayed along with the social media options
+	** @return None
+  */
+include_once '../php/header.php'; ?>
 
       <h1><u>EXTREME Tic-Tac-Toe</u></h1>
       <div class="tableContainer">

@@ -1,4 +1,10 @@
 <?php
+/**
+  ** @brief Allows the user to continue a 3x3 game
+	** @pre An online 3x3 game between two users has to exist
+	** @post Displays the page after "Continue game" to make their next move on a 3x3 online game with another user
+	** @return None
+  */
   if($_SERVER["REQUEST_METHOD"] == "POST"){
     include_once '../php/header.php';
     $gameID = $_POST['selectGame'];

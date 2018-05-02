@@ -1,4 +1,10 @@
 <?php
+/**
+  ** @brief Echoes the buttons on the nav bar once the user is logged in
+	** @pre 
+	** @post none
+	** @return None
+  */
   require_once 'dirtracker.php';
 ?>
 
