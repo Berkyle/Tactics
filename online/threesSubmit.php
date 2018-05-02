@@ -57,7 +57,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if ($link->query($winner) === TRUE  && $link->query($loser) === TRUE && $link->query($board) === TRUE) {
       echo "<a href=\"../\"><button type=\"button\" class=\"btn btn-default btn-lg\">Home</button></a>";
-      echo "<a href=\"../\"><button type=\"button\" class=\"btn btn-default btn-lg\">Home</button></a>";
     }
     else {
       echo "Error updating record: " . $link->error;
