@@ -15,9 +15,11 @@
 
       while($row = $query->fetch_assoc()) {
         $profile = $row["username"];
-        $wins = $row["wins"];
-        $draws = $row["draws"];
-        $points = 3*$wins + $draws;
+        $winsThree = $row["wins"];
+        $drawsThree = $row["draws"];
+        $winsNine = $row["nineWins"];
+        $drawsNine = $row["nineDraws"];
+        $points = 30*$winsNine + 10*$drawsNine + 3*$winsThree + $drawsThree;
 
         array_push($users, $profile);
         array_push($userPoints, $points);
