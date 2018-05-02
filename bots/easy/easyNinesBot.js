@@ -46,7 +46,7 @@ class easyBot {
   *
   * @method randomMove
   * @param none
-  * @return {validMoves} Returns a valid move based on the open spaces 
+  * @return {validMoves} A temporary array of all the available spaces
   */
   randomMove(){
     let validMoves = [];
