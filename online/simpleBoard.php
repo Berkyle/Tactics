@@ -7,7 +7,7 @@ else {
   include_once '../php/header.php'; ?>
 
 <h1>Traditional Tic-Tac-Toe!</h1>
-  <form action="gameCreate.php" method="post">
+  <form action="gameCreate.php" id="gameForm" method="post">
     <h3>Choose your opponent</h3>
     <input type="text" name="user2" class="form-control online" placeholder="Choose another player by their username..." required>
 		<h3>Choose your first move below:</h3>

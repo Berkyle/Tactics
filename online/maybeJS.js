@@ -39,7 +39,11 @@ function addEvents() {
     });
   }
 
-  document.getElementById("ignoreMe").value = 9 - available.length;
+  try {
+    document.getElementById("ignoreMe").value = 9 - available.length;
+  } catch(e) {
+    //dindunuthin
+  }
 
   //Add form submission event addEventListener
   let myForm = document.getElementById("gameForm");
