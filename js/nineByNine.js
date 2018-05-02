@@ -50,15 +50,16 @@ class ninerBoard {
     if(this.checkEntireBoard(this.OBoards, this.possibleWins, "O")){
       this.winner = "O";
       Owin = true;
-      return Owin;
     }
     if(this.checkEntireBoard(this.XBoards, this.possibleWins, "X")){
       this.winner = "X";
       Xwin = true;
-      return Xwin;
     }
-    if(Owin && Xwin){
+    if((Owin && Xwin) || this.specialCases()) {
       this.winner = "A";
+      return true;
+    }
+    if(Owin || Xwin) {
       return true;
     }
     return false;
@@ -81,6 +82,7 @@ class ninerBoard {
   }
 
   specialCases(){
+    return false;
     for(let i = 0; i < 9; i++){
       if(this.subBoards[i] != "A"){
         break;
@@ -103,7 +105,7 @@ class ninerBoard {
   checkBoardFull(board){
     for(let i = 0; i < 9; i++){
       if(this.tiles[i+9*board] == undefined){
-        return false;a
+        return false;
       }
       else if(i == 8){
         return true;
@@ -125,9 +127,7 @@ class ninerBoard {
     let board = false;
     possWin.forEach(function(x) { //check if someone has won the game.
       if((boards[x[0]] == XorO && boards[x[1]] == XorO && boards[x[2]] == XorO)) {
-        if(boards[x[0]] != "A" || boards[x[1]] != "A" || boards[x[2]] != "A"){
-          board = true;
-        }
+        board = true;
       }
     });
     return board;

@@ -1,3 +1,5 @@
+"using strict";
+
 function populateHTML() {
 	let add = "<tr><td class=\"board\"></td><td class=\"board\"></td><td class=\"board\"></td></tr>";
 	for(let i = 0; i < 9; i++) {
