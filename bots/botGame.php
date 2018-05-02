@@ -3,80 +3,52 @@
     header('Location: ../');
   }
   else {
+    include_once 'helperFunctions.php';
     include_once '../php/header.php';
     $gameType = $_POST['type'];
 
-    function echoThrees() {
-      echo "<h1>Traditional Tic-Tac-Toe!</h1>
-            <div class=\"tableContainer\">
-              <table cellspacing=\"0\">";
+    //All Board building comes from functions in 'helperFunctions.php'.
+    //Functions build game and menu once game type is declared.
+    //Following construction, JS files respective to game type are run.
 
-      for($i = 0; $i<3; $i++) {
-        echo "<tr>";
-        for($j = 0; $j<3; $j++) {
-          echo "<td class=\"board\"></td>";
-        }
-        echo    "</tr>";
-      }
-      echo     "</table>
-              </div>
-              <br>
-              <a href=\"../\"><button type=\"button\" class=\"btn btn-default btn-lg\" id=\"surrenderButt\">Return Home</button></a>
-              </div>
-            </body>";
-    }
-
-    function echoNines() {
-      echo "<h1><u>Dark Web Tic-Tac-Toe >:)</u></h1>
-            <div class=\"tableContainer\">
-            	<div id=\"outter\" class=\"outter\" cellspacing=\"0\">";
-
-      for($i = 0; $i < 3; $i++) {
-        echo "<div class=\"snug\">";
-        for($j = 0; $j < 3; $j++) {
-          $k = $i*3 + $j;
-          echo "<table class=\"subtable ".$k."\" cellspacing=\"0\"></table>";
-        }
-        echo "</div>";
-      }
-
-      echo "</div>
-          </div>
-          <br>
-          <a href=\"../\"><button type=\"button\" class=\"btn btn-default btn-lg\" id=\"surrenderButt\">Return Home</button></a>
-          </div>
-        </body>";
-    }
 
     if($gameType == "3e") {
-      echoThrees();
-      echo "<script type=\"text/javascript\" src=\"easy/simpleGame.js\"></script>
-        </html>";
+      echoThrees("Easy");
+      echo  "<script type=\"text/javascript\" src=\"easy/easyThreesBot.js\"></script>".
+            "<script type=\"text/javascript\" src=\"easy/easyThreesBotRules.js\"></script>".
+        "</html>";
     }
-    if($gameType == "9e") {
-      echoNines();
-      echo "<script type=\"text/javascript\" src=\"easy/gameLogicEasy.js\"></script>
-        </html>";
+    elseif($gameType == "3m") {
+      echoThrees("Medium");
+      echo  "<script type=\"text/javascript\" src=\"medium/mediumThreesBot.js\"></script>".
+            "<script type=\"text/javascript\" src=\"medium/mediumThreesBotRules.js\"></script>".
+        "</html>";
     }
-    if($gameType == "3m") {
-      echoThrees();
-      echo "<script type=\"text/javascript\" src=\"medium/simpleGame.js\"></script>
-        </html>";
+    elseif($gameType == "3h") {
+      echoThrees("Hard");
+      echo  "<script type=\"text/javascript\" src=\"hard/hardThreesBot.js\"></script>".
+            "<script type=\"text/javascript\" src=\"hard/hardThreesBotRules.js\"></script>".
+        "</html>";
     }
-    if($gameType == "9m") {
-      echoNines();
-      echo "<script type=\"text/javascript\" src=\"medium/gameLogicMed.js\"></script>
-        </html>";
+
+
+    elseif($gameType == "9e") {
+      echoNines("Easy");
+      echo  "<script type=\"text/javascript\" src=\"easy/nineRulesEasy.js\"></script>".
+            "<script type=\"text/javascript\" src=\"easy/easyNinesBot.js\"></script>".
+        "</html>";
     }
-    if($gameType == "3h") {
-      echoThrees();
-      echo "<script type=\"text/javascript\" src=\"hard/simpleGame.js\"></script>
-        </html>";
+    elseif($gameType == "9m") {
+      echoNines("Medium");
+      echo  "<script type=\"text/javascript\" src=\"medium/nineRulesMedium.js\"></script>".
+            "<script type=\"text/javascript\" src=\"medium/mediumNinesBot.js\"></script>".
+        "</html>";
     }
-    if($gameType == "9h") {
-      echoNines();
-      echo "<script type=\"text/javascript\" src=\"hard/gameLogicHard.js\"></script>
-        </html>";
+    elseif($gameType == "9h") {
+      echoNines("Hard");
+      echo  "<script type=\"text/javascript\" src=\"hard/nineRulesHard.js\"></script>".
+            "<script type=\"text/javascript\" src=\"hard/hardNinesBot.js\"></script>".
+        "</html>";
     }
   }
 ?>
