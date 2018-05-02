@@ -54,7 +54,7 @@ function displayDashboard() {
             <?php
             if($_COOKIE["user"] != ""){
               echo "<p>
-                      <h4>Play against a friend online (coming soon!)</h4>
+                      <h4>Play against a friend online!</h4>
                     </p>
                     <a href=\"".getDirectoryEscape()."online/simpleBoard.php\"><button type=\"button\" class=\"btn btn-default btn-lg\">Create 3x3 Game</button></a>
                     <a href=\"".getDirectoryEscape()."online/ninerBoard.php\"><button type=\"button\" class=\"btn btn-default btn-lg\">Create 9x9 Game</button></a>
