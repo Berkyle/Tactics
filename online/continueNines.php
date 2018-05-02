@@ -18,7 +18,7 @@
     $opponent = ($userX == $sessionUsr ? $userO : $userX);
 
     echo "<h1>Continue game:</h1>
-          <h2>Your 9x9 game with ".$opponent."</h2>";
+          <h2>Your 9x9 game with ".htmlspecialchars($opponent)."</h2>";
 ?>
 
   <form action="ninesSubmit.php" method="post">
