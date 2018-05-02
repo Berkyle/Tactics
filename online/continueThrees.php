@@ -12,12 +12,13 @@
     $opponent = ($userX == $sessionUsr ? $userO : $userX);
 
     echo "<h1>Continue game:</h1>
-          <h2>Your 3x3 game with ".$opponent."</h2>";
+          <h2>Your 3x3 game with ".htmlspecialchars($opponent)."</h2>";
 
     $currGame->close();
+
 ?>
 
-  <form action="threesSubmit.php" onsubmit="checkState()" method="post">
+  <form action="threesSubmit.php" id="gameForm" method="post">
     <h3>Choose your next move below:</h3>
     <div class="tableContainer">
       <table cellspacing="0">
@@ -51,7 +52,7 @@
 
             </table>
             <input type="hidden" name="gameID" value="<?php echo $gameID; ?>">
-            <input id="ignoreMe" type="hidden" name="gameState" value="0">
+            <input id="ignoreMe" type="hidden" name="gameState">
 						<br>
 					</div>
 					<div>

@@ -38,10 +38,24 @@ function addEvents() {
       }
     });
   }
+
+  let hide = document.getElementById("ignoreMe");
+  let moveNumber = 9 - available.length;
+  hide.value = moveNumber;
+
+  //Add form submission event addEventListener
+  let myForm = document.getElementById("gameForm");
+  if(myForm.addEventListener){
+    myForm.addEventListener("submit", checkState, false);  //Modern browsers
+  }
+  else if(myForm.attachEvent){
+    myForm.attachEvent('onsubmit', checkState);            //Old IE
+  }
 }
 
 function checkState() {
   let XO = document.getElementsByClassName("board");
+
   let possibleWins = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
 
   let board = [];
@@ -57,16 +71,20 @@ function checkState() {
   });
 
   if(wins != "") {
-    document.getElementById("ignoreMe").value = wins;
+    document.getElementById("ignoreMe").value = wins; //Send winner
     return true;
   }
+  else if(checkFull(XO)) {
+    document.getElementById("ignoreMe").value = "A"; //Send game tie
+    return true;
+  }
+  // else {
+  //   return false;
+  // }
 
-  let isFull = checkFull(XO);
-  if(isFull) {
-    document.getElementById("ignoreMe").value = "A";
-    return true;
-  }
+  //return false;
 }
+//End checkState()
 
 function checkTriple(x1, x2, x3, txt) {
 	if((txt[x1] == txt[x2] && txt[x2] == txt[x3]) && txt[x1] != undefined && txt[x1] != "") {
