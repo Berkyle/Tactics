@@ -6,7 +6,7 @@
     $gameID = $_POST['selectGame'];
 
     $currGame = mysqli_query($link, "SELECT * FROM NinesBoards WHERE gameID = '$gameID'");
-    $moves = mysqli_query($link, "SELECT * FROM NinesMoves WHERE gameID = '$gameID'");
+    $moves = mysqli_query($link, "SELECT * FROM NinesMoves WHERE gameID = '$gameID' ORDER BY moveNumber");
 
     while($row = $currGame->fetch_assoc())
     {
@@ -21,7 +21,7 @@
           <h2>Your 9x9 game with ".htmlspecialchars($opponent)."</h2>";
 ?>
 
-  <form action="ninesSubmit.php" id="gameForm" onsubmit="checkState(); return false;" method="post">
+  <form action="ninesSubmit.php" id="gameForm" method="post">
     <h3>Choose your next move below:</h3>
     <div class="tableContainer">
       <div id="outter" class="outter">

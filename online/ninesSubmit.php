@@ -26,7 +26,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     $queryMove = "INSERT IGNORE INTO NinesMoves(gameID, isX, moveNumber, movePosition) VALUES('$gameID', '$isX', '$thisMove', '$moveNum')";
     if ($link->query($queryMove) === TRUE) {
-      $status =  "Your move (".$moveNum.")has been placed!__";
+      $status =  "<h1>Your move has been placed!</h1>";
     }
     else {
       echo "Error updating record: " . $link->error;
@@ -36,13 +36,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $queryState = "UPDATE NinesBoards SET gameState = '$gameState' WHERE gameID = '$gameID'";
 
     if ($link->query($queryState) === TRUE) {
-      $status .= " Game state saved!_______";
+      echo $status;
     }
     else {
       echo "Error updating record: " . $link->error;
     }
 
-    echo "<h3>".$status." _____and______ ".$gameState."</h3>";
 
     //Finish place move//////////////////
 

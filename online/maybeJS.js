@@ -39,9 +39,7 @@ function addEvents() {
     });
   }
 
-  let hide = document.getElementById("ignoreMe");
-  let moveNumber = 9 - available.length;
-  hide.value = moveNumber;
+  document.getElementById("ignoreMe").value = 9 - available.length;
 
   //Add form submission event addEventListener
   let myForm = document.getElementById("gameForm");

@@ -8,7 +8,7 @@
   if(isset($_COOKIE['user'])) {
     include_once 'header.php';
 
-    $query = mysqli_query($link, "SELECT wins, draws, losses FROM Profiles WHERE username='$sessionUsr'");
+    $query = mysqli_query($link, "SELECT * FROM Profiles WHERE username='$sessionUsr'");
     $profile = $link->query($query);
 
     if(mysqli_num_rows($query) == 1) { //User exists
@@ -59,7 +59,6 @@
               </div>
             </div>
           </div>
-
         </div>
 
     <?php

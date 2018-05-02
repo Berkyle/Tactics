@@ -5,7 +5,7 @@
   	** @post none
   	** @return none
     */
-    $query = mysqli_query($link, "SELECT username, wins, draws, losses FROM Profiles");
+    $query = mysqli_query($link, "SELECT * FROM Profiles");
     $profile = $link->query($query);
     $numrows = mysqli_num_rows($query);
 
@@ -15,10 +15,13 @@
 
       while($row = $query->fetch_assoc()) {
         $profile = $row["username"];
+
         $winsThree = $row["wins"];
         $drawsThree = $row["draws"];
+
         $winsNine = $row["nineWins"];
         $drawsNine = $row["nineDraws"];
+
         $points = 30*$winsNine + 10*$drawsNine + 3*$winsThree + $drawsThree;
 
         array_push($users, $profile);
