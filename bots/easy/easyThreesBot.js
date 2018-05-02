@@ -1,3 +1,9 @@
+/**
+* This is the class for the easy bot of the 3x3 game.
+*
+* @class easyBot
+* @constructor Initializes all the variables that will be changing throughout the program
+*/
 class easyBot {
   constructor(XO, board, page){
     this.XO = XO;
@@ -5,6 +11,7 @@ class easyBot {
     this.winner = "";
     this.page = page;
   }
+  
   runBot(){
     let botMove = this.randomMove();
     if(this.board.tiles[botMove] == undefined){
