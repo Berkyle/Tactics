@@ -11,7 +11,13 @@ class easyBot {
     this.winner = "";
     this.page = page;
   }
-  
+  /**
+  * runBot decides what the bot's next move will be depending on the difficulty chosen by the user.
+  *
+  * @method runBot
+  * @param none
+  * @return none
+  */
   runBot(){
     let botMove = this.randomMove();
     if(this.board.tiles[botMove] == undefined){
@@ -19,6 +25,13 @@ class easyBot {
       this.board.checkWin(this.board.tiles, this.board.possibleWins);
     }
   }
+  /**
+  * randomMove generates a random move for the bot that gets returned to the game.
+  *
+  * @method randomMove
+  * @param none
+  * @return {validMoves} Returns a valid move based on the open spaces
+  */
   randomMove(){
     let validMoves = [];
     for(let i = 0; i < 9; i++){
@@ -29,6 +42,14 @@ class easyBot {
     let random = Math.floor((Math.random() * validMoves.length));
     return validMoves[random];
   }
+  /**
+  * checkWinBot checks to see if the move that the bot will make will win the game
+  *
+  * @method checkWinBot
+  * @param {tiles} an array of all the tiles
+  * @param {winComb} a function that goes through an array of all the winning combinations
+  * @return {validMoves} A temporary array of all the available spaces
+  */
   checkWinBot(tiles, winComb){
     let winner = "";
     winComb.forEach(function(x){
