@@ -1,9 +1,22 @@
+/**
+* This is the class for the easy bot for the 9x9 game.
+*
+* @class easyBot
+* @constructor Initializes all the variables that will be changing throughout the program
+*/
 class easyBot {
   constructor(XO, board, page){
     this.XO = XO;
     this.board = board;
     this.page = page;
   }
+  /**
+  * runBot decides what the bot's next move will be depending on the difficulty chosen by the user.
+  *
+  * @method runBot
+  * @param none
+  * @return none
+  */
   runBot(){
     let botMove = this.randomMove();
     if(!this.XO[botMove].classList.contains("selected") && !this.XO[botMove].classList.contains("grayed")){
@@ -28,6 +41,13 @@ class easyBot {
       }
     }
   }
+  /**
+  * randomMove generates a random move for the bot that gets returned to the game.
+  *
+  * @method randomMove
+  * @param none
+  * @return {validMoves} Returns a valid move based on the open spaces 
+  */
   randomMove(){
     let validMoves = [];
     for(let i = 0; i < 81; i++){
