@@ -33,6 +33,12 @@
             array_push($AllMoves, $move["movePosition"]);
           }
 
+          echo "oh no";
+
+          foreach($AllMoves as $someMoves) {
+            echo "<h1>$someMoves</h1>";
+          }
+
           $GAME = new ninerBoard($userX, $userO, $AllMoves, $gameID);
 
           $grayNum = ($GAME->getGrayStatus())%9;
@@ -64,17 +70,19 @@
             echo "</div>";
           }
           echo "</div>";
+
+
+          $mine = "[";
+          $daMoves = $GAME->getNumMoves();
+          for($i = 0; $i < $daMoves; $i++) {
+            $mine .= $AllMoves[$i];
+            if($i != $daMoves-1) $mine .= ", ";
+          }
+          $mine .= "]";
+
 ?>
             <input type="hidden" name="gameID" value="<?php echo $gameID; ?>">
-            <input id="ignoreMe" type="hidden" name="gameState" value="<?php
-              echo "[";
-              $daMoves = $GAME->getNumMoves();
-              for($i = 0; $i < $daMoves; $i++) {
-                echo $AllMoves[$i];
-                if($i != $daMoves-1) echo ", ";
-              }
-              echo "]";
-            ?>">
+            <input id="ignoreMe" type="hidden" name="gameState" value="<?php echo $mine?>">
 						<br>
 					</div>
 					<div>
