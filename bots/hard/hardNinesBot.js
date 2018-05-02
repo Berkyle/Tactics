@@ -1,9 +1,22 @@
+/**
+* This is the class for the hard bot for the 9x9 game.
+*
+* @class hardBot
+* @constructor Initializes all variables that will change later in the program.
+*/
 class hardBot {
   constructor(XO, board, page){
     this.XO = XO;
     this.board = board;
     this.page = page;
   }
+  /**
+  * runBot decides what the bot's next move will be depending on the difficulty chosen by the user.
+  *
+  * @method runBot
+  * @param none
+  * @return none
+  */
   runBot(){
     let botMove = this.nextMove();
     if(!this.XO[botMove].classList.contains("selected") && !this.XO[botMove].classList.contains("grayed")){
@@ -28,6 +41,16 @@ class hardBot {
       }
     }
   }
+  /**
+  * Based on the returns of the other bot methods, it will return what the next move is going to be.
+  *
+  * @method runBot
+  * @param none
+  * @return {winningMove} If the bot sees a move on the board that allows it to win the game, it will return the position of the winning move for the bot.
+  * @return {blockMove} If the bot doesn't see a winning move but can block its opponent from winning, it will return the position of this block move.
+  * @return {twoTiles} If the bot doesn't see a block move or a winning move, it will return a move that allows it to have two tiles next to one another.
+  * @return {randomMove} If none of the above conditions are satisified, then the bot will perform a random move wherever it sees an opening position.
+  */
   nextMove(){
     if(this.winningMove() != -1){
       console.log("winning");
@@ -46,6 +69,13 @@ class hardBot {
       return (this.randomMove());
     }
   }
+  /**
+  * randomMove looks for a random move in the board when called
+  *
+  * @method randomMove
+  * @param none
+  * @return {number} Returns an integer that corresponds to a move from the array of valid moves for the random move.
+  */
   randomMove(){
     let validMoves = [];
     for(let i = 0; i < 81; i++){
@@ -56,6 +86,13 @@ class hardBot {
     let random = Math.floor((Math.random() * validMoves.length));
     return validMoves[random];
   }
+  /**
+  * winningMove looks for a winning move in the board when called
+  *
+  * @method winningMove
+  * @param none
+  * @return {number} Returns an integer that corresponds to a move from the array of valid moves if there is a winning move. If there is no winning move, it will return -1.
+  */
   winningMove(){
     let validMoves = [];
     let OTiles = [];
@@ -112,6 +149,13 @@ class hardBot {
     }
     return -1;
   }
+  /**
+  * blockMove looks for a block move that blocks the user from winning when it is called
+  *
+  * @method blockMove
+  * @param none
+  * @return {number} Returns an integer that corresponds to a move from the array of valid moves if there is a block move to be made. Otherwise, it returns -1.
+  */
   blockMove(){
     let validMoves = [];
     let XTiles = [];
@@ -168,6 +212,13 @@ class hardBot {
     }
     return -1;
   }
+  /**
+  * twoTiles searches the board for a move that can be placed where there are two open tiles next to one another
+  *
+  * @method twoTiles
+  * @param none
+  * @return {number} Returns an integer that corresponds to a move from the array of valid moves. When there are no possible two tile moves, it returns -1
+  */
   twoTiles(){
     let validMoves = [];
     let OTiles = [];
