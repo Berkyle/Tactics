@@ -17,23 +17,17 @@
   <head>
     <title>Tactics</title>
     <meta charset="utf-8">
+    <link href=<?php echo getDirectoryEscape()."favicon.ico"; ?>  rel="icon" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href= <?php echo getDirectoryEscape()."css/index.css"; ?> >
 
-    <?php
+    <?php //Get the game rules and styling (JS and CSS) files based on the URI and HTML file.
       $loadRules = false;
-
-      //Get the game rules and styling (JS and CSS) files based on the URI and HTML file.
-      $boardType = basename($_SERVER['REQUEST_URI'],'.php'); //gets name of URI file (file the URI begins building site with)
-      if($boardType == "simpleBoard" || $boardType == "ninerBoard" || $boardType == "continueThrees" || $boardType == "botGame" || $boardType == "continueNines") {
-        //echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"".getDirectoryEscape()."css/simpleStyle.css\">";
+      $file = basename($_SERVER['REQUEST_URI'],'.php'); //gets name of URI file (file the URI begins building site with)
+      if($file == "simpleBoard" || $file == "ninerBoard" || $file == "botGame" || $file == "continueThrees" || $file == "continueNines") {
         $loadRules = true;
       }
-      // elseif($boardType == "ninerBoard") {
-        //echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"".getDirectoryEscape()."css/ninerStyle.css\">";
-        // $loadRules = true;
-      // }
     ?>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -50,6 +44,6 @@
         
         </ul>
 <?php
-  if($sessionUsr != "") include_once 'loggedin.php';
+  if(isset($_COOKIE['user'])) include_once 'loggedin.php';
   else include_once 'loggedout.php';
 ?>

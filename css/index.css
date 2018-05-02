@@ -45,11 +45,25 @@ input.online:checked + div{
   vertical-align: top;
 }
 
+.table-sizer {
+  position: relative;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
 div.outter {
   display: inline-block;
   /*min-width: 246px;*/
   border: 3px solid black;
 }
+
+.mytr:after {
+  content: ' ';
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+
 
 div.continueContainer {
   display: inline-block;
@@ -57,6 +71,10 @@ div.continueContainer {
 }
 
 div.challenge {
+  display: inline-block;
+  overflow: auto;
+  margin: auto;
+  text-align: center;
   vertical-align: middle;
 }
 

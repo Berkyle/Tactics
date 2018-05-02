@@ -1,48 +1,65 @@
 function addEvents() {
-  //populateHTML();
   let XO = document.getElementsByClassName("board"); // array of DOM tiles with indicies [0..80]
+  let tables = document.getElementsByClassName("subtable");
   let box = document.getElementsByClassName("radio");
 
-  let size = XO.length; //81
+  let board = new ninerBoard();
+  let page = new ninePageState(XO, tables, board);
 
-  let add = new Array(size); //length == 9
-  for(let i = 0; i < size; i++) {
-    add[i] = 0;
+  try { //Try block will only work if in continue game mode
+    let daMoves = JSON.parse(document.getElementById("ignoreMe").value);
+    console.log(daMoves);
+    //Catch Game and Page objects up with current game
+    daMoves.forEach(function(i) {
+        board.move(i);
+        page.updateBoard(false, i, board.selClass);
+        page.grayOthers(i);
+        if(board.checkBoardFull(i%9)){
+          page.removeGrayedAll();
+        }
+        if(board.checkGameWin()) {
+          page.updateBoard(true, i, board.selClass);
+          page.finishGame(board.winner);
+        }
+    });
+    //objects 'board' and 'page' are now up to date
+
+    var nextMove = ((document.getElementById("ignoreMe").value)%2 == 0) ? "X" : "O";
+  }
+  catch(error) { //Catch block runs if game is being created
+    var nextMove = "X";
   }
 
   let available = [];
-  for(let i = 0; i < size; i++) {
-    if(XO[i].innerText == "") //tile not taken
+
+  let add = []; //preallocate 'add[]' to be 81 indicies long
+  for(let i = 0; i < 81; i++) {
+    add[i] = 0;
+  }
+
+  //Update 'add[]' and 'available[]'
+  //'add' assists JS with finding the correct radio button to check
+  //'available' is a list of available tile positions
+  for(let i = 0; i < 81; i++) {
+    if(!XO[i].classList.contains("grayed") && !XO[i].classList.contains("selected")) //tile not taken
       available.push(i);
     else {
-      XO[i].classList.add(XO[i].innerText+"Select");
-      for(let j = i; j < size; j++) {
+      for(let j = i; j < 81; j++) {
         add[j] += 1;
       }
     }
-    XO[i].classList.add("grayed");
   }
 
-  try {
-    let lastMove = document.getElementById("ignoreMe").value;
-    for(let i = 0; i < size/9; i++) {
-      XO[9*(lastMove%9) + i].classList.remove("grayed");
-    }
-  }catch(error) {}
+  available.forEach(function(tile) {
+    document.getElementsByTagName("body")[0].innerHTML += "<input type=\"radio\" name=\"move9\" value=\""+tile+"\" class=\"radio online\" required>";
+  });
 
-  updateBorders(XO);
+  //Add events for selecting a game move option
+  for(let i = 0; i < 81; i++) {//81-segment loop - adds click event to each tile
+    if(!XO[i].classList.contains("grayed") && !XO[i].classList.contains("selected")) {
+      XO[i].addEventListener("click", function() {
 
-  let turn = ((available.length%2) == 1) ? "X" : "O";
-
-	for(let i = 0; i < size; i++) {//81-segment loop - adds click event to each tile
-    XO[i].addEventListener("click", function() {
-      let taken = true;
-
-      available.forEach(function(j) {
-        if(i == j) taken = false;
-      });
-
-      if(!taken && !XO[i].classList.contains("grayed")) {
+        //remove current changes
         available.forEach(function(j) {
           if(XO[j].innerHTML != "") {
             XO[j].classList.remove("XSelect", "OSelect");
@@ -51,102 +68,131 @@ function addEvents() {
           }
         });
 
-        XO[i].innerText = turn;
-        XO[i].classList.add(turn+"Select");
+        //add new potential changes
+        XO[i].innerText = nextMove;
+        XO[i].classList.add(nextMove+"Select");
         box[i - add[i]].checked = true;
-      }
-    });
+      });
+    }
+  }
+
+  // //Wait for user to attempt to submit move
+  // try {
+  //   document.getElementById("submit").addEventListener("click", function() {
+  //     let myInputs = document.getElementsByClassName("online");
+  //     let someChecked = false;
+  //
+  //     for (let i = 0; i < available.length; i++) {
+  //       if(inputs[i].checked == true) {
+  //         someChecked = true;
+  //         break;
+  //       }
+  //     }
+  //
+  //     //Build 9-character game state string that that records if each sub-table is won
+  //     if(someChecked) { //only runs if a move was made
+  //       let DBGS = "";
+  //       for(let i = 0; i < 9; i++)
+  //       {
+  //         if(page.tables[i].classList.contains("Awinner"))  DBGS = DBGS + 'A'; //Board is a catscratch
+  //         else if (page.tables[i].classList.contains("Owinner"))  DBGS = DBGS + 'O'; //Board won by O
+  //         else if (page.tables[i].classList.contains("Xwinner"))  DBGS = DBGS + 'X'; //Board won by X
+  //         else DBGS = DBGS + 'N'; ////board not yet won
+  //       }
+  //
+  //       document.getElementById("ignoreMe").value = DBGS; //send state all sneaky-like >:)
+  //       document.getElementById("submit").value = board.winner;
+  //     }
+  //   });
+  // } catch(e) {
+  //   //nothing needs to happen, it's just a game create mode
+  // }
+
+  let myForm = document.getElementById("gameForm");
+  if(myForm.addEventListener) {
+    myForm.addEventListener("submit", checkState, false);  //Modern browsers
+  }
+  else if(myForm.attachEvent) {
+    myForm.attachEvent('onsubmit', checkState);            //Old IE
   }
 }
-
-function updateBorders(XO) {
-  let possibleWins = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
-
-  let board = [];
-  for(let i = 0; i<81; i++) {
-    board.push(XO[i].innerText);
-  }
-
-  for(let i = 0; i<9; i++) {
-    let boardWin = "";
-    possibleWins.forEach(function(poss) { //check if someone has won the game.
-  		if(checkTriple(poss[0]+i*9, poss[1]+i*9, poss[2]+i*9, board)) {
-        //update border
-      }
-    });
-  }
-
-
-}
-
-
 
 
 
 function checkState() {
-  let XO = document.getElementsByClassName("board");
-  let possibleWins = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
+  let tables = document.getElementsByClassName("subtable");
+  let XO = document.getElementsByTagName("td");
+  let radios = document.getElementsByClassName("radio");
 
-  let board = [];
-  for(let i = 0; i<9; i++) {
-    board.push(XO[i].innerText);
-  }
-
-  let wins = "";
-  possibleWins.forEach(function(poss) { //check if someone has won the game.
-		if(checkTriple(poss[0], poss[1], poss[2], board)) {
-      wins = XO[poss[0]].innerText;
+  let moveVal = "";
+  for(let i = 0; i < 81; i++) {
+    if(radios[i].checked) {
+      moveVal = radios[i].value;
+      break;
     }
-  });
-
-  if(wins != "") {
-    document.getElementById("ignoreMe").value = wins;
-    return true;
   }
 
-  let isFull = checkFull(XO);
-  if(isFull) {
-    document.getElementById("ignoreMe").value = "A";
-    return true;
+  if(moveVal == "") return false;
+
+  let board = new ninerBoard();
+  let page = new ninePageState(XO, tables, board);
+
+  try { //Try block will only work if in continue game mode
+    let daMoves = JSON.parse(document.getElementById("ignoreMe").value);
+    //Catch Game and Page objects up with current game
+    daMoves.forEach(function(i) {
+      // if(!page.XO[i].classList.contains("selected") && !page.XO[i].classList.contains("grayed")){
+        board.move(i);
+        // page.updateBoard(false, i, board.selClass);
+        // page.grayOthers(i);
+        if(board.checkBoardFull(i%9)){
+          //page.removeGrayedAll();
+        }
+        if(board.checkGameWin()) {
+          //page.updateBoard(true, i, board.selClass);
+          //page.finishGame(board.winner);
+        }
+      // }
+    });
+    //objects 'board' and 'page' are now up to date
+
+    var nextMove = ((document.getElementById("ignoreMe").value)%2 == 0) ? "X" : "O";
+    bourd.move(moveVal);
+
+    if(board.checkGameWin()) {
+      //page.updateBoard(true, i, board.selClass);
+      //page.finishGame(board.winner);
+    }
   }
-}
+  catch(error) { //Catch block runs if game is being created
+    var nextMove = "X";
+  }
+  document.getElementById("submit").value = available.length;
 
-function checkTriple(x1, x2, x3, txt) {
-	if((txt[x1] == txt[x2] && txt[x2] == txt[x3]) && txt[x1] != undefined && txt[x1] != "") {
-    return true;
-	}
-}
+  board.move(moveVal);
+  page.updateBoard(false, moveVal, board.selClass);
 
-function checkFull(XO) {
-  var full = 0;
-  for(let i = 0; i < 9; i++) {
-    if(XO[i].innerText != "") full++
+  if(board.checkGameWin()){
+		page.updateBoard(true, moveVal, board.selClass);
+		page.finishGame(board.winner);
   }
 
-  if(full == 9) return true;
-  return false;
+  let DBGS = "";
+  for(let i = 0; i < 9; i++)
+  {
+    if(page.tables[i].classList.contains("Awinner"))
+      DBGS = DBGS + 'A';
+    else if (page.tables[i].classList.contains("Owinner"))
+      DBGS = DBGS + 'O';
+    else if (page.tables[i].classList.contains("Xwinner"))
+      DBGS = DBGS + 'X';
+    else  //board not yet won
+      DBGS = DBGS + 'N';
+  }
+
+  document.getElementById("ignoreMe").value = DBGS; //send state all sneaky-like >:)
+  if(board.winner != "") {
+    document.getElementById("submit").value = board.winner;
+  }
+
 }
-
-
-// function populateHTML() {
-// 	for(let i = 0; i < 9; i++) {
-//     //<table> elements already created in php ; populate them with rows and inputs
-//     document.getElementsByClassName("subtable "+ i)[0].innerHTML += buildTable(i);
-// 	}
-// }
-//
-// function buildTable(tableNum) { //tableNum = <0..8>
-//   let add = "";
-//
-//   for(let i = 0; i < 3; i++) {
-//     add += "<tr>";
-//     for(let j = 0; j < 3; j++) {
-//       let radValue = tableNum*9+i*3+j;
-//       add += "<input type=\"radio\" name=\"move9\" value=\""+radValue+"\" class=\"radio online\" required>";
-//       add += "<td class=\"board\"></td>";
-//     }
-//     add += "</tr>";
-//   }
-//
-//   return add;
-// }

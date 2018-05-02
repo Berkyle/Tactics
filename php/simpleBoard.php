@@ -1,10 +1,12 @@
 <?php
   include_once 'header.php';
-  echo "<h1>Traditional Tic-Tac-Toe!</h1>
-        <div class=\"tableContainer\">
-          <table cellspacing=\"0\">";
+?>
+        <h1><u>TRADITIONAL Tic-Tac-Toe!</u></h1>
+          <div class="tableContainer">
+            <table cellspacing="0">
 
-  for($i = 0; $i<3; $i++) {
+<?php
+  for($i = 0; $i<3; $i++) {    //Build table rows and cells
     echo "<tr>";
     for($j = 0; $j<3; $j++) {
       echo "<td class=\"board\"></td>";

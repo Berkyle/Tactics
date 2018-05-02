@@ -1,4 +1,10 @@
-<?php include_once '../php/header.php'; ?>
+<?php
+if(!isset($_COOKIE['user'])) {
+  header('Location: ../');
+}
+else {
+
+  include_once '../php/header.php'; ?>
 
 <h1>Traditional Tic-Tac-Toe!</h1>
   <form action="gameCreate.php" method="post">
@@ -32,3 +38,8 @@ for($i = 0; $i<3; $i++) {
     </body>
 		<script type="text/javascript" src="maybeJS.js"></script>
 </html>
+
+<?php
+}
+
+?>

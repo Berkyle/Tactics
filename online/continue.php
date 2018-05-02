@@ -1,160 +1,172 @@
-<?php include_once '../php/header.php'; ?>
+<?php
+if(!isset($_COOKIE['user'])) {
+  header('Location: ../');
+}
+else {
 
-<h1>Continue game:</h1>
-<h2>Your games:</h2>
+  include_once '../php/header.php'; ?>
 
-<div class="col-sm-6">
-  <div class="panel-group">
-    <div class="panel panel-default">
-      <div class="panel-heading"><h2>Your 3x3 Matches</h2></div>
-      <div class="panel-body">
-        <form action="continueThrees.php" method="post">
-        <?php
-        $queryThrees = mysqli_query($link, "SELECT * FROM ThreesBoards WHERE (user1 = '$sessionUsr' OR user2 = '$sessionUsr') AND (winner = '')");
-        $numrows = 0 + mysqli_num_rows($queryThrees);
+  <h1>Continue game:</h1>
+  <h2>Your games:</h2>
 
-        echo "<h3>You have ".$numrows." active 3x3 games!</h3>";
-        if($numrows > 0) { //User has active games
-          while($row = $queryThrees->fetch_assoc()) {
-            $ID = $row["gameID"];
-            $userX = $row["user1"];
-            $userO = $row["user2"];
+  <div class="$row">
 
-            $boardMoves = mysqli_query($link, "SELECT * FROM ThreesMoves WHERE gameID = '$ID'");
 
-            if($userX == $sessionUsr) $userX = "You";
-            else $userO = "you";
+  <div class="col-sm-6">
+    <div class="panel-group">
+      <div class="panel panel-default">
+        <div class="panel-heading"><h2>Your 3x3 Matches</h2></div>
+        <div class="panel-body">
+          <form action="continueThrees.php" method="post">
+          <?php
+          $queryThrees = mysqli_query($link, "SELECT * FROM ThreesBoards WHERE (user1 = '$sessionUsr' OR user2 = '$sessionUsr') AND (winner = '')");
+          $numrows = 0 + mysqli_num_rows($queryThrees);
 
-            echo "<div class=\"continueContainer\">
-                    <div class=\"col-sm-6 challenge\">
-                      <h4>".$userX." (X)</h4><h5>challenged</h5><h4>".$userO." (O)</h4>";
+          echo "<h3>You have ".$numrows." active 3x3 games!</h3>";
+          if($numrows > 0) { //User has active games
+            while($row = $queryThrees->fetch_assoc()) {
+              $ID = $row["gameID"];
+              $userX = $row["user1"];
+              $userO = $row["user2"];
 
-            $numMoves = 0 + mysqli_num_rows($boardMoves);
-            $getTurn = $numMoves%2;
-            if(($getTurn == 0 && $userX == "You") || ($getTurn == 1 && $userO == "you")){
-              echo "<button type=\"submit\" name=\"selectGame\" value=".$ID.">Continue game</button>";
-            }
+              $boardMoves = mysqli_query($link, "SELECT * FROM ThreesMoves WHERE gameID = '$ID'");
 
-            echo   "</div>
-                    <div class=\"col-sm-6\">
-                      <table>";
+              if(strtolower($userX) == strtolower($sessionUsr)) $userX = "You"; //Just Styling stuff. Shows which player you are.
+              else $userO = "you";
 
-            $OMoves = array();
-            $XMoves = array();
-            while($move = $boardMoves->fetch_assoc()) {
-              if($move["isX"] == 1) array_push($XMoves, $move["movePosition"]);
-              else array_push($OMoves, $move["movePosition"]);
-            }
+              echo "<div class=\"row\">
+                      <div class=\"col-sm-6 challenge fll\">
+                        <h4>".htmlspecialchars($userX)." (X)</h4><h5>challenged</h5><h4>".htmlspecialchars($userO)." (O)</h4>";
 
-            for($i = 0; $i < 3; $i++) {
-              echo "<tr>";
-              for($j = 0; $j < 3; $j++) {
-                $tile = ($i*3)+$j;
-
-                echo "<td class=\"board\">";
-                if (in_array($tile, $OMoves)) echo "O";
-                elseif (in_array($tile, $XMoves)) echo "X";
-                echo "</td>";
+              $numMoves = 0 + mysqli_num_rows($boardMoves);
+              $getTurn = $numMoves%2;
+              if(($getTurn == 0 && $userX == "You") || ($getTurn == 1 && $userO == "you")){
+                echo "<button type=\"submit\" name=\"selectGame\" value=".$ID.">Continue game</button>";
               }
-              echo "</tr>";
-            }
 
-            echo     "</table>
-                    </div>
-                  </div><br>";
+              echo   "</div>
+                      <div class=\"col-md-4 flr\">
+                        <table>";
 
-            $boardMoves->close(); /*close connection */
-          }
-        }
+              $OMoves = array();
+              $XMoves = array();
+              while($move = $boardMoves->fetch_assoc()) {
+                if($move["isX"] == 1) array_push($XMoves, $move["movePosition"]);
+                else array_push($OMoves, $move["movePosition"]);
+              }
 
-        $queryThrees->close(); /*close connection */
-        ?>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+              for($i = 0; $i < 3; $i++) {
+                echo "<tr>";
+                for($j = 0; $j < 3; $j++) {
+                  $tile = ($i*3)+$j;
 
-<div class="col-sm-6">
-  <div class="panel-group">
-    <div class="panel panel-default">
-      <div class="panel-heading"><h2>Your 9x9 Matches</h2></div>
-      <div class="panel-body">
-        <form action="continueNines.php" method="post">
-
-        <?php
-        $queryNines = mysqli_query($link, "SELECT * FROM NinesBoards WHERE user1 = '$sessionUsr' OR user2 = '$sessionUsr'");
-        $numrows = 0 + mysqli_num_rows($queryNines);
-
-        echo "<h3>You have ".$numrows." active 9x9 games!</h3>";
-
-        if($numrows > 0) { //User has active games
-          while($row = $queryNines->fetch_assoc()) {
-            $ID = $row["gameID"];
-            $userX = $row["user1"];
-            $userO = $row["user2"];
-
-            $boardMoves = mysqli_query($link, "SELECT * FROM NinesMoves WHERE gameID = '$ID'");
-
-            if($userX == $sessionUsr) $userX = "You";
-            else $userO = "you";
-
-            echo "<div class=\"container\">
-                    <div class=\"col-sm-6 challenge\">
-                      <h4>".$userX." (X)</h4><h5>challenged</h5><h4>".$userO." (O)</h4>";
-
-            $numMoves = 0 + mysqli_num_rows($boardMoves);
-            $getTurn = $numMoves%2;
-            if(($getTurn == 0 && $userX == "You") || ($getTurn == 1 && $userO == "you")){
-              echo "<button type=\"submit\" name=\"selectGame\" value=".$ID.">Continue game</button>";
-            }
-
-            echo   "</div>
-                    <div class=\"col-sm-6\">
-                      <div id=\"outter\" class=\"outter\">";
-
-            $OMoves = array();
-            $XMoves = array();
-            while($move = $boardMoves->fetch_assoc()) {
-              if($move["isX"] == 1) array_push($XMoves, $move["movePosition"]);
-              else array_push($OMoves, $move["movePosition"]);
-            }
-
-            for($i = 0; $i < 3; $i++) {
-              echo "<div class=\"minisnug\">";
-              for($j = 0; $j<3; $j++) {
-            		$k = $i*3+$j;
-                echo "<table class=\"subtable ".$k."\" cellspacing=\"0\">";
-
-                for($m = 0; $m < 3; $m++) {
-                  echo "<tr>";
-                  for($n = 0; $n < 3; $n++) {
-                    $tile = ($k*9)+($m*3)+$n;
-
-                    echo "<td class=\"miniboard\">";
-                    if (in_array($tile, $OMoves)) echo "O";
-                    elseif (in_array($tile, $XMoves)) echo "X";
-                    echo "</td>";
-                  }
-                  echo "</tr>";
+                  echo "<td class=\"board\">";
+                  if (in_array($tile, $OMoves)) echo "O";
+                  elseif (in_array($tile, $XMoves)) echo "X";
+                  echo "</td>";
                 }
-                echo "</table>";
+                echo "</tr>";
               }
-              echo "</div>";
+
+              echo     "</table>
+                      </div>
+                    </div><br>"; //<div class=\"continueContainer\"> </div>
+
+              $boardMoves->close(); /*close connection */
             }
-            echo     "</div>
-                    </div>
-                  </div><br>";
-
-            $boardMoves->close(); /*close connection */
           }
-        }
 
-        $queryNines->close(); /*close connection */
-        ?>
-        </form>
+          $queryThrees->close(); /*close connection */
+          ?>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<?php include_once '../php/footer.php'; ?>
+
+  <div class="col-sm-6">
+    <div class="panel-group">
+      <div class="panel panel-default">
+        <div class="panel-heading"><h2>Your 9x9 Matches</h2></div>
+        <div class="panel-body">
+          <form action="continueNines.php" method="post">
+
+          <?php
+          $queryNines = mysqli_query($link, "SELECT * FROM NinesBoards WHERE (user1 = '$sessionUsr' OR user2 = '$sessionUsr') AND (winner = '')");
+          $numrows = 0 + mysqli_num_rows($queryNines);
+
+          echo "<h3>You have ".$numrows." active 9x9 games!</h3>";
+
+          if($numrows > 0) { //User has active games
+            while($row = $queryNines->fetch_assoc()) {
+              $ID = $row["gameID"];
+              $userX = $row["user1"];
+              $userO = $row["user2"];
+
+              $boardMoves = mysqli_query($link, "SELECT * FROM NinesMoves WHERE gameID = '$ID'");
+
+              if($userX == $sessionUsr) $userX = "You";
+              else $userO = "you";
+
+              echo "<div class=\"container\">
+                      <div class=\"col-md-6 challenge fll\">
+                        <h4>".htmlspecialchars($userX)." (X)</h4><h5>challenged</h5><h4>".htmlspecialchars($userO)." (O)</h4>";
+
+              $numMoves = 0 + mysqli_num_rows($boardMoves);
+              $getTurn = $numMoves%2;
+              if(($getTurn == 0 && $userX == "You") || ($getTurn == 1 && $userO == "you")){
+                echo "<button type=\"submit\" name=\"selectGame\" value=".$ID.">Continue game</button>";
+              }
+
+              echo   "</div>
+                      <div class=\"col-lg-2 flr\">
+                        <div id=\"outter\" class=\"outter\">";
+
+              $OMoves = array();
+              $XMoves = array();
+              while($move = $boardMoves->fetch_assoc()) {
+                if($move["isX"] == 1) array_push($XMoves, $move["movePosition"]);
+                else array_push($OMoves, $move["movePosition"]);
+              }
+
+              for($i = 0; $i < 3; $i++) {
+                echo "<div class=\"minisnug\">";
+                for($j = 0; $j<3; $j++) {
+              		$k = $i*3+$j;
+                  echo "<table class=\"subtable ".$k."\" cellspacing=\"0\">";
+
+                  for($m = 0; $m < 3; $m++) {
+                    echo "<tr>";
+                    for($n = 0; $n < 3; $n++) {
+                      $tile = ($k*9)+($m*3)+$n;
+
+                      echo "<td class=\"miniboard\">";
+                      if (in_array($tile, $OMoves)) echo "O";
+                      elseif (in_array($tile, $XMoves)) echo "X";
+                      echo "</td>";
+                    }
+                    echo "</tr>";
+                  }
+                  echo "</table>";
+                }
+                echo "</div>";
+              }
+              echo     "</div>
+                      </div>
+                    </div><br>";
+
+              $boardMoves->close(); /*close connection */
+            }
+          }
+
+          $queryNines->close(); /*close connection */
+          ?>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+<?php include_once '../php/footer.php'; } ?>

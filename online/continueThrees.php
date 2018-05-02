@@ -4,8 +4,6 @@
     $gameID = $_POST['selectGame'];
 
     $currGame = mysqli_query($link, "SELECT * FROM ThreesBoards WHERE gameID = '$gameID'");
-    $moves = mysqli_query($link, "SELECT * FROM ThreesMoves WHERE gameID = '$gameID'");
-
     while($row = $currGame->fetch_assoc()) {
       $userX = $row["user1"];
       $userO = $row["user2"];
@@ -14,11 +12,13 @@
     $opponent = ($userX == $sessionUsr ? $userO : $userX);
 
     echo "<h1>Continue game:</h1>
-          <h2>Your 3x3 game with ".$opponent."</h2>";
+          <h2>Your 3x3 game with ".htmlspecialchars($opponent)."</h2>";
+
+    $currGame->close();
 
 ?>
 
-  <form action="threesSubmit.php" onsubmit="checkState()" method="post">
+  <form action="threesSubmit.php" id="gameForm" method="post">
     <h3>Choose your next move below:</h3>
     <div class="tableContainer">
       <table cellspacing="0">
@@ -26,6 +26,8 @@
 <?php
           $OMoves = array();
           $XMoves = array();
+
+          $moves = mysqli_query($link, "SELECT * FROM ThreesMoves WHERE gameID = '$gameID'");
           while($move = $moves->fetch_assoc()) {
             if($move["isX"] == 1) array_push($XMoves, $move["movePosition"]);
             else array_push($OMoves, $move["movePosition"]);
@@ -50,7 +52,7 @@
 
             </table>
             <input type="hidden" name="gameID" value="<?php echo $gameID; ?>">
-            <input id="ignoreMe" type="hidden" name="gameState" value="0">
+            <input id="ignoreMe" type="hidden" name="gameState">
 						<br>
 					</div>
 					<div>
