@@ -2,33 +2,40 @@ class easyBot {
   constructor(XO, board, page){
     this.XO = XO;
     this.board = board;
-    this.winner = "";
     this.page = page;
   }
   runBot(){
     let botMove = this.randomMove();
-    if(this.board.tiles[botMove] == undefined){
-      this.board.tiles[botMove] = this.board.XTurn? "X":"O";
-      this.board.checkWin(this.board.tiles, this.board.possibleWins);
+    if(!this.XO[botMove].classList.contains("selected") && !this.XO[botMove].classList.contains("grayed")){
+      this.board.selClass = this.board.XTurn? "XSelect" : "OSelect";
+      this.board.XTurn = !this.board.XTurn;
+      if(this.board.selClass == "XSelect"){
+        this.board.tiles[botMove] = "X";
+      }
+      else if(this.board.selClass == "OSelect"){
+        this.board.tiles[botMove] = "O";
+      }
+      this.board.checkBoardStatus(botMove);
+      this.board.checkGameWin();
+      this.page.updateBoard(false, botMove, this.board.selClass);
+      this.page.grayOthers(botMove);
+      if(this.board.checkBoardFull(botMove%9)){
+        this.page.removeGrayedAll();
+      }
+      if(this.board.checkGameWin() != false){
+        this.page.updateBoard(true, botMove, this.board.selClass);
+        this.page.finishGame(this.board.winner);
+      }
     }
   }
   randomMove(){
     let validMoves = [];
-    for(let i = 0; i < 9; i++){
-      if(this.board.tiles[i] == undefined){
+    for(let i = 0; i < 81; i++){
+      if(!this.XO[i].classList.contains("selected") && !this.XO[i].classList.contains("grayed")){
         validMoves.push(i);
       }
     }
     let random = Math.floor((Math.random() * validMoves.length));
     return validMoves[random];
-  }
-  checkWinBot(tiles, winComb){
-    let winner = "";
-    winComb.forEach(function(x){
-      if((tiles[x[0]] == tiles[x[1]] && tiles[x[0]] == tiles[x[2]]) && tiles[x[0]] != undefined) {
-        winner = tiles[x[0]];;
-      }
-    });
-    this.winner = winner;
   }
 }
