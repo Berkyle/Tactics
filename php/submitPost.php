@@ -1,9 +1,7 @@
 <?php
   include_once 'header.php';
 
-         echo("First name: " . $_POST['firstname'] . "<br />\n");
-
-         echo("Last name: " . $_POST['lastname'] . "<br />\n");
+         echo("User name: " . $_POST['Username'] . "<br />\n");
 ?>
 
 
