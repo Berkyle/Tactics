@@ -1,3 +1,10 @@
+/**
+* ninerBoard is the 9x9 tic tac toe object
+*
+* @class ninerBoard
+* @constructor
+*/
+
 class ninerBoard {
   constructor(){
     this.subBoards = [];
@@ -13,6 +20,13 @@ class ninerBoard {
       this.XBoards.push(" ");
     }
   }
+  /**
+  * Checks if the player's move is valid or not
+  *
+  * @method move
+  * @param {String}  i the player's move X or O
+  * @return none
+  */
   move(i){
     if(this.winner == ""){
       if(this.tiles[i] == undefined ){
@@ -29,6 +43,13 @@ class ninerBoard {
       }
     }
   }
+  /**
+  * Checks the status of the 3x3 sub board.
+  *
+  * @method checkBoardStatus
+  * @param {Number}  tile the number of the tile selected
+  * @return none
+  */
   checkBoardStatus(tile){
     let subBoardIndex = Math.floor(tile/9);
     if(this.subBoards[subBoardIndex] == undefined){
@@ -43,6 +64,13 @@ class ninerBoard {
     }
   }
 
+  /**
+  * Checking if a move wins the game
+  *
+  * @method checkGameWin
+  * @param none
+  * @return {Boolean} True if the game has been won, false otherwise
+  */
   checkGameWin(){
     this.updateSubArrays();
     let Owin = false;
@@ -64,7 +92,13 @@ class ninerBoard {
     }
     return false;
   }
-
+  /**
+  * updateSubArrays updates whichever sub table has been won by X or O.
+  *
+  * @method updateSubArrays
+  * @param none
+  * @return none; updates the corresponding array depending on the outcome
+  */
   updateSubArrays(){
 
     for(let i = 0; i < 9; i++){
@@ -80,7 +114,13 @@ class ninerBoard {
       }
     }
   }
-
+  /**
+  * Checks for different methods for no more possible ways to win the game
+  *
+  * @method specialCases
+  * @param none
+  * @return {Boolean} True if there is a special case; false otherwise
+  */
   specialCases(){
     return false;
     for(let i = 0; i < 9; i++){
@@ -101,7 +141,13 @@ class ninerBoard {
     }
     return false;
   }
-
+  /**
+  * Checks if there are no more moves left in the 9x9 board
+  *
+  * @method checkBoardFull
+  * @param {Object} board object that has the properties of the board
+  * @return {Boolean} True if the board is full; false otherwise
+  */
   checkBoardFull(board){
     for(let i = 0; i < 9; i++){
       if(this.tiles[i+9*board] == undefined){
@@ -113,6 +159,16 @@ class ninerBoard {
     }
   }
 
+  /**
+  * Checks if the 3x3 sub board has been won.
+  *
+  * @method checkSubBoardWin
+  * @param {Number} subBoardIndex index of the specific sub board
+  * @param {array} tiles all the tiles in the sub board
+  * @param {array} possWin array of possible wins
+  * @param {string} XorO string of the whose turn it is, X or O
+  * @return {Boolean} True if the board has been won; false otherwise
+  */
   checkSubBoardWin(subBoardIndex, tiles, possWin, XorO){
     let board = false;
     possWin.forEach(function(x){
@@ -123,6 +179,15 @@ class ninerBoard {
     return board;
   }
 
+  /**
+  * Checks if someone has won the game
+  *
+  * @method checkEntireBoard
+  * @param {array} boards array of sub boards
+  * @param {array} possWin array of possible wins
+  * @param {string} XorO string of the whose turn it is, X or O
+  * @return {Boolean} True if the board has been won; false otherwise
+  */
   checkEntireBoard(boards, possWin, XorO){
     let board = false;
     possWin.forEach(function(x) { //check if someone has won the game.

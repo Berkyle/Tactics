@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>easyThreesBot.js</title>
+    <title>easy/easyThreesBotRules.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -39,6 +39,8 @@
                         <div id="api-tabview-panel">
                             <ul id="api-classes" class="apis classes">
                                 <li><a href="../classes/easyBot.html">easyBot</a></li>
+                                <li><a href="../classes/hardBot.html">hardBot</a></li>
+                                <li><a href="../classes/mediumBot.html">mediumBot</a></li>
                             </ul>
                 
                 
@@ -76,70 +78,30 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: easyThreesBot.js</h1>
+<h1 class="file-heading">File: easy/easyThreesBotRules.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 /**
-* This is the class for the easy bot of the 3x3 game.
+* addEvents adds the clicker events for all the positions on the 3x3 boards
 *
-* @class easyBot
-* @constructor Initializes all the variables that will be changing throughout the program
+* @method addEvents
+* @return No return; all the events are added
 */
-class easyBot {
-  constructor(XO, board, page){
-    this.XO = XO;
-    this.board = board;
-    this.winner = &quot;&quot;;
-    this.page = page;
-  }
-  /**
-  * runBot decides what the bot&#x27;s next move will be depending on the difficulty chosen by the user.
-  *
-  * @method runBot
-  * @param none
-  * @return none
-  */
-  runBot(){
-    let botMove = this.randomMove();
-    if(this.board.tiles[botMove] == undefined){
-      this.board.tiles[botMove] = this.board.XTurn? &quot;X&quot;:&quot;O&quot;;
-      this.board.checkWin(this.board.tiles, this.board.possibleWins);
-    }
-  }
-  /**
-  * randomMove generates a random move for the bot that gets returned to the game.
-  *
-  * @method randomMove
-  * @param none
-  * @return {validMoves} Returns a valid move based on the open spaces
-  */
-  randomMove(){
-    let validMoves = [];
-    for(let i = 0; i &lt; 9; i++){
-      if(this.board.tiles[i] == undefined){
-        validMoves.push(i);
-      }
-    }
-    let random = Math.floor((Math.random() * validMoves.length));
-    return validMoves[random];
-  }
-  /**
-  * checkWinBot checks to see if the move that the bot will make will win the game
-  *
-  * @method checkWinBot
-  * @param {tiles} an array of all the tiles
-  * @param {winComb} a function that goes through an array of all the winning combinations
-  * @return {validMoves} Returns a valid move based on the open spaces
-  */
-  checkWinBot(tiles, winComb){
-    let winner = &quot;&quot;;
-    winComb.forEach(function(x){
-      if((tiles[x[0]] == tiles[x[1]] &amp;&amp; tiles[x[0]] == tiles[x[2]]) &amp;&amp; tiles[x[0]] != undefined) {
-        winner = tiles[x[0]];;
+function addEvents() {
+  let XO = document.getElementsByClassName(&quot;board&quot;); // array of DOM tiles with indicies [0..8]
+  let board = new simpleBoard();
+  let page = new pageState(XO);
+  let bot = new easyBot(XO, board, page);
+	for(let i = 0; i &lt; 9; i++) {//9-segment loop - adds click event to each tile
+    XO[i].addEventListener(&quot;click&quot;, function() {
+      if(!this.classList.contains(&quot;OSelect&quot;) &amp;&amp; !this.classList.contains(&quot;XSelect&quot;)) {
+        board.move(i);
+        bot.runBot();
+        board.XTurn = !board.XTurn;
+        page.updatePage(board);
       }
     });
-    this.winner = winner;
   }
 }
 

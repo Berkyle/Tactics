@@ -1,3 +1,9 @@
+/**
+* ninePageState updates the HTML after any moves are performed for the 9x9 boards
+*
+* @class ninePageState
+* @constructor initializes variables that will be changed
+*/
 class ninePageState {
   constructor(XO, tables, nineBoard){
     this.XO = XO;
@@ -5,10 +11,15 @@ class ninePageState {
     this.nineBoard = nineBoard;
   }
 
-  getTheseHoes() {
-    return tables;
-  }
-
+  /**
+  * Updates the board
+  *
+  * @method updateBoard
+  * @param {Boolean} board Determines if the game is over or not
+  * @param {Number}  i used an index for the move that will be made (for the tile being used)
+  * @param {String} selClass Determines the type of move, X or O, and displays it graphically using CSS
+  * @return none
+  */
   updateBoard(board, i, selClass) {
     if(!board)
     {
@@ -46,7 +57,13 @@ class ninePageState {
       }
     }
   }
-
+  /**
+  * grayOthers grays any tile not being used.
+  *
+  * @method grayOthers
+  * @param {Number}  dontGray 0-8 of the subtable that does not get grayed.
+  * @return none
+  */
   grayOthers(dontGray)
   {
     let subBoardIndex = dontGray%9;
@@ -59,6 +76,13 @@ class ninePageState {
       }
     }
   }
+  /**
+  * Removed all the grayed tiles
+  *
+  * @method removeGrayedAll
+  * @param none
+  * @return none
+  */
   removeGrayedAll()
   {
     for(let i = 0; i < 81; i++)
@@ -66,6 +90,14 @@ class ninePageState {
       this.XO[i].classList.remove("grayed");
     }
   }
+
+  /**
+  * finishGame tells the user who is the winner by coloring the board the color of the winner and pushing an alert at the end.
+  *
+  * @method finishGame
+  * @param {String} X/O/A depending on the winner or A if all the options are exhausted
+  * @return none, an alert is made
+  */
   finishGame(winner)
   {
     this.updateBoard(true);
