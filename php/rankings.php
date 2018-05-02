@@ -42,6 +42,7 @@
           }
         }
       }
+
       echo "<h2>Online Leaderboard</h2>".
             "<div class=\"row\">".
               "<div class=\"col-sm-6 col-sm-offset-3\">".
@@ -62,9 +63,9 @@
       else {
         for($k = 0; $k < $numrows; $k++) {
                    echo "<tr>".
-                          "<td class=\"fiterable-cell\">".($k+1)."</td>".
-                          "<td class=\"fiterable-cell\">".($users[$numrows-1-$k])."</td>".
-                          "<td class=\"fiterable-cell\">".($userPoints[$numrows-1-$k])."</td>".
+                          "<td class=\"fiterable-cell\">".($k+1)."</td>".                       //Rank
+                          "<td class=\"fiterable-cell\">".(htmlspecialchars($users[$numrows-1-$k]))."</td>".      //User
+                          "<td class=\"fiterable-cell\">".($userPoints[$numrows-1-$k])."</td>". //User's points
                         "</tr>";
         }
       }

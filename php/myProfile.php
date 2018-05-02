@@ -26,7 +26,7 @@
       $points = 30*$winsNine + 10*$drawsNine + 3*$winsThree + $drawsThree;
     ?>
 
-      <h1>Profile for <?php echo $sessionUsr?></h1>
+      <h1>Profile for <?php echo htmlspecialchars($sessionUsr); ?></h1>
         <hr>
         <div class="row">
 
@@ -69,7 +69,7 @@
     else {
       echo "<h3>Internal database error: cannot locate user $sessionUsr....</h3>";
     }
-    echo "<a href=\"../\"><button type=\"button\" class=\"btn btn-default btn-lg\" id=\"surrenderButt\">Return Home</button></a>";
+    echo "<a href=\"../\"><button type=\"button\" class=\"btn btn-default btn-lg\">Return Home</button></a>";
 
     include_once 'footer.php';
   }

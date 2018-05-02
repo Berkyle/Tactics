@@ -31,12 +31,12 @@ else {
 
               $boardMoves = mysqli_query($link, "SELECT * FROM ThreesMoves WHERE gameID = '$ID'");
 
-              if($userX == $sessionUsr) $userX = "You";
+              if(strtolower($userX) == strtolower($sessionUsr)) $userX = "You"; //Just Styling stuff. Shows which player you are.
               else $userO = "you";
 
               echo "<div class=\"row\">
                       <div class=\"col-sm-6 challenge fll\">
-                        <h4>".$userX." (X)</h4><h5>challenged</h5><h4>".$userO." (O)</h4>";
+                        <h4>".htmlspecialchars($userX)." (X)</h4><h5>challenged</h5><h4>".htmlspecialchars($userO)." (O)</h4>";
 
               $numMoves = 0 + mysqli_num_rows($boardMoves);
               $getTurn = $numMoves%2;
@@ -110,7 +110,7 @@ else {
 
               echo "<div class=\"container\">
                       <div class=\"col-md-6 challenge fll\">
-                        <h4>".$userX." (X)</h4><h5>challenged</h5><h4>".$userO." (O)</h4>";
+                        <h4>".htmlspecialchars($userX)." (X)</h4><h5>challenged</h5><h4>".htmlspecialchars($userO)." (O)</h4>";
 
               $numMoves = 0 + mysqli_num_rows($boardMoves);
               $getTurn = $numMoves%2;
@@ -168,5 +168,5 @@ else {
   </div>
 
   </div>
-  
+
 <?php include_once '../php/footer.php'; } ?>

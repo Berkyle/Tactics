@@ -42,7 +42,7 @@
         //Create row in game move table
         $queryMove = "INSERT IGNORE INTO ".$moveTable."(gameID, isX, moveNumber, movePosition) VALUES('$nextID', '1', '1', '$plyrMove')";
         if ($result = $link->query($queryMove)) {
-          echo "<h4>User ".$inviteUsr." has received your challenge!</h4>";
+          echo "<h4>User ".htmlspecialchars($inviteUsr)." has received your challenge!</h4>";
         }
         //$result->close(); // free result set
         $link->close(); /*close connection */

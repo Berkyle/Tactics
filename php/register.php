@@ -55,6 +55,7 @@
       }
       else{
         echo "<h3>".$username_err.$password_err.$confirm_password_err."</h3>";
+        echo "<a href=\"createaccount.php\"><button type=\"button\" class=\"btn btn-default btn-lg\">Try again</button></a>";
       }
   }
   echo "<a href=\"../\"><button type=\"button\" class=\"btn btn-default btn-lg\">Home</button></a>";
