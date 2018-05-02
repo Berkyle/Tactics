@@ -26,7 +26,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     $queryMove = "INSERT IGNORE INTO NinesMoves(gameID, isX, moveNumber, movePosition) VALUES('$gameID', '$isX', '$thisMove', '$moveNum')";
     if ($link->query($queryMove) === TRUE) {
-      $status =  "Your move has been placed!__";
+      $status =  "Your move (".$moveNum.")has been placed!__";
     }
     else {
       echo "Error updating record: " . $link->error;

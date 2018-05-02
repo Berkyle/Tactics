@@ -1,16 +1,15 @@
 function addEvents() {
   let XO = document.getElementsByClassName("board"); // array of DOM tiles with indicies [0..80]
   let tables = document.getElementsByClassName("subtable");
-  let box = document.getElementsByClassName("radio");
 
   let board = new ninerBoard();
   let page = new ninePageState(XO, tables, board);
 
   try { //Try block will only work if in continue game mode
     let daMoves = JSON.parse(document.getElementById("ignoreMe").value);
-    console.log(daMoves);
     //Catch Game and Page objects up with current game
     daMoves.forEach(function(i) {
+      console.log(i);
         board.move(i);
         page.updateBoard(false, i, board.selClass);
         page.grayOthers(i);
@@ -54,7 +53,9 @@ function addEvents() {
     document.getElementsByTagName("body")[0].innerHTML += "<input type=\"radio\" name=\"move9\" value=\""+tile+"\" class=\"radio online\" required>";
   });
 
-  //Add events for selecting a game move option
+  let box = document.getElementsByClassName("radio");
+
+  //Add events for selecting a game move
   for(let i = 0; i < 81; i++) {//81-segment loop - adds click event to each tile
     if(!XO[i].classList.contains("grayed") && !XO[i].classList.contains("selected")) {
       XO[i].addEventListener("click", function() {
@@ -119,10 +120,14 @@ function addEvents() {
 
 
 
+
+
 function checkState() {
   let tables = document.getElementsByClassName("subtable");
   let XO = document.getElementsByTagName("td");
   let radios = document.getElementsByClassName("radio");
+
+  console.log(XO);
 
   let moveVal = "";
   for(let i = 0; i < 81; i++) {
@@ -133,31 +138,35 @@ function checkState() {
   }
 
   if(moveVal == "") return false;
+  console.log(moveVal);
 
   let board = new ninerBoard();
   let page = new ninePageState(XO, tables, board);
 
   try { //Try block will only work if in continue game mode
     let daMoves = JSON.parse(document.getElementById("ignoreMe").value);
+    daMoves.push(moveVal);
     //Catch Game and Page objects up with current game
     daMoves.forEach(function(i) {
       // if(!page.XO[i].classList.contains("selected") && !page.XO[i].classList.contains("grayed")){
+
         board.move(i);
-        // page.updateBoard(false, i, board.selClass);
-        // page.grayOthers(i);
+        console.log(board.tiles);
+        page.updateBoard(false, i, board.selClass);
+        page.grayOthers(i);
         if(board.checkBoardFull(i%9)){
-          //page.removeGrayedAll();
+          page.removeGrayedAll();
         }
         if(board.checkGameWin()) {
-          //page.updateBoard(true, i, board.selClass);
-          //page.finishGame(board.winner);
+          page.updateBoard(true, i, board.selClass);
+          page.finishGame(board.winner);
         }
       // }
     });
     //objects 'board' and 'page' are now up to date
 
     var nextMove = ((document.getElementById("ignoreMe").value)%2 == 0) ? "X" : "O";
-    bourd.move(moveVal);
+    board.move(moveVal);
 
     if(board.checkGameWin()) {
       //page.updateBoard(true, i, board.selClass);
@@ -167,7 +176,14 @@ function checkState() {
   catch(error) { //Catch block runs if game is being created
     var nextMove = "X";
   }
-  document.getElementById("submit").value = available.length;
+
+  let available = [];
+  for(let i = 0; i < 81; i++) {
+    if(!XO[i].classList.contains("grayed") && !XO[i].classList.contains("selected")) //tile not taken
+      available.push(i);
+  }
+
+  document.getElementById("submit").value = available.length; //Number of values at HTML construction
 
   board.move(moveVal);
   page.updateBoard(false, moveVal, board.selClass);
@@ -194,5 +210,7 @@ function checkState() {
   if(board.winner != "") {
     document.getElementById("submit").value = board.winner;
   }
-
+  console.log(board.tiles);
+  console.log(XO);
+  return true;
 }
