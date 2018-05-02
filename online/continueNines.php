@@ -21,7 +21,7 @@
           <h2>Your 9x9 game with ".htmlspecialchars($opponent)."</h2>";
 ?>
 
-  <form action="ninesSubmit.php" method="post">
+  <form action="ninesSubmit.php" id="gameForm" method="post">
     <h3>Choose your next move below:</h3>
     <div class="tableContainer">
       <div id="outter" class="outter">
@@ -31,12 +31,6 @@
           while($move = $moves->fetch_assoc())
           {
             array_push($AllMoves, $move["movePosition"]);
-          }
-
-          echo "oh no";
-
-          foreach($AllMoves as $someMoves) {
-            echo "<h1>$someMoves</h1>";
           }
 
           $GAME = new ninerBoard($userX, $userO, $AllMoves, $gameID);
