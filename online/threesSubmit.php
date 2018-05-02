@@ -6,24 +6,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   $gameState = $_POST['gameState'];
   $moveNum = $_POST['move3'];
 
-  //Place move//////////////////
   $moves = mysqli_query($link, "SELECT * FROM ThreesMoves WHERE gameID = '$gameID'");
   $numMoves = mysqli_num_rows($moves);
   $thisMove = $numMoves+1;
 
-  $spots = array();
-  while($positions = $moves->fetch_assoc()) {
-    array_push($spots, $positions["movePosition"]);
-  }
-
-  $isDuplicate = FALSE;
-  foreach ($spots as $index => $position) {
-    if($moveNum == $position) $isDuplicate = TRUE;
-  }
-
+  //Determine turn
   if($thisMove%2 == 0) $isX = 0;
   else $isX = 1;
 
+  //determine game standing of each user
   $currGame = mysqli_query($link, "SELECT * FROM ThreesBoards WHERE gameID = '$gameID'");
   while($row = $currGame->fetch_assoc()) {
     $userX = $row["user1"];
@@ -33,7 +24,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   else $opponent = $userX;
 
   if($gameState == $numMoves || $gameState == 'X' || $gameState == 'O' || $gameState == 'A') { //Check if a user tried to make another move
-
+    //Place move//////////////////
     $queryMove = "INSERT IGNORE INTO ThreesMoves(gameID, isX, moveNumber, movePosition) VALUES('$gameID', '$isX', '$thisMove', '$moveNum')";
     if ($link->query($queryMove) === TRUE) {
       echo "<h3>Your move has been placed!</h3>";
@@ -42,12 +33,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       echo "Error updating record: " . $link->error;
     }
     //Finish place move//////////////////
-    
+
     if($gameState == 'X' || $gameState == 'O') {
       //Session user won!
-
-      //$currGame->close(); /*close connection */
-
       if(($gameState == 'X' && $userX == $sessionUsr) || ($gameState == 'O' && $userO == $sessionUsr)) {
         //Case where current user won the game
         echo "<h1>CONGRATULATIONS! You Won!</h1>
@@ -98,7 +86,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   else {
     echo  "<h6>Think you're slick, huh...?</h6>".
           "<h6>Well... I appreciate your commitment to security...</h6>".
-          "<h6>Now get outta here, I've got half a mind to log your IP address...</h6>".
+          "<h6>Now get outta here, I've got half a mind to log your account for misconduct...</h6>".
           "<a href=\"../\"><button type=\"button\" class=\"btn btn-default btn-lg\">Home</button></a>";
   }
   include_once '../php/footer.php';

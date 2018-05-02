@@ -78,11 +78,7 @@ function checkState() {
     document.getElementById("ignoreMe").value = "A"; //Send game tie
     return true;
   }
-  // else {
-  //   return false;
-  // }
 
-  //return false;
 }
 //End checkState()
 
