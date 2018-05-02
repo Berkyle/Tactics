@@ -7,7 +7,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   $moveNum = $_POST['move9'];
   $winner = $_POST['submit'];
 
-
   //Place move//////////////////
   $numMoves = 0;
   $moves = mysqli_query($link, "SELECT * FROM NinesMoves WHERE gameID = '$gameID'");

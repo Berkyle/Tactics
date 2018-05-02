@@ -19,7 +19,6 @@
 
     echo "<h1>Continue game:</h1>
           <h2>Your 9x9 game with ".$opponent."</h2>";
-          //onsubmit="return checkState();"
 ?>
 
   <form action="ninesSubmit.php" method="post">
@@ -40,7 +39,7 @@
           $boardArray = buildBoardArray($boardState); //won boards
           $grayArray = makeGrayArray($grayNum); //Grayed boards
 
-          //Create and populate table with Xs and Os already made
+          //Create Table
           for($i = 0; $i < 3; $i++)
           {
             echo "<div class=\"snug\">";
@@ -55,30 +54,8 @@
                 echo "<tr>";
                 for($n = 0; $n < 3; $n++)
                 {
-                  //Begin TILE build
                   $tile = ($k*9)+($m*3)+$n;
-                  echo "<td class=\"board\"></td>"; // selected OSelect
-
-                  // if ($GAME->getTileValue($tile) == "O")
-                  // {
-                  //   echo "<td class=\"board\"></td>"; // selected OSelect
-                  // }
-                  // elseif ($GAME->getTileValue($tile) == "X")
-                  // {
-                  //   echo "<td class=\"board selected XSelect\">X</td>";
-                  // }
-                  // else
-                  // {
-                  //   if(!$grayArray[$k])
-                  //   {
-                  //     echo "<input type=\"radio\" name=\"move9\" value=\"".$tile."\" class=\"radio online\" required>
-               		// 			    <td class=\"board\"></td>";
-                  //   }
-                  //   else
-                  //   {
-                  //     echo "<td class=\"board grayed\"></td>";
-                  //   }
-                  // }
+                  echo "<td class=\"board\"></td>"; //Tile build
                 }
                 echo "</tr>";
               }
@@ -105,7 +82,6 @@
 						<button type="submit" class="btn btn-default btn-lg" id="submit" name="submit">Place move!</button>
 					</div>
         </form>
-        <!-- <button type="button" onclick="return checkState();" class="btn btn-default btn-lg" id="submit" name="submit">Place move!</button> -->
       <br>
     </div>
   </body>
