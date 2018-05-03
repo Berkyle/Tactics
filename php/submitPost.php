@@ -3,7 +3,6 @@
 
    
   $con = mysql_connect("mysql.eecs.ku.edu","k742b154","ahm3Thei");
-  mysql_connect($mysql_host,$mysql_user,$mysql_password) or die(mysql_error());
 
          echo("User name: " . $_POST['username'] . "<br />\n");
 ?>
