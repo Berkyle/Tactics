@@ -4,8 +4,8 @@ div.container {
 }
 
 .tableContainer {
-    display: inline-block;
-    margin: 20px auto;
+    /*display: inline-block;*/
+    margin: auto;
 }
 
 table {
@@ -52,9 +52,21 @@ input.online:checked + div{
 }
 
 div.outter {
-  display: inline-block;
+  display: table;
+  padding: 0;
+  margin: 0 auto;
   /*min-width: 246px;*/
   border: 3px solid black;
+  /*width: 27.675em;*/
+}
+
+div.outtie {
+  display: inline-block;
+  /*overflow: scroll;*/
+  padding: 0;
+  margin: 0 auto;
+  border: 3px solid black;
+  /*width: 27.675em;*/
 }
 
 .mytr:after {
@@ -71,11 +83,10 @@ div.continueContainer {
 }
 
 div.challenge {
-  display: inline-block;
-  overflow: auto;
+  /*display: inline-block;
   margin: auto;
   text-align: center;
-  vertical-align: middle;
+  vertical-align: middle;*/
 }
 
 td.miniboard {
@@ -89,7 +100,11 @@ div.minisnug {
   width: 246px;
 }
 
-div.snug { padding: 0px; }
+div.snug {
+  padding: 0px;
+  height: 9em;
+  /*width: 27.25em;*/
+}
 
 .selected { text-align: center; }
 .grayed { background-color: rgb(100, 100, 100); }

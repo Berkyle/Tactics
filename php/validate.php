@@ -25,7 +25,7 @@
         include_once 'header.php';
         echo "<h3>That password is not correct...</h3>".
               "<a href=\"../\"><button type=\"button\" class=\"btn btn-default btn-lg\">Return Home</button></a>".
-              "<a href=\"createaccount.php\"><button type=\"button\" class=\"btn btn-default btn-lg\">Try again</button></a>";
+              "<a href=\"login.php\"><button type=\"button\" class=\"btn btn-default btn-lg\">Try again</button></a>";
         include_once 'footer.php';
       }
     }
@@ -33,7 +33,7 @@
       include_once 'header.php';
       echo "<h3>No user found with that username....</h3>".
             "<a href=\"../\"><button type=\"button\" class=\"btn btn-default btn-lg\">Return Home</button></a>".
-            "<a href=\"createaccount.php\"><button type=\"button\" class=\"btn btn-default btn-lg\">Try again</button></a>";
+            "<a href=\"login.php\"><button type=\"button\" class=\"btn btn-default btn-lg\">Try again</button></a>";
       include_once 'footer.php';
     }
   }

@@ -5,7 +5,7 @@
 	** @post Displays the page after "Continue game" to make their next move on a 9x9 online game with another user
 	** @return None
   */
-  if($_SERVER["REQUEST_METHOD"] == "POST"){
+  if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_COOKIE['user'])){
     include_once '../php/header.php';
     require_once 'ninerFunctions.php';
     require_once 'nineClass.php';

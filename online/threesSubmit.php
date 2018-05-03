@@ -1,11 +1,12 @@
 <?php
+
 /**
   ** @brief Validates and submits move to the database
 	** @pre none
 	** @post database is updated with the new move's information
 	** @return None
   */
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_COOKIE['user'])){
   include_once '../php/header.php';
 
   $gameID = $_POST['gameID'];

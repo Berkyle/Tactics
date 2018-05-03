@@ -15,8 +15,7 @@ else {
   <h1>Continue game:</h1>
   <h2>Your games:</h2>
 
-  <div class="$row">
-
+  <div class="row">
 
   <div class="col-sm-6">
     <div class="panel-group">
@@ -115,7 +114,7 @@ else {
               else $userO = "you";
 
               echo "<div class=\"container\">
-                      <div class=\"col-md-6 challenge fll\">
+                      <div class=\"col-lg-6 challenge\">
                         <h4>".htmlspecialchars($userX)." (X)</h4><h5>challenged</h5><h4>".htmlspecialchars($userO)." (O)</h4>";
 
               $numMoves = 0 + mysqli_num_rows($boardMoves);
@@ -125,8 +124,8 @@ else {
               }
 
               echo   "</div>
-                      <div class=\"col-lg-2 flr\">
-                        <div id=\"outter\" class=\"outter\">";
+                      <div class=\"col-lg-6\">
+                        <div id=\"outter\" class=\"outtie\">";
 
               $OMoves = array();
               $XMoves = array();

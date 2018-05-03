@@ -42,9 +42,14 @@
         </div>
         <ul class="nav navbar-nav">
           <li class="active"><a href=<?php echo getDirectoryEscape()."#"; ?> >Home</a></li>
-          <li class="active"><?php addFacebook(); ?></li>
-          <li class="active"><?php addTwitter(); ?></li>
-          <?php addSocial(); ?>
+
+          <?php
+            if($loadRules) {
+              echo "<li class=\"active\">".addFacebook()."</li>
+                    <li class=\"active\">".addTwitter()."</li>";
+              addSocial();
+            }
+            ?>
         </ul>
 <?php
   if(isset($_COOKIE['user'])) include_once 'loggedin.php';
