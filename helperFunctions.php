@@ -34,18 +34,18 @@ function echoThrees($difficulty) {
 function echoNines($difficulty) {
   echo "<h1>EXTREME Tic-Tac-Toe: ".$difficulty." difficulty!</h1>
         <div class=\"tableContainer\">
-          <div id=\"outter\" class=\"outter\" cellspacing=\"0\">";
+          <table id=\"outter\" class=\"outter\" cellspacing=\"0\">";
 
   for($i = 0; $i < 3; $i++) {
-    echo "<div class=\"snug\">";
+    echo "<tr class=\"snug\">";
     for($j = 0; $j < 3; $j++) {
       $k = $i*3 + $j;
-      echo "<table class=\"subtable ".$k."\" cellspacing=\"0\"></table>";
+      echo "<th><table class=\"subtable ".$k."\" cellspacing=\"0\"></table></th>";
     }
-    echo "</div>";
+    echo "</tr>";
   }
 
-  echo      "</div>
+  echo      "</table>
           </div>
           <br>";
 

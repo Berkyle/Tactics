@@ -13,12 +13,12 @@ include_once '../php/header.php'; ?>
 
             <?php
               for($i = 0; $i < 3; $i++) {
-                echo "<div class=\"snug\">";
+                echo "<tr class=\"snug\">";
                 for($j = 0; $j < 3; $j++) {
                   $k = $i*3 + $j;
-                  echo "<table class=\"subtable ".$k."\" cellspacing=\"0\"></table>";
+                  echo "<th><table class=\"subtable ".$k."\" cellspacing=\"0\"></table></th>";
                 }
-                echo "</div>";
+                echo "</tr>";
               }
             ?>
 
