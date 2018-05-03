@@ -28,7 +28,6 @@
 
       <h1>Profile for <?php echo htmlspecialchars($sessionUsr); ?></h1>
         <div class="row">
-
           <div class="col-sm-6">
             <div class="panel-group">
               <div class="panel panel-default">

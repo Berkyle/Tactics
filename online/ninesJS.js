@@ -9,7 +9,6 @@ function addEvents() {
     let daMoves = JSON.parse(document.getElementById("ignoreMe").value);
     //Catch Game and Page objects up with current game
     daMoves.forEach(function(i) {
-      console.log(i);
         board.move(i);
         page.updateBoard(false, i, board.selClass);
         page.grayOthers(i);
@@ -109,9 +108,7 @@ function checkState() {
   try { //Try block will only work if in continue game mode
     let daMoves = JSON.parse(document.getElementById("ignoreMe").value);
     daMoves.push(moveVal);
-    //Catch Game and Page objects up with current game
-    daMoves.forEach(function(i) {
-      // if(!page.XO[i].classList.contains("selected") && !page.XO[i].classList.contains("grayed")){
+    daMoves.forEach(function(i) { //Catch Game and Page objects up with current game
 
         board.move(i);
         page.updateBoard(false, i, board.selClass);
@@ -123,20 +120,19 @@ function checkState() {
           page.updateBoard(true, i, board.selClass);
           page.finishGame(board.winner);
         }
-      // }
     });
     //objects 'board' and 'page' are now up to date
 
-    var nextMove = ((document.getElementById("ignoreMe").value)%2 == 0) ? "X" : "O";
-    board.move(moveVal);
-    page.updateBoard(false, moveVal, board.selClass);
-    if(board.checkBoardFull(moveVal%9)){
-      page.removeGrayedAll();
-    }
-    if(board.checkGameWin()) {
-      page.updateBoard(true, moveVal, board.selClass);
-      page.finishGame(board.winner);
-    }
+    // var nextMove = ((document.getElementById("ignoreMe").value)%2 == 0) ? "X" : "O";
+    // board.move(moveVal);
+    // page.updateBoard(false, moveVal, board.selClass);
+    // if(board.checkBoardFull(moveVal%9)){
+    //   page.removeGrayedAll();
+    // }
+    // if(board.checkGameWin()) {
+    //   page.updateBoard(true, moveVal, board.selClass);
+    //   page.finishGame(board.winner);
+    // }
   }
   catch(error) { //Catch block runs if game is being created
     var nextMove = "X";
@@ -149,14 +145,6 @@ function checkState() {
   }
 
   document.getElementById("submit").value = available.length; //Number of values at HTML construction
-
-  // board.move(moveVal);
-  // page.updateBoard(false, moveVal, board.selClass);
-  //
-  // if(board.checkGameWin()){
-	// 	page.updateBoard(true, moveVal, board.selClass);
-	// 	page.finishGame(board.winner);
-  // }
 
   let DBGS = "";
   for(let i = 0; i < 9; i++)

@@ -13,9 +13,14 @@ function addEvents() {
     XO[i].addEventListener("click", function() {
       if(!this.classList.contains("OSelect") && !this.classList.contains("XSelect")) {
         board.move(i);
-        bot.runBot();
-        board.XTurn = !board.XTurn;
-        page.updatePage(board);
+        if(board.winner != ""){
+          page.updatePage(board);
+        }
+        else{
+          bot.runBot();
+          board.XTurn = !board.XTurn;
+          page.updatePage(board);
+        }
       }
     });
   }

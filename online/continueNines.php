@@ -20,6 +20,7 @@
       $userO = $row["user2"];
       $boardState = $row["gameState"];
     }
+    $currGame->close();
 
     $opponent = (strtolower($userX) == strtolower($sessionUsr) ? $userO : $userX);
 
@@ -37,6 +38,7 @@
     {
       array_push($AllMoves, $move["movePosition"]);
     }
+    $moves->close();
 
     $GAME = new ninerBoard($userX, $userO, $AllMoves, $gameID);
 
