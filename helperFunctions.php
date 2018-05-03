@@ -102,7 +102,7 @@ function addSocial() {
   function addTwitter() {
     echo  "<iframe
               src=\"https://platform.twitter.com/widgets/tweet_button.html?size=l&url=https%3A%2F%2F&via=twitterdev&related=twitterapi%2Ctwitter&text=Playing%20Tactics!%20&hashtags=TwitterAPI%2Ctactics%2C\"
-              height=\"28\"
+              height=\"38\"
               title=\"Twitter Tweet Button\"
               style=\"border: 0; overflow: hidden;\"
               id=\"myTwitter\">
