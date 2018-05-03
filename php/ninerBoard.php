@@ -9,7 +9,7 @@ include_once '../php/header.php'; ?>
 
       <h1><u>EXTREME Tic-Tac-Toe!</u></h1>
         <div class="tableContainer ">
-        	<div id="outter" class="outter" cellspacing="0">
+        	<table id="outter" class="outter" cellspacing="0">
 
             <?php
               for($i = 0; $i < 3; $i++) {
