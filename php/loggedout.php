@@ -1,8 +1,8 @@
 <?php
 /**
-  ** @brief Adds buttons on the nav bar for when the user is logged out
-	** @pre none
-	** @post none
+  ** @brief Echoes the buttons on the nav bar in the logged out state
+	** @pre dirtracker function returns the depth
+	** @post Nav bar options for logged out state is displayed
 	** @return None
   */
   require_once 'dirtracker.php';

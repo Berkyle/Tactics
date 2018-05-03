@@ -1,8 +1,8 @@
 <?php
 /**
   ** @brief Echoes the buttons on the nav bar once the user is logged in
-	** @pre 
-	** @post none
+	** @pre dirtracker function returns the depth
+	** @post Nav bar for logged in state is displayed
 	** @return None
   */
   require_once 'dirtracker.php';

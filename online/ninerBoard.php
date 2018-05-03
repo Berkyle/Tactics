@@ -1,4 +1,10 @@
 <?php
+/**
+  ** @brief populates HTML for the 9x9 board
+	** @pre none
+	** @post none
+	** @return None
+  */
   if(!isset($_COOKIE['user'])) {
     header('Location: ../');
   }

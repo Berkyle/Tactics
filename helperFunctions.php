@@ -1,8 +1,8 @@
 <?php
 /**
-  ** @brief
+  ** @brief Help for the bots to populate the HTML
 	** @pre none
-	** @post none
+	** @post HTML gets populated
 	** @return None
   */
 function echoThrees($difficulty) {
@@ -102,7 +102,7 @@ function addSocial() {
   function addTwitter() {
     echo  "<iframe
               src=\"https://platform.twitter.com/widgets/tweet_button.html?size=l&url=https%3A%2F%2F&via=twitterdev&related=twitterapi%2Ctwitter&text=Playing%20Tactics!%20&hashtags=TwitterAPI%2Ctactics%2C\"
-              height=\"28\"
+              height=\"38\"
               title=\"Twitter Tweet Button\"
               style=\"border: 0; overflow: hidden;\"
               id=\"myTwitter\">

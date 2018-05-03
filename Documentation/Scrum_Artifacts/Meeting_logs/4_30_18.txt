@@ -16,6 +16,6 @@ For next meeting:
 - Finish updating charts
 - Automatic documentation generated
 - Finish test suite (including all tests that need to be written and display on tests being completed)
-- Merge all branches to master
 - Finish updating user manual
 - Last minute bug fixes
+- Move Social media buttons to Nav bar
