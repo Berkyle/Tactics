@@ -1,4 +1,10 @@
 <?php
+/**
+  ** @brief PHP class for the ninerBoard, which is an HTML populator
+	** @pre none
+	** @post HTML gets populated
+	** @return None
+  */
   class ninerBoard {
 
     private $user1 = "";
@@ -7,6 +13,7 @@
     private $tiles = array(); // $tiles is the 81 X/Os
     private $size;
     private $lastMove;
+
 
     public function __construct($user1, $user2, $sequencedMoves, $gameID) //$sequencedMoves is list of moves (value 0-80) in order of placement
     {

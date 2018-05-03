@@ -1,8 +1,8 @@
 <?php
 /**
-  ** @brief Add html lines at the end of the php file to make it readable for browser
+  ** @brief Get the location of another file with respect to the home page. Allows for file accessibility.
 	** @pre none
-	** @post none
+	** @post Provides a reference to the desired file
 	** @return None
   */
 $numdots = 0;

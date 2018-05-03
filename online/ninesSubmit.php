@@ -1,4 +1,10 @@
 <?php
+/**
+  ** @brief Validates and submits the move made on a 9x9 board
+	** @pre none
+	** @post Move is added to the database
+	** @return None
+  */
 if($_SERVER["REQUEST_METHOD"] == "POST"){
   include_once '../php/header.php';
 

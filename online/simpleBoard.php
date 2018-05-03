@@ -1,4 +1,10 @@
 <?php
+/**
+  ** @brief Displays the options for creating a new online 3x3 game
+	** @pre none
+	** @post Options are displayed
+	** @return None
+  */
 if(!isset($_COOKIE['user'])) {
   header('Location: ../');
 }

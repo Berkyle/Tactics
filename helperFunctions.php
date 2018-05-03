@@ -1,8 +1,8 @@
 <?php
 /**
-  ** @brief
+  ** @brief Help for the bots to populate the HTML
 	** @pre none
-	** @post none
+	** @post HTML gets populated
 	** @return None
   */
 function echoThrees($difficulty) {

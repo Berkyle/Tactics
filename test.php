@@ -1,8 +1,8 @@
 <?php
 /**
-  ** @brief 
+  ** @brief Checks the database to make sure X moves are odd numbered moves and O moves are even moves
 	** @pre none
-	** @post none
+	** @post Echoes errors if needed
 	** @return None
   */
 include_once 'php/header.php';

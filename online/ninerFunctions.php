@@ -1,4 +1,10 @@
 <?php
+/**
+  ** @brief Interacts with all the 9x9 javascript functions
+  ** @pre none
+  ** @post Nav bar for logged in state is displayed
+  ** @return arrays specific to each function
+  */
   function buildBoardArray($gameState) {
     //$boardState is between 0 and 333,333,333
     //Each digit represent the state of each of the 9 sub-tables
