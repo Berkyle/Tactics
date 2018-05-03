@@ -28,3 +28,5 @@ A simple user manual has been provided under the Documentation folder to navigat
 Web URL: 
 https://people.eecs.ku.edu/~k742b154/Tactics/
 
+Documentation:
+The documentation for the JavaScript was done through YUIdoc (automatic documentation generator). The PHP code was documented based on the files in a HTML page. 
