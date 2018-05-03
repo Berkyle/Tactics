@@ -4,8 +4,8 @@ div.container {
 }
 
 .tableContainer {
-    display: inline-block;
-    margin: 20px auto;
+    /*display: inline-block;*/
+    margin: auto;
 }
 
 table {
@@ -53,6 +53,7 @@ input.online:checked + div{
 
 div.outter {
   display: inline-block;
+  /*padding: 0;*/
   /*min-width: 246px;*/
   border: 3px solid black;
 }
@@ -71,11 +72,10 @@ div.continueContainer {
 }
 
 div.challenge {
-  display: inline-block;
-  overflow: auto;
+  /*display: inline-block;
   margin: auto;
   text-align: center;
-  vertical-align: middle;
+  vertical-align: middle;*/
 }
 
 td.miniboard {
