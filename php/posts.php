@@ -19,10 +19,10 @@
       $user = $row["author_id"];
       $post = $row["content"];
       echo "<div class=\"jumbotron\"><h2>".$user." says: ".$post."</h2></div>";
-       $profile = $row["username"];
-       $wins = $row["wins"];
-       $draws = $row["draws"];
-       $points = 3*$wins + $draws;
+       // $profile = $row["username"];
+       // $wins = $row["wins"];
+       // $draws = $row["draws"];
+       // $points = 3*$wins + $draws;
       
        array_push($users, $profile);
        array_push($userPoints, $points);
