@@ -30,7 +30,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       echo "<h3>Your move has been placed!</h3>";
     }
     else {
-      echo "Error updating record: " . $link->error;
+      echo "Error updating record: ".$link->error;
     }
     //Finish place move//////////////////
 

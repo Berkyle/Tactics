@@ -9,7 +9,7 @@
     header('Location: ../');
   }
   else {
-    include_once 'helperFunctions.php';
+    include_once '../helperFunctions.php';
     include_once '../php/header.php';
     $gameType = $_POST['type'];
 

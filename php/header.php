@@ -8,6 +8,7 @@
 
   require 'dirtracker.php';
   require_once 'config.php';
+  include_once getDirectoryEscape().'helperFunctions.php';
 
   $sessionUsr = $_COOKIE["user"];
   $password   = $_COOKIE["pw"];
@@ -41,7 +42,9 @@
         </div>
         <ul class="nav navbar-nav">
           <li class="active"><a href=<?php echo getDirectoryEscape()."#"; ?> >Home</a></li>
-        
+          <li class="active"><?php addFacebook(); ?></li>
+          <li class="active"><?php addTwitter(); ?></li>
+          <?php addSocial(); ?>
         </ul>
 <?php
   if(isset($_COOKIE['user'])) include_once 'loggedin.php';

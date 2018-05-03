@@ -9,10 +9,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
   //Place move//////////////////
   $numMoves = 0;
+  $moveList = array();
   $moves = mysqli_query($link, "SELECT * FROM NinesMoves WHERE gameID = '$gameID'");
   $numMoves = mysqli_num_rows($moves);
-  $thisMove = $numMoves+1;
+  while($row = $moves->fetch_assoc()) {
+    array_push($moveList, $row["movePosition"]);
+  }
 
+  $isUnique = true;
+  foreach ($moveList as $key => $value) {
+    if($moveNum == $value) $isUnique = false;
+  }
+
+  $thisMove = $numMoves+1;
   if($thisMove%2 == 0) $isX = 0;
   else $isX = 1;
 
@@ -41,8 +50,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     else {
       echo "Error updating record: " . $link->error;
     }
-
-
     //Finish place move//////////////////
 
     if($winner == 'X' || $winner == 'O' ) {
@@ -52,7 +59,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $userX = $row["user1"];
         $userO = $row["user2"];
       }
-      //$currGame->close(); /*close connection */
+      $currGame->close(); /*close connection */
 
       if(strtolower($userX) == strtolower($sessionUsr)) $opponent = $userO;
       else $opponent = $userX;
@@ -86,8 +93,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <h3>Both players get 10 points!</h3>";
 
       //change each players profile to reflect tie
-      $player = "UPDATE Profiles SET nineDraws = nineDraws + 1 WHERE username = '$sessionUsr'";
-      $other  = "UPDATE Profiles SET nineDraws = nineDraws + 1 WHERE username = '$opponent'";
+      $player = "UPDATE Profiles SET nineDraws = nineDraws + 1 WHERE username = '$userO'";
+      $other  = "UPDATE Profiles SET nineDraws = nineDraws + 1 WHERE username = '$userX'";
       $board  = "UPDATE NinesBoards SET winner = 'TIE' WHERE gameID = '$gameID'";
 
       if ($link->query($player) === TRUE  && $link->query($other) === TRUE && $link->query($board) === TRUE) {
