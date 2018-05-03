@@ -5,10 +5,10 @@ Location: Lab in Eaton
 Previous meeting:
 - Figure out what pages we want Twitter/Facebook APIs on (completed)
 - Begin refactoring Javascript into classes (niner, three board, and bots- all difficulties) (in progress)
-- Layout design for user posts (in progress)
 - Begin working on user manual (completed)
 - Fix bootstrap styling issue on dashboard (completed)
 - Begin working on online mode for 3x3 board (in progress)
+- Fix stability issues on 9x9 (in progress)
 
 For next meeting:
 - Refactor code for 3x3 (all difficulties)
