@@ -125,7 +125,7 @@ else {
 
               echo   "</div>
                       <div class=\"col-lg-6\">
-                        <div id=\"outter\" class=\"outter\">";
+                        <div id=\"outter\" class=\"outtie\">";
 
               $OMoves = array();
               $XMoves = array();
