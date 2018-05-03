@@ -8,26 +8,28 @@ function addEvents() {
   let XorO;
 	for(let i = 0; i < 9; i++) {//9-segment loop - adds click event to each tile
     XO[i].addEventListener("click", function() {
-      move = bot.runBot();
-      XorO = board.XTurn ? "X" : "O";
-      counrter++;
-      board.XTurn = !board.XTurn;
-      page.updatePage(board);
-      let testString = "<td class=\"testBox\">";
-      testString += ""+counrter+": "+move+"("+XorO+")  </td>";
-      document.getElementsByClassName("moveContainer")[0].innerHTML += testString;
-      for(let i = 0; i < 9; i++){
-        if(board.winner != ""){
-          break;
-        }
+      if(!this.classList.contains("XSelect") && !this.classList.contains("OSelect")){
         move = bot.runBot();
-        counrter++;
-        testString = "<td class=\"testBox\">"+counrter+": "+move+"("+XorO+")  ";
         XorO = board.XTurn ? "X" : "O";
+        counrter++;
         board.XTurn = !board.XTurn;
         page.updatePage(board);
-        testString += " </td>";
+        let testString = "<td class=\"testBox\">";
+        testString += ""+counrter+": "+move+"("+XorO+")  </td>";
         document.getElementsByClassName("moveContainer")[0].innerHTML += testString;
+        for(let i = 0; i < 9; i++){
+          if(board.winner != ""){
+            break;
+          }
+          move = bot.runBot();
+          counrter++;
+          testString = "<td class=\"testBox\">"+counrter+": "+move+"("+XorO+")  ";
+          XorO = board.XTurn ? "X" : "O";
+          board.XTurn = !board.XTurn;
+          page.updatePage(board);
+          testString += " </td>";
+          document.getElementsByClassName("moveContainer")[0].innerHTML += testString;
+        }
       }
       // document.getElementsByClassName("moveContainer")[0].innerHTML += "</tr></table>";
     });
@@ -44,26 +46,28 @@ function addEvents1() {
   let XorO;
 	for(let i = 0; i < 9; i++) {//9-segment loop - adds click event to each tile
     XO[i].addEventListener("click", function() {
-      move = bot.runBot();
-      XorO = board.XTurn ? "X" : "O";
-      counrter++;
-      board.XTurn = !board.XTurn;
-      page.updatePage(board);
-      let testString = "<td class=\"testBox\">";
-      testString += ""+counrter+": "+move+"("+XorO+")  </td>";
-      document.getElementsByClassName("moveContainer1")[0].innerHTML += testString;
-      for(let i = 0; i < 9; i++){
-        if(board.winner != ""){
-          break;
-        }
+      if(!this.classList.contains("XSelect") && !this.classList.contains("OSelect")){
         move = bot.runBot();
-        counrter++;
-        testString = "<td class=\"testBox\">"+counrter+": "+move+"("+XorO+")  ";
         XorO = board.XTurn ? "X" : "O";
+        counrter++;
         board.XTurn = !board.XTurn;
         page.updatePage(board);
-        testString += " </td>";
+        let testString = "<td class=\"testBox\">";
+        testString += ""+counrter+": "+move+"("+XorO+")  </td>";
         document.getElementsByClassName("moveContainer1")[0].innerHTML += testString;
+        for(let i = 0; i < 9; i++){
+          if(board.winner != ""){
+            break;
+          }
+          move = bot.runBot();
+          counrter++;
+          testString = "<td class=\"testBox\">"+counrter+": "+move+"("+XorO+")  ";
+          XorO = board.XTurn ? "X" : "O";
+          board.XTurn = !board.XTurn;
+          page.updatePage(board);
+          testString += " </td>";
+          document.getElementsByClassName("moveContainer1")[0].innerHTML += testString;
+        }
       }
       // document.getElementsByClassName("moveContainer")[0].innerHTML += "</tr></table>";
     });
@@ -80,26 +84,28 @@ function addEvents2() {
   let XorO;
 	for(let i = 0; i < 9; i++) {//9-segment loop - adds click event to each tile
     XO[i].addEventListener("click", function() {
-      move = bot.runBot();
-      XorO = board.XTurn ? "X" : "O";
-      counrter++;
-      board.XTurn = !board.XTurn;
-      page.updatePage(board);
-      let testString = "<td class=\"testBox\">";
-      testString += ""+counrter+": "+move+"("+XorO+")  </td>";
-      document.getElementsByClassName("moveContainer2")[0].innerHTML += testString;
-      for(let i = 0; i < 9; i++){
-        if(board.winner != ""){
-          break;
-        }
+      if(!this.classList.contains("XSelect") && !this.classList.contains("OSelect")){
         move = bot.runBot();
-        counrter++;
-        testString = "<td class=\"testBox\">"+counrter+": "+move+"("+XorO+")  ";
         XorO = board.XTurn ? "X" : "O";
+        counrter++;
         board.XTurn = !board.XTurn;
         page.updatePage(board);
-        testString += " </td>";
+        let testString = "<td class=\"testBox\">";
+        testString += ""+counrter+": "+move+"("+XorO+")  </td>";
         document.getElementsByClassName("moveContainer2")[0].innerHTML += testString;
+        for(let i = 0; i < 9; i++){
+          if(board.winner != ""){
+            break;
+          }
+          move = bot.runBot();
+          counrter++;
+          testString = "<td class=\"testBox\">"+counrter+": "+move+"("+XorO+")  ";
+          XorO = board.XTurn ? "X" : "O";
+          board.XTurn = !board.XTurn;
+          page.updatePage(board);
+          testString += " </td>";
+          document.getElementsByClassName("moveContainer2")[0].innerHTML += testString;
+        }
       }
       // document.getElementsByClassName("moveContainer")[0].innerHTML += "</tr></table>";
     });
@@ -116,26 +122,28 @@ function addEvents3() {
   let XorO;
 	for(let i = 0; i < 9; i++) {//9-segment loop - adds click event to each tile
     XO[i].addEventListener("click", function() {
-      move = bot.runBot();
-      XorO = board.XTurn ? "X" : "O";
-      counrter++;
-      board.XTurn = !board.XTurn;
-      page.updatePage(board);
-      let testString = "<td class=\"testBox\">";
-      testString += ""+counrter+": "+move+"("+XorO+")  </td>";
-      document.getElementsByClassName("moveContainer3")[0].innerHTML += testString;
-      for(let i = 0; i < 9; i++){
-        if(board.winner != ""){
-          break;
-        }
+      if(!this.classList.contains("XSelect") && !this.classList.contains("OSelect")){
         move = bot.runBot();
-        counrter++;
-        testString = "<td class=\"testBox\">"+counrter+": "+move+"("+XorO+")  ";
         XorO = board.XTurn ? "X" : "O";
+        counrter++;
         board.XTurn = !board.XTurn;
         page.updatePage(board);
-        testString += " </td>";
+        let testString = "<td class=\"testBox\">";
+        testString += ""+counrter+": "+move+"("+XorO+")  </td>";
         document.getElementsByClassName("moveContainer3")[0].innerHTML += testString;
+        for(let i = 0; i < 9; i++){
+          if(board.winner != ""){
+            break;
+          }
+          move = bot.runBot();
+          counrter++;
+          testString = "<td class=\"testBox\">"+counrter+": "+move+"("+XorO+")  ";
+          XorO = board.XTurn ? "X" : "O";
+          board.XTurn = !board.XTurn;
+          page.updatePage(board);
+          testString += " </td>";
+          document.getElementsByClassName("moveContainer3")[0].innerHTML += testString;
+        }
       }
       // document.getElementsByClassName("moveContainer")[0].innerHTML += "</tr></table>";
     });
