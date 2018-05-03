@@ -42,6 +42,12 @@
         </div>
         <ul class="nav navbar-nav">
           <li class="active"><a href=<?php echo getDirectoryEscape()."#"; ?> >Home</a></li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li><a href="simpleBoard.html">3x3 Test</a></li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li><a href="ninerBoard.html">9x9 Test</a></li>
           <?php
             if($loadRules) {
               echo "<li class=\"active\">".addFacebook()."</li>
@@ -49,12 +55,6 @@
               addSocial();
             }
             ?>
-        </ul>
-        <ul class="nav navbar-nav">
-          <li><a href="simpleBoard.html">3x3 Test</a></li>
-        </ul>
-        <ul class="nav navbar-nav">
-          <li><a href="ninerBoard.html">9x9 Test</a></li>
         </ul>
 <?php
   if(isset($_COOKIE['user'])) include_once 'loggedin.php';
