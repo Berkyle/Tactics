@@ -4,6 +4,18 @@
   vertical-align: top;
 	border: 3px solid black;
 }
+.subtable1 {
+	display: inline-block;
+	margin: 0;
+  vertical-align: top;
+	border: 3px solid black;
+}
+.subtable2 {
+	display: inline-block;
+	margin: 0;
+  vertical-align: top;
+	border: 3px solid black;
+}
 
 div.outter {
   border: 3px solid black;

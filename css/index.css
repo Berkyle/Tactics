@@ -15,10 +15,6 @@ div.container {
     /*display: inline-block;*/
     margin: auto;
 }
-.tableContainer3 {
-    /*display: inline-block;*/
-    margin: auto;
-}
 table {
   border: 3px solid black;
   margin: 0 auto;
@@ -44,12 +40,6 @@ table {
 	margin: 0;
 }
 .board2 {
-	border: 1px solid black;
-	height: 40px;
-	width: 40px;
-	margin: 0;
-}
-.board3 {
 	border: 1px solid black;
 	height: 40px;
 	width: 40px;
