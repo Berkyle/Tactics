@@ -122,7 +122,6 @@ class ninerBoard {
   * @return {Boolean} True if there is a special case; false otherwise
   */
   specialCases(){
-    return false;
     for(let i = 0; i < 9; i++){
       if(this.subBoards[i] != "A"){
         break;
