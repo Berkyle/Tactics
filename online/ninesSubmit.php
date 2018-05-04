@@ -12,7 +12,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_COOKIE['user'])){
   $moveNum = $_POST['move9'];
   $winner = $_POST['submit'];
   $pastMoves = $_POST['past'];
-  echo "winner: ".$winner;
+
   $miscreantMessage = "<h6>By golly, I sure hope you ain't fixin'uh loose my goose here, pardah...</h6><a href=\"../\"><button type=\"button\" class=\"btn btn-default btn-lg\">Home</button></a>";
 
   //Check Input//////////////////
