@@ -14,11 +14,9 @@
     $currGame = mysqli_query($link, "SELECT * FROM NinesBoards WHERE gameID = '$gameID'");
     $moves = mysqli_query($link, "SELECT * FROM NinesMoves WHERE gameID = '$gameID' ORDER BY moveNumber");
 
-    while($row = $currGame->fetch_assoc())
-    {
+    while($row = $currGame->fetch_assoc()) {
       $userX = $row["user1"];
       $userO = $row["user2"];
-      $boardState = $row["gameState"];
     }
     $currGame->close();
 
@@ -27,11 +25,10 @@
     echo "<h1>Continue game:</h1>
           <h2>Your 9x9 game with ".htmlspecialchars($opponent)."</h2>";
 
-    echo "<form action=\"ninesSubmit.php\" id=\"gameForm\" method=\"post\">".
+    echo "<form action=\"ninesSubmit.php\" id=\"gameForm\"  method=\"post\">".
             "<h3>Choose your next move below:</h3>".
             "<div class=\"tableContainer\">".
               "<div id=\"outter\" class=\"outter\">";
-
 
     $AllMoves = array();
     while($move = $moves->fetch_assoc())
@@ -42,10 +39,6 @@
 
     $GAME = new ninerBoard($userX, $userO, $AllMoves, $gameID);
 
-    $grayNum = ($GAME->getGrayStatus())%9;
-    $boardArray = buildBoardArray($boardState); //won boards
-    $grayArray = makeGrayArray($grayNum); //Grayed boards
-
     //Create Table
     for($i = 0; $i < 3; $i++)
     {
@@ -54,7 +47,7 @@
       {
         //Begin BOARD build
         $k = ($i*3)+$j;
-        echo "<table class=\"subtable ".$k." ".$boardArray[$k]."\" cellspacing=\"0\">";
+        echo "<table class=\"subtable ".$k." \" cellspacing=\"0\">";
 
         for($m = 0; $m < 3; $m++)
         {
@@ -62,7 +55,9 @@
           for($n = 0; $n < 3; $n++)
           {
             $tile = ($k*9)+($m*3)+$n;
-            echo "<td class=\"board\"></td>"; //Tile build
+            echo "<input type=\"radio\" name=\"move9\" class=\"radio\" value=\"".$tile."\" required>";
+            echo "<input type=\"checkbox\" name=\"past[]\" class=\"movebox\" value=".$GAME->getTileHistory($tile)." checked>";
+            echo "<td class=\"board\">".$GAME->getTileValue($tile)."</td>"; //Tile build
           }
           echo "</tr>";
         }
@@ -71,19 +66,8 @@
       echo "</div>";
     }
     echo "</div>";
-
-
-    $mine = "[";
-    $daMoves = $GAME->getNumMoves();
-    for($i = 0; $i < $daMoves; $i++) {
-      $mine .= $AllMoves[$i];
-      if($i != $daMoves-1) $mine .= ", ";
-    }
-    $mine .= "]";
-
 ?>
             <input type="hidden" name="gameID" value="<?php echo $gameID; ?>">
-            <input id="ignoreMe" type="hidden" name="gameState" value="<?php echo $mine?>">
 						<br>
 					</div>
 					<div>

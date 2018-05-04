@@ -46,22 +46,22 @@ table {
 	margin: 0;
 }
 
-input[type=radio].online {
+input[type=radio].radio {
   display: none;
 }
 
-input[type=text].online {
+input[type=text].radio {
   margin: auto;
   min-width: 400px;
   width: 30%;
 }
 
-input.online + td.board{
+input.radio + td.board{
   cursor:pointer;
   border:2px solid transparent;
 }
 
-input.online:checked + div{
+input.radio:checked + div{
   border:2px solid #f00;
 }
 
@@ -130,6 +130,10 @@ div.snug {
   padding: 0px;
   height: 9em;
   /*width: 27.25em;*/
+}
+
+.movebox {
+  display: none;
 }
 
 .selected { text-align: center; }
