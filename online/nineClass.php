@@ -17,12 +17,11 @@
 
     public function __construct($user1, $user2, $sequencedMoves, $gameID) //$sequencedMoves is list of moves (value 0-80) in order of placement
     {
-      $this->$possibleWins = array(array(0,1,2), array(3,4,5), array(6,7,8), array(0,3,6), array(1,4,7), array(2,5,8), array(0,4,8), array(2,4,6));
       $this->lastMove = end($sequencedMoves);
       $this->size = count($sequencedMoves);
 
       $this->tileHistory = array_fill(0, 81, "");
-
+      
       $this->buildBoard($sequencedMoves);
     }
 
