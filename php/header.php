@@ -44,10 +44,13 @@
           <li class="active"><a href=<?php echo getDirectoryEscape()."#"; ?> >Home</a></li>
         </ul>
         <ul class="nav navbar-nav">
-          <li><a href="simpleBoard.html">3x3 Test</a></li>
+          <li><a href=<?php echo getDirectoryEscape()."test.php" ?>>Database Test</a></li>
         </ul>
         <ul class="nav navbar-nav">
-          <li><a href="ninerBoard.html">9x9 Test</a></li>
+          <li><a href=<?php echo getDirectoryEscape()."simpleBoard.html"; ?> >3x3 Test</a></li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li><a href=<?php echo getDirectoryEscape()."ninerBoard.html"; ?> >9x9 Test</a></li>
           <?php
             if($loadRules) {
               echo "<li class=\"active\">".addFacebook()."</li>
