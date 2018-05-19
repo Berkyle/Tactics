@@ -46,7 +46,7 @@ else {
               $numMoves = 0 + mysqli_num_rows($boardMoves);
               $getTurn = $numMoves%2;
               if(($getTurn == 0 && $userX == "You") || ($getTurn == 1 && $userO == "you")){
-                echo "<button type=\"submit\" name=\"selectGame\" value=".$ID.">Continue game</button>";
+                echo "<button type=\"submit\" name=\"selectGame\" value=".$ID.">Continue game</button><br>";
               }
 
               echo   "</div>

@@ -22,6 +22,10 @@
       if($found > 0) { //Check database for existing user with the same name
         //At this point, all inputs valid.
         //Make that game!
+        while($row = $check->fetch_assoc()) {
+          $inviteUsr = $row["username"];
+        }
+        $check->close();
 
         if($plyrMove3 == "") {
           $boardTable = "NinesBoards";
