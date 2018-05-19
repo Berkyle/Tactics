@@ -38,10 +38,10 @@
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href= <?php echo $diradder."#"; ?> >Tactics</a>
+          <a class="navbar-brand" href= <?php echo $diradder."../Tactics"; ?> >Tactics</a>
         </div>
         <ul class="nav navbar-nav">
-          <li class="active"><a href=<?php echo getDirectoryEscape()."#"; ?> >Home</a></li>
+          <li class="active"><a href=<?php echo getDirectoryEscape()."../Tactics"; ?> >Home</a></li>
         </ul>
         <ul class="nav navbar-nav">
           <li><a href=<?php echo getDirectoryEscape()."test.php" ?>>Database Test</a></li>
