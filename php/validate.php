@@ -14,9 +14,15 @@
     $check = mysqli_query($link, "SELECT * FROM GameUsers WHERE username='$username'");
     $found = mysqli_num_rows($check);
 
-    if($found > 0) { //User exists
-      if($password == mysqli_fetch_object($check)->password) { //Validate user's password
-
+    if($found == 1) { //User exists
+      while($row = $check->fetch_assoc()) {
+        $usr_valid = $row[username];
+        $pw_valid = $row[password];
+      }
+      
+      if($password == $pw_valid) { //Validate user's password
+        $username = $usr_valid;
+        
         setcookie("user", $username, time()+(86400*10), "/"); //On valid password, set session cookies
         setcookie("pw", $password, time()+(86400*10), "/");
         header('Location: ../'); //Cookies set; Redirect to home page
