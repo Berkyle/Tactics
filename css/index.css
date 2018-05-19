@@ -109,6 +109,7 @@ div.continueContainer {
 }
 
 div.challenge {
+  z-index: 2;
   /*display: inline-block;
   margin: auto;
   text-align: center;
