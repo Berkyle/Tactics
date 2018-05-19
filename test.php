@@ -13,7 +13,6 @@ include_once 'php/header.php';
   $checkEvn = mysqli_query($link, "SELECT * FROM ThreesMoves WHERE isX = '0'");
 
   echo "<h1>Database Validation: Errors will be marked with \"ERROR - 'Descrition'\"</h1>";
-  echo "<h3>Errors will be marked with \"ERROR - 'Descrition'\"</h3>";
   echo "<h3>Running check for errors in all odd-valued 3x3 moves <br>...</h3>";
   while($row = $checkOdd->fetch_assoc()) {
     $value = (int)$row["moveNumber"];
