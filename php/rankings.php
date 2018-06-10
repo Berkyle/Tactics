@@ -36,9 +36,9 @@
                     "<table class=\"table table-hover table-fixed table-bordered\">".
                       "<thead>".
                         "<tr>".
-                          "<th>Rank</th>".
-                          "<th>Username</th>".
-                          "<th>Points</th>".
+                          "<th class='text-center'>Rank</th>".
+                          "<th class='text-center'>Username</th>".
+                          "<th class='text-center'>Points</th>".
                         "</tr>".
                       "</thead>".
                       "<tbody>";
