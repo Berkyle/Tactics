@@ -5,7 +5,7 @@
   	** @post none
   	** @return none
     */
-    $query = mysqli_query($link, "SELECT * FROM Profiles");
+    $query = mysqli_query($link, "SELECT *, (30*nineWins + 10*nineDraws + 3*wins + 1*draws) AS POINTS FROM Profiles ORDER BY POINTS");
     $profile = $link->query($query);
     $numrows = mysqli_num_rows($query);
 
@@ -26,24 +26,6 @@
 
         array_push($users, $profile);
         array_push($userPoints, $points);
-      }
-
-      //BubbleSort to organize Leaderboard by points
-      $swapped = true;
-      while($swapped) {
-        $swapped = false;
-        for($i = 0; $i < $numrows-1; $i++) {
-          if($userPoints[$i] > $userPoints[$i+1]) {
-            $tempPoints = $userPoints[$i+1];
-            $tempUser = $users[$i+1];
-
-            $userPoints[$i+1] = $userPoints[$i];
-            $userPoints[$i] = $tempPoints;
-            $users[$i+1] = $users[$i];
-            $users[$i] = $tempUser;
-            $swapped = true;
-          }
-        }
       }
 
       echo "<h2>Online Leaderboard</h2>".
