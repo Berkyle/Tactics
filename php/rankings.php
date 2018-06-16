@@ -5,7 +5,7 @@
   	** @post none
   	** @return none
     */
-    $query = mysqli_query($link, "SELECT *, (30*nineWins + 10*nineDraws + 3*wins + 1*draws) AS POINTS FROM Profiles ORDER BY POINTS");
+    $query = mysqli_query($link, "SELECT username, (30*nineWins + 10*nineDraws + 3*wins + 1*draws) AS POINTS FROM Profiles ORDER BY POINTS");
     $profile = $link->query($query);
     $numrows = mysqli_num_rows($query);
 
@@ -15,14 +15,7 @@
 
       while($row = $query->fetch_assoc()) {
         $profile = $row["username"];
-
-        $winsThree = $row["wins"];
-        $drawsThree = $row["draws"];
-
-        $winsNine = $row["nineWins"];
-        $drawsNine = $row["nineDraws"];
-
-        $points = 30*$winsNine + 10*$drawsNine + 3*$winsThree + $drawsThree;
+        $points = $row["POINTS"];
 
         array_push($users, $profile);
         array_push($userPoints, $points);
@@ -42,10 +35,7 @@
                         "</tr>".
                       "</thead>".
                       "<tbody>";
-      if($sessionUsr == "") {
-                   echo "<tr><td colspan=\"3\"><h3>You must be logged in to view rankings.</h3></td></tr>";
-      }
-      else {
+      
         for($k = 0; $k < $numrows; $k++) {
                    echo "<tr>".
                           "<td class=\"fiterable-cell\">".($k+1)."</td>".                       //Rank
@@ -53,7 +43,7 @@
                           "<td class=\"fiterable-cell\">".($userPoints[$numrows-1-$k])."</td>". //User's points
                         "</tr>";
         }
-      }
+      
                 echo  "</tbody>".
                     "</table>".
                   "</div>".
